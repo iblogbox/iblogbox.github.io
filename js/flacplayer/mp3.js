@@ -115,6 +115,12 @@ var ID3Stream = AV.Base.extend({
                     
                 case 'string':
                     ret[key] = stream.readString(i === len ? rest : null, ENCODINGS[encoding]);
+					//edit
+					if(ENCODINGS[encoding]=='latin1'){
+						ret[key]='\x01\x01'+ret[key];
+					}
+					//console.log(ENCODINGS[encoding]);
+					//console.log(ret[key]);
                     break;
                     
                 case 'binary':
