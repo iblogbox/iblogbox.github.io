@@ -1,5 +1,4 @@
 /*
-cdsdc
  * AAC.js - Advanced Audio Coding decoder in JavaScript
  * Created by Devon Govett
  * Copyright (c) 2012, Official.fm Labs
