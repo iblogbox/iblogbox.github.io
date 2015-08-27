@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+  <name>vaac.kml</name>
+  <Style id="RED">
+    <BalloonStyle>
+      <text>$[description]</text>
+    </BalloonStyle>
+    <IconStyle>
+      <color>cc0000ff</color>
+      <scale>1.0</scale>
+      <Icon><href>http://mapcontext.com/images/redbox.gif</href></Icon>
+    </IconStyle>
+  </Style>
+  <Style id="ORANGE">
+    <BalloonStyle>
+      <text>$[description]</text>
+    </BalloonStyle>
+    <IconStyle>
+      <color>ff0099ff</color>
+      <scale>1.0</scale>
+      <Icon><href>http://mapcontext.com/images/orangebox.gif</href></Icon>
+    </IconStyle>
+  </Style>
+  <Style id="YELLOW">
+    <BalloonStyle>
+      <text>$[description]</text>
+    </BalloonStyle>
+    <IconStyle>
+      <color>ff00ffff</color>
+      <scale>1.0</scale>
+      <Icon><href>http://mapcontext.com/images/yellowbox.gif</href></Icon>
+    </IconStyle>
+  </Style>
+  <Style id="NIL">
+    <BalloonStyle>
+      <text>$[description]</text>
+    </BalloonStyle>
+    <IconStyle>
+      <color>99999999</color>
+      <scale>0.5</scale>
+      <Icon><href>http://mapcontext.com/images/greybox.gif</href></Icon>
+    </IconStyle>
+  </Style>
+  <Folder>
+  <name>Recent Volcano Aviation Alerts</name>
+  <open>1</open>
+
+<Placemark>
+  <name>KLIUCHEVSKOI 11/0307Z (KAMCHATKA PENINSULA )</name>
+  <description>
+    <![CDATA[KLIUCHEVSKOI <p> VAAC Advisory Number: 2015/001 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MISSING  <br />
+    Remarks: PLEASE SEE FVFE01 RJTD ISSUED BY TOKYO VAAC WHICH DESCRIBES CONDITIONS NEAR THE ANCHORAGE VAAC AREA OF RESPONSIBILITY   JAN 2015 AAWU <br />
+    <a href="http://mapcontext.com/cap/kliuchevskoi2015-01-11-0307.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>160.633,56.050,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SHIVELUCH 11/0236Z (KAMCHATKA PENINSULA )</name>
+  <description>
+    <![CDATA[SHIVELUCH <p> VAAC Advisory Number: 2015/005 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MISSING  <br />
+    Remarks: PLEASE SEE FVFE01 RJTD ISSUED BY TOKYO VAAC WHICH DESCRIBES CONDITIONS NEAR THE ANCHORAGE VAAC AREA OF RESPONSIBILITY  JAN 2015 AAWU <br />
+    <a href="http://mapcontext.com/cap/shiveluch2015-01-11-0236.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>161.367,56.650,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SHIVELUCH 07/1711Z (KAMCHATKA PENINSULA )</name>
+  <description>
+    <![CDATA[SHIVELUCH <p> VAAC Advisory Number: 2015/043 <br />
+    Details: EARLIER ERUPTION FROM SHIVELUCH JAN 7 AT 0055Z. <br />
+    Aviation Colour Code: RED <br />
+    Information Source: MT-SAT/GOES  <br />
+    Remarks: VA HAS DSIPT. <br />
+    <a href="http://mapcontext.com/cap/shiveluch2015-01-07-1711.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#RED</styleUrl>
+  <Point>
+    <coordinates>161.367,56.650,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SHIVELUCH 07/1120Z (KAMCHATKA PENINSULA )</name>
+  <description>
+    <![CDATA[SHIVELUCH <p> VAAC Advisory Number: 2015/042 <br />
+    Details: VA FROM EARLIER ERUPTION. <br />
+    Aviation Colour Code: ORANGE <br />
+    Information Source: MT-SAT  <br />
+    Remarks: VAAC TOKYO HAS TRANSFERRED RESPONSIBILITY OF THIS EVENT TO VAAC ANCHORAGE. THIS ADVISORY UPDATES MESSAGE FVFE01 RJTD. VA HARD TO SEE ON SATELLITE IMAGERY. APPEARS TO BE NEARLY DISSIPATED. <br />
+    <a href="http://mapcontext.com/cap/shiveluch2015-01-07-1120.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#ORANGE</styleUrl>
+  <Point>
+    <coordinates>161.367,56.650,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SHIVELUCH 07/0625Z (KAMCHATKA PENINSULA )</name>
+  <description>
+    <![CDATA[SHIVELUCH <p> VAAC Advisory Number: 2015/041 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MISSING  <br />
+    Remarks: PLEASE SEE FVFE01 RJTD ISSUED BY TOKYO VAAC WHICH DESCRIBES CONDITIONS NEAR THE ANCHORAGE VAAC AREA OF RESPONSIBILITY   BH JAN 2015 AAWU <br />
+    <a href="http://mapcontext.com/cap/shiveluch2015-01-07-0625.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>161.367,56.650,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SHIVELUCH 07/0245Z (KAMCHATKA PENINSULA )</name>
+  <description>
+    <![CDATA[SHIVELUCH <p> VAAC Advisory Number: 2015/040 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MISSING  <br />
+    Remarks: PLEASE SEE FVFE01 RJTD ISSUED BY TOKYO VAAC WHICH DESCRIBES CONDITIONS NEAR THE ANCHORAGE VAAC AREA OF RESPONSIBILITY   BH JAN 2015 AAWU <br />
+    <a href="http://mapcontext.com/cap/shiveluch2015-01-07-0245.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>161.367,56.650,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SABANCAYA 06/1430Z (PERU)</name>
+  <description>
+    <![CDATA[SABANCAYA <p> VAAC Advisory Number: 2015/001 <br />
+    Details: VA REPORTED AT  06/1335Z<br />
+    Aviation Colour Code: YELLOW <br />
+    Information Source: GOES 13 - WEBCAM - GFS MODEL - PILOT REPORT  <br />
+    Remarks: ALTHOUGH A PILOT REPORTED VA TO FL210/220 MOV E, THERE IS NO INDICATION OF VA IN SATELLITE IMAGERY.  WEBCAM SHOWS CONTINUOUS EMISSION OF STEAM AND GASES AND POSSIBLE LGT VA. SEISMIC ACTIVITY REMAINS AT LOW LEVELS. <br />
+    <a href="http://mapcontext.com/cap/sabancaya2015-01-06-1430.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#YELLOW</styleUrl>
+  <Point>
+    <coordinates>-71.850,-15.783,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SINABUNG 11/2031Z (INDONESIA)</name>
+  <description>
+    <![CDATA[SINABUNG <p> VAAC Advisory Number: 2015/19 <br />
+    Details: GROUND REPORTS INDICATE AN ERUPTION TO FL130 AT 10/0635Z <br />
+    Aviation Colour Code: ORANGE <br />
+    Information Source: GROUND REPORTS  <br />
+    Remarks: NO REPORTS OF AN ERUPTION IN THE LAST 18 HOURS, CURRENT DATA SOURCES DO NOT INDICATE AN ONGOING ERUPTION. ADVISORY TERMINATED DUE TO LACK OF REPORTS. <br />
+    <a href="http://mapcontext.com/cap/sinabung2015-01-11-2031.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#ORANGE</styleUrl>
+  <Point>
+    <coordinates> 98.383, 3.167,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SINABUNG 11/1431Z (INDONESIA)</name>
+  <description>
+    <![CDATA[SINABUNG <p> VAAC Advisory Number: 2015/18 <br />
+    Details: GROUND REPORTS INDICATE AN ERUPTION TO FL130 AT 10/0635Z <br />
+    Aviation Colour Code: ORANGE <br />
+    Information Source: GROUND REPORTS  <br />
+    Remarks: NO REPORTS OF AN ERUPTION IN THE LAST 18 HOURS, VA EXPECTED TO DISSIPATE. HEIGHT AND DIRECTION BASED ON PHOTOGRAPHS AND MEDAN 11/0000Z WINDS. ERUPTION NOT VISIBLE ON SATELLITE DUE TO METEOROLOGICAL CLOUD. <br />
+    <a href="http://mapcontext.com/cap/sinabung2015-01-11-1431.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#ORANGE</styleUrl>
+  <Point>
+    <coordinates> 98.383, 3.167,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SINABUNG 11/0824Z (INDONESIA)</name>
+  <description>
+    <![CDATA[SINABUNG <p> VAAC Advisory Number: 2015/17 <br />
+    Details: GROUND REPORTS INDICATE AN ERUPTION TO FL130 AT 10/0635Z <br />
+    Aviation Colour Code: ORANGE <br />
+    Information Source: GROUND REPORTS  <br />
+    Remarks: NO REPORTS OF AN ERUPTION IN THE LAST 12 HOURS, VA EXPECTED TO DISSIPATE. HEIGHT AND DIRECTION BASED ON PHOTOGRAPHS AND MEDAN 11/0000Z WINDS. ERUPTION NOT VISIBLE ON SATELLITE DUE TO METEOROLOGICAL CLOUD. <br />
+    <a href="http://mapcontext.com/cap/sinabung2015-01-11-0824.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#ORANGE</styleUrl>
+  <Point>
+    <coordinates> 98.383, 3.167,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>KLIUCHEVSKOI 12/0543Z (RUSSIA)</name>
+  <description>
+    <![CDATA[KLIUCHEVSKOI <p> VAAC Advisory Number: 2015/10 <br />
+    Details: VA AT 20150112/0525Z FL280 EXTD WSW MOV 16KT  REPORTED<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MTSAT-2 UHPP  <br />
+    Remarks: WE WILL ISSUE FURTHER ADVISORY IF VA IS DETECTED IN SATELLITE  IM AGERY. <br />
+    <a href="http://mapcontext.com/cap/kliuchevskoi2015-01-12-0543.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>160.633,56.050,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SAKURAJIMA-WAKAMIKO[AIRA-CALDERA] 12/0319Z (JAPAN )</name>
+  <description>
+    <![CDATA[SAKURAJIMA-WAKAMIKO[AIRA-CALDERA] <p> VAAC Advisory Number: 2015/50 <br />
+    Details: ERUPTED AT 20150112/0308Z FL080 EXTD SE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: JMA  <br />
+    Remarks: WE WILL ISSUE FURTHER ADVISORY IF VA IS DETECTED IN SATELLITE  IM AGERY. <br />
+    <a href="http://mapcontext.com/cap/sakurajima-wakamiko[aira-caldera]2015-01-12-0319.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>130.650,31.600,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>KLIUCHEVSKOI 12/0312Z (RUSSIA)</name>
+  <description>
+    <![CDATA[KLIUCHEVSKOI <p> VAAC Advisory Number: 2015/9 <br />
+    Details: VA AT 20150112/0025Z FL190 EXTD SW REPORTED<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MTSAT-2 KVERT  <br />
+    Remarks: WE WILL ISSUE FURTHER ADVISORY IF VA IS DETECTED IN SATELLITE  IM AGERY. <br />
+    <a href="http://mapcontext.com/cap/kliuchevskoi2015-01-12-0312.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>160.633,56.050,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>ASOSAN 12/0007Z (JAPAN )</name>
+  <description>
+    <![CDATA[ASOSAN <p> VAAC Advisory Number: 2015/49 <br />
+    Details: ACTIVITY CONT. VA AT 20150112/0000Z FL060 EXTD S<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: JMA  <br />
+    Remarks: WE WILL ISSUE FURTHER ADVISORY IF VA IS DETECTED IN SATELLITE  IMAGERY. <br />
+    <a href="http://mapcontext.com/cap/asosan2015-01-12-0007.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>131.100,32.883,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>KLIUCHEVSKOI 11/2157Z (RUSSIA)</name>
+  <description>
+    <![CDATA[KLIUCHEVSKOI <p> VAAC Advisory Number: 2015/8 <br />
+    Details: VA AT 20150111/2029Z FL190 EXTD ESE REPORTED<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: MTSAT-2 KVERT  <br />
+    Remarks: WE WILL ISSUE FURTHER ADVISORY IF VA IS DETECTED IN SATELLITE  IMAGERY. <br />
+    <a href="http://mapcontext.com/cap/kliuchevskoi2015-01-11-2157.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>160.633,56.050,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>NOTICE 08/0707Z (UNKNOWN)</name>
+  <description>
+    <![CDATA[NOTICE <p> VAAC Advisory Number: 2015/1 <br />
+    Details: NIL <br />
+    Aviation Colour Code: NIL <br />
+    Information Source: NIL  <br />
+    Remarks: VAAC DARWIN HAS ASSUMED RESPONSIBILITY FOR ISSUING VAA TO THE TOKYO AREA OF RESPONSIBILITY. PLEASE CONTACT VAAC DARWIN AS PER IAVW HANDBOOK TABLE 4-2 FOR VOLCANIC ASH ADVICE TO THE VAAC TOKYO AREA OF RESPONSIBILITY <br />
+    <a href="http://mapcontext.com/cap/notice2015-01-08-0707.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates> 99.983,-89.983,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>ASO 08/0703Z (JAPAN)</name>
+  <description>
+    <![CDATA[ASO <p> VAAC Advisory Number: 2015/33 <br />
+    Details: ACTIVITY CONT.VA AT 20150108/0600Z FL060 EXTD E <br />
+    Aviation Colour Code: NIL <br />
+    Information Source: JMA  <br />
+    Remarks: WE WILL ISSUE FURTHER ADVISORY IF VA IS DECTECTED IN SATELLITE IMAGERY. <br />
+    <a href="http://mapcontext.com/cap/aso2015-01-08-0703.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>131.117,32.883,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>ETNA 03/0600Z (ITALY)</name>
+  <description>
+    <![CDATA[ETNA <p> VAAC Advisory Number: 2015/05 <br />
+    Details: ASH EMISSION IS FINISHED<br />
+    Aviation Colour Code: ORANGE <br />
+    Information Source: VONA FM INGV,  WEBCAM,  SAT IMAGERY  <br />
+    Remarks:  <br />
+    <a href="http://mapcontext.com/cap/etna2015-01-03-0600.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#ORANGE</styleUrl>
+  <Point>
+    <coordinates> 15.000,37.733,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>FUEGO 09/1538Z (GUATEMALA )</name>
+  <description>
+    <![CDATA[FUEGO <p> VAAC Advisory Number: 2015/003 <br />
+    Details: NO ASH EMISSIONS DETECTED IN PAST 3 HOURS.  <br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. SEISMIC DETECTION. VOLCANO WEB CAMERA.  <br />
+    Remarks: NO ASH EMISSIONS SEEN IN WEBCAM OR SAT IMAGERY FOR PAST 3 HRS. THERE ARE GAS EMISSIONS AND WEAK HOTSPOT.  ...SWANSON <br />
+    <a href="http://mapcontext.com/cap/fuego2015-01-09-1538.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-90.867,14.467,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>COLIMA 09/1520Z (MEXICO )</name>
+  <description>
+    <![CDATA[COLIMA <p> VAAC Advisory Number: 2015/004 <br />
+    Details: NO FURTHER EMISSIONS <br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST.  <br />
+    Remarks: THE PREVIOUS ASH HAS DISSIPATED AND NO FURTHER EMISSIONS HAVE BEEN SEEN IN IMAGERY.  ...SWANSON <br />
+    <a href="http://mapcontext.com/cap/colima2015-01-09-1520.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-103.617,19.500,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>COLIMA 09/1003Z (MEXICO )</name>
+  <description>
+    <![CDATA[COLIMA <p> VAAC Advisory Number: 2015/003 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. NAM WINDS.   ERUPTION  <br />
+    Remarks: NEW EMISSION MOVES TO THE NE AND IS EXPECTED TO DISSIPATE OVER NEXT 6HRS.  EARLIER EMISSIONS HAVE DISSIPATED.  ...SALEMI <br />
+    <a href="http://mapcontext.com/cap/colima2015-01-09-1003.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-103.617,19.500,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>FUEGO 09/0909Z (GUATEMALA )</name>
+  <description>
+    <![CDATA[FUEGO <p> VAAC Advisory Number: 2015/002 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. NAM WINDS.   ERUPTION  <br />
+    Remarks: VA NOT OBSERVED IN PARTLY CLDY NIGHTTIME IMAGERY. ...SALEMI <br />
+    <a href="http://mapcontext.com/cap/fuego2015-01-09-0909.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-90.867,14.467,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>COLIMA 09/0705Z (MEXICO )</name>
+  <description>
+    <![CDATA[COLIMA <p> VAAC Advisory Number: 2015/002 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. GFS WINDS.   ERUPTION  <br />
+    Remarks: A SECOND DISCRETE EMISSION WAS OBSERVED.  BOTH EMISSIONS ARE MOVING ENE AND ARE EXPECTED TO DISSIPATE OVER THE NEXT 6HRS. ...SALEMI <br />
+    <a href="http://mapcontext.com/cap/colima2015-01-09-0705.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-103.617,19.500,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>COLIMA 09/0352Z (MEXICO )</name>
+  <description>
+    <![CDATA[COLIMA <p> VAAC Advisory Number: 2015/001 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. GFS WINDS.   ERUPTION  <br />
+    Remarks: DISCRETE EMISSION OF VA MOVING TO THE NE.  VA IS EXPECTED TO DISSIPATE OVER NEXT 12HRS. ...SALEMI <br />
+    <a href="http://mapcontext.com/cap/colima2015-01-09-0352.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-103.617,19.500,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>FUEGO 09/0313Z (GUATEMALA )</name>
+  <description>
+    <![CDATA[FUEGO <p> VAAC Advisory Number: 2015/001 <br />
+    Details: VA SEEN AT 09/0100Z. <br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. TEGUCIGALPA MWO. GFS WINDS. NAM WINDS. INSIVUMEH.  <br />
+    Remarks: VA IS NOT SEEN DUE TO WX CLDS AND NIGHTFALL IN STLT IMAGERY.   INSIVUMEH RPTS INDICATE MOD EXPLOSIONS OF VA MOV W TO SW.   ...KIBLER <br />
+    <a href="http://mapcontext.com/cap/fuego2015-01-09-0313.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-90.867,14.467,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>SANTA MARIA 05/1821Z (GUATEMALA )</name>
+  <description>
+    <![CDATA[SANTA MARIA <p> VAAC Advisory Number: 2015/002 <br />
+    Details: DETAILS UNAVAILABLE<br />
+    Aviation Colour Code: NIL <br />
+    Information Source: GOES-EAST. INSIVUMEH.   ERUPTION  <br />
+    Remarks: THE PREVIOUS PLUME OF GASES AND LIGHT ASH DISSIPATED AFTER 1515Z AND THERE HAVE BEEN NO FURTHER EMISSION REPORTED OR DETECTED.  ...SWANSON  NXT <br />
+    <a href="http://mapcontext.com/cap/santa_maria2015-01-05-1821.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#NIL</styleUrl>
+  <Point>
+    <coordinates>-91.550,14.750,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>HUNGA TONGA-HUNGA HAAPAI 12/0336Z (TONGA)</name>
+  <description>
+    <![CDATA[HUNGA TONGA-HUNGA HAAPAI <p> VAAC Advisory Number: 2015/24 <br />
+    Details: OBS VA TO FL160 AT 11/2036Z<br />
+    Aviation Colour Code: UNKNOWN <br />
+    Information Source: PILOT OBSERVATION.  <br />
+    Remarks:  <br />
+    <a href="http://mapcontext.com/cap/hunga_tonga-hunga_haapai2015-01-12-0336.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#UNKNOWN</styleUrl>
+  <Point>
+    <coordinates>-175.367,-20.567,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>HUNGA TONGA-HUNGA HAAPAI 11/2251Z (TONGA)</name>
+  <description>
+    <![CDATA[HUNGA TONGA-HUNGA HAAPAI <p> VAAC Advisory Number: 2015/23 <br />
+    Details: OBS VA TO FL160 AT 11/2036Z<br />
+    Aviation Colour Code: UNKNOWN <br />
+    Information Source: PILOT OBSERVATION.  <br />
+    Remarks: VOLCANO OBSCURED BY CLOUD. PILOT REPORT OF                       DARK VA CLOUD UP TO FL160 AND APPROX 10NM                       AROUND THE ISLAND. CONTINUOUS ERUPTION. <br />
+    <a href="http://mapcontext.com/cap/hunga_tonga-hunga_haapai2015-01-11-2251.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#UNKNOWN</styleUrl>
+  <Point>
+    <coordinates>-175.367,-20.567,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>HUNGA TONGA-HUNGA HAAPAI 10/2249Z (TONGA)</name>
+  <description>
+    <![CDATA[HUNGA TONGA-HUNGA HAAPAI <p> VAAC Advisory Number: 2015/22 <br />
+    Details: LAST REPORT OF VA 09/2100Z<br />
+    Aviation Colour Code: UNKNOWN <br />
+    Information Source: PILOT OBSERVATION.  <br />
+    Remarks: VOLCANO OBSCURED BY CLOUD. NO NEW OBSERVATIONS                       OR REPORTS OF ACTIVITY IN THE LAST 24 HOURS. <br />
+    <a href="http://mapcontext.com/cap/hunga_tonga-hunga_haapai2015-01-10-2249.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#UNKNOWN</styleUrl>
+  <Point>
+    <coordinates>-175.367,-20.567,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>HUNGA TONGA-HUNGA HAAPAI 10/1719Z (TONGA)</name>
+  <description>
+    <![CDATA[HUNGA TONGA-HUNGA HAAPAI <p> VAAC Advisory Number: 2015/21 <br />
+    Details: NO OBSERVATIONS RECEIVED SINCE 09/2100Z, WHERE                       PILOT REPORTED ASH PLUME TO FL200. <br />
+    Aviation Colour Code: UNKNOWN <br />
+    Information Source: PILOT OBSERVATION. GNS NEW ZEALAND  <br />
+    Remarks: ERUPTION STILL NOT VISIBLE IN SATELLITE                       IMAGERY DUE TO METEOROLOGICAL CLOUD. VOLCANIC                       ACTIVITY EXPECTED TO CONTINUE. <br />
+    <a href="http://mapcontext.com/cap/hunga_tonga-hunga_haapai2015-01-10-1719.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#UNKNOWN</styleUrl>
+  <Point>
+    <coordinates>-175.367,-20.567,0</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark>
+  <name>HUNGA TONGA-HUNGA HAAPAI 10/1102Z (TONGA)</name>
+  <description>
+    <![CDATA[HUNGA TONGA-HUNGA HAAPAI <p> VAAC Advisory Number: 2015/20 <br />
+    Details: NO OBSERVATIONS RECEIVED SINCE 09/2100Z, WHERE                       PILOT REPORTED ASH PLUME TO FL200. <br />
+    Aviation Colour Code: UNKNOWN <br />
+    Information Source: PILOT OBSERVATION. GNS NEW ZEALAND  <br />
+    Remarks: ERUPTION STILL NOT VISIBLE IN SATELLITE                       IMAGERY DUE TO METEOROLOGICAL CLOUD. VOLCANIC                       ACTIVITY EXPECTED TO CONTINUE. <br />
+    <a href="http://mapcontext.com/cap/hunga_tonga-hunga_haapai2015-01-10-1102.xml">View CAP Alert Message</a>]]>
+  </description>
+  <styleUrl>#UNKNOWN</styleUrl>
+  <Point>
+    <coordinates>-175.367,-20.567,0</coordinates>
+  </Point>
+</Placemark>
+
+    </Folder>
+  </Document>
+</kml>

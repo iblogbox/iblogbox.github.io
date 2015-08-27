@@ -1,0 +1,39 @@
+<tr class="top bg-{bgstatus}" id="top-{rId}">
+	<td class="url">
+		<div>
+			<b class="order">{order}.</b>
+			<i class="glyphicon glyphicon-chevron-down" data-toggle-sign="glyphicon glyphicon-chevron-up"></i>
+			<a href="{fullUrl}">{fullUrl}</a>
+			<strong>{method}{fileName}<em>{params}</em></strong>
+		</div>
+	</td>
+	<td class="status" data-toggle="tooltip" title="{fullStatus}">{status}</td>
+	<td class="type" data-toggle="tooltip" title="{fullMimeType}">{mime}</td>
+	<td class="size" data-toggle="tooltip" data-sort-value="{size}" title="{size} ([compressed])<br>{fullSize} ([normal])">{sizeToShow}</td>
+	<td class="timeline" data-sort-value="{order}" data-toggle="popover" title="{progressStart}" data-content="{progressContent}">
+		<div>
+			<div class="progress">
+				<span class="totalTime">{totalTime}</span>
+				<div class="progress-bar progress-bar-space" style="width:{startPosition}">{startPosition}</div>
+				<div class="progress-bar progress-bar-warning" style="width:{blockedWidth}"></div>
+				<div class="progress-bar progress-bar-last" style="width:{dnsWidth}"></div>
+				<div class="progress-bar progress-bar-info" style="width:{connectWidth}"></div>
+				<div class="progress-bar progress-bar-secondary" style="width:{sslWidth}"></div>
+				<div class="progress-bar progress-bar-primary" style="width:{sendWidth}"></div>
+				<div class="progress-bar progress-bar-danger" style="width:{waitWidth}"></div>
+				<div class="progress-bar progress-bar-success" style="width:{receiveWidth}"></div>
+			</div>
+			{renderstarted}
+			{domloaded}
+			{windowloaded}
+		</div>
+	</td>
+</tr>
+<tr class="inside" id="inside-{rId}">
+	<td colspan="5">
+		<ul class="nav nav-tabs">
+			{tabs}
+		</ul>
+		{tabContainers}
+	</td>
+</tr>

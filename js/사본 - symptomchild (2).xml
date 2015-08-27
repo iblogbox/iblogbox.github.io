@@ -1,0 +1,2186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+
+<ModulePrefs title="Child Symptoms Checker" 
+directory_title="Child Symptoms Checker"
+description="Get a quick snapshot of your child health problems with Child Symptoms Checker to assess your options. Choose from common symptoms like abdominal pain, cough, dizziness, headaches, pain, vision, and others. This tool will give you a rough idea of the condition your child may have. We will continue to add more useful information like medications and costs. We are passionate about health tools to increase exposure and empower patients. Check it out!" 
+title_url="http://www.inventivegadget.com" 
+author="Inventive Gadget" 
+author_email="tom@inventivegadget.com" 
+author_photo="http://tom-gadgets.googlecode.com/svn/trunk/ig.jpg"
+author_link="http://www.inventivegadget.com"
+screenshot="http://tom-gadgets.googlecode.com/svn/trunk/symptomchild_ss.jpg" 
+thumbnail="http://tom-gadgets.googlecode.com/svn/trunk/symptomchild_thumb.jpg" 
+height="160" 
+scrolling="false" 
+category="tools" 
+category2="lifestyle">
+
+<Require feature="com.google.gadgets.analytics"/>
+<Require feature="setprefs"/> 
+<Require feature="dynamic-height"/>
+</ModulePrefs>
+
+<UserPref default_value="0" datatype="hidden" name="added"/>
+
+<Content type="html" view="home,canvas,profile">
+<![CDATA[
+
+<script src="http://www.google.com/jsapi"></script>
+<script>google.load("jquery","1.3.2");</script>
+<link href="http://tom-gadgets.googlecode.com/svn/trunk/inventive/symptoms.css" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+  var prefs = new gadgets.Prefs();      
+  var added = prefs.getInt("added");
+  var ga = new _IG_GA("UA-9215422-1");
+  ga.reportPageview('/symptomchild');
+      
+					if(added==0){
+						added = new Date().getTime();
+						prefs.set("added",added);
+						ga.reportPageview('/symptomchild/added');
+					 }
+
+var today = new Date().getTime();
+var cutoff = today - 604800000;
+function show() {
+if (cutoff > added)
+{
+document.getElementById('frame').style.display='block';
+}
+gadgets.window.adjustHeight();
+}
+
+
+$(document).ready(function(){ $("#sym1").click(function () { $("#symptom1").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym2").click(function () { $("#symptom2").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym3").click(function () { $("#symptom3").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym4").click(function () { $("#symptom4").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym5").click(function () { $("#symptom5").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym6").click(function () { $("#symptom6").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym7").click(function () { $("#symptom7").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym8").click(function () { $("#symptom8").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym9").click(function () { $("#symptom9").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym10").click(function () { $("#symptom10").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym11").click(function () { $("#symptom11").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym12").click(function () { $("#symptom12").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym13").click(function () { $("#symptom13").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym14").click(function () { $("#symptom14").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym15").click(function () { $("#symptom15").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym16").click(function () { $("#symptom16").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+$(document).ready(function(){ $("#sym17").click(function () { $("#symptom17").toggle(); $("#cat").toggle(); gadgets.window.adjustHeight(); }); });
+
+  
+  $(document).ready(function(){    
+    $("#disclaimer").click(function () {
+      $("#note").toggle();
+    });
+   gadgets.window.adjustHeight();
+  });  
+
+
+function doit(cat){
+var params = {};
+params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
+var allVals = [];
+$(':checked').each(function() {
+allVals.push($(this).val());
+});
+var getcat = $('#sym'+cat).text(); 
+document.getElementById('category').innerHTML = getcat;
+document.getElementById('symptom'+cat).style.display='none';
+document.getElementById('details').style.display='block';
+var url = 'http://www.inventivegadget.com/gadget/symptomchild.php?cat='+cat+'&string='+allVals;
+gadgets.io.makeRequest(url, callback, params);
+};
+
+function callback(obj) {
+var response = obj.text;
+if(response) response=response.replace(/partner-pub-2610300054657055:ewywsv-kc7a/g,"006522195787408489144:djcz_oj6lfk");
+document.getElementById('list').innerHTML = response;    
+setTimeout('gadgets.window.adjustHeight()', 5000);
+document.getElementById('frame1').style.display='block';
+sendit();      
+gadgets.window.adjustHeight();
+}
+
+
+function listsym(condition){
+var params = {};
+params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
+params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.GET;
+document.getElementById('listsym').style.display='block';
+var url = 'http://www.inventivegadget.com/gadget/symptomchild.php?condition='+ escape(condition);
+gadgets.io.makeRequest(url, callback1, params);
+};
+
+function callback1(obj) {
+var response = obj.text;
+var html = "";
+var items = response.split("|");
+    for (var i = 0; i < items.length ; i++) {
+      html += "<li>";
+      html += items[i]; 
+      html += "</li>";
+    }
+document.getElementById('listsym').innerHTML = html;    
+setTimeout('gadgets.window.adjustHeight()', 9000);       
+gadgets.window.adjustHeight();
+}
+
+function sendit(){
+$(document).ready(function(){
+     $('#details a').click(function(e){     
+        var $target = $(e.target);
+        var select = $(this).attr('href');         
+        listsym(select);
+        });
+});
+}
+
+function adjust(){
+$(":checked").removeAttr("checked");
+document.getElementById('cat').style.display='block';
+document.getElementById('details').style.display='none';
+document.getElementById('listsym').style.display='none';
+document.getElementById('symptom1').style.display='none';
+document.getElementById('symptom2').style.display='none';
+document.getElementById('symptom3').style.display='none';
+document.getElementById('symptom4').style.display='none';
+document.getElementById('symptom5').style.display='none';
+document.getElementById('symptom6').style.display='none';
+document.getElementById('symptom7').style.display='none';
+document.getElementById('symptom8').style.display='none';
+document.getElementById('symptom9').style.display='none';
+document.getElementById('symptom10').style.display='none';
+document.getElementById('symptom11').style.display='none';
+document.getElementById('symptom12').style.display='none';
+document.getElementById('symptom13').style.display='none';
+document.getElementById('symptom14').style.display='none';
+document.getElementById('symptom15').style.display='none';
+document.getElementById('symptom16').style.display='none';
+document.getElementById('symptom17').style.display='none';
+document.getElementById('frame1').style.display='none';
+gadgets.window.adjustHeight();
+}
+
+
+function getlink(){
+var params = {};
+params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
+var url = 'http://www.inventivegadget.com/gadget/anylink.php';
+gadgets.io.makeRequest(url, returnback, params);
+};
+
+function returnback(obj) {
+var response = obj.text;
+document.getElementById('link').innerHTML = response;
+setTimeout('gadgets.window.adjustHeight()', 3000);
+gadgets.window.adjustHeight();
+};
+
+gadgets.util.registerOnLoadHandler(getlink);  
+gadgets.util.registerOnLoadHandler(show);										
+</script>
+
+<style>
+#wrapper { 
+position: absolute;
+width: 400px;
+} 
+#left {
+font-size: 13px; 
+float: left;
+width: 150px;
+}
+#right {
+font-size: 13px; 
+float: left;
+width: 150px;
+}
+#cat { 
+float: left;
+width: 300px;
+}
+#comment { 
+float: bottom;
+width: 300px;
+}
+#box { 
+float: bottom;
+width: 300px;
+}
+#link { 
+float: bottom;
+width: 300px;
+}
+
+</style>
+
+<iframe
+style="display:none" 
+src ="http://tom-gadgets.googlecode.com/svn/iframe3.html"
+width="100%"
+height="70"
+scrolling="no"
+frameborder="0"
+id="frame"
+name="frame">
+</iframe>
+
+<div id="wrapper">
+
+<div id="cat">
+<div id="left">
+<li><a  id="sym1"  href="" onclick="return false;">Abdominal pain</a></li> 
+<li><a  id="sym2"  href="" onclick="return false;">Constipation</a></li> 
+<li><a  id="sym3"  href="" onclick="return false;">Cough</a></li> 
+<li><a  id="sym4"  href="" onclick="return false;">Decreased Hearing</a></li> 
+<li><a  id="sym5"  href="" onclick="return false;">Diarrhea</a></li> 
+<li><a  id="sym6"  href="" onclick="return false;">Earache</a></li> 
+<li><a  id="sym7"  href="" onclick="return false;">Eye discomfort and redness</a></li> 
+<li><a  id="sym8"  href="" onclick="return false;">Fever</a></li> 
+<li><a  id="sym9"  href="" onclick="return false;">Headaches</a></li> 
+</div>
+<div id="right">
+<li><a  id="sym10"  href="" onclick="return false;">Joint pain or muscle pain</a></li> 
+<li><a  id="sym11"  href="" onclick="return false;">Nasal congestion</a></li> 
+<li><a  id="sym12"  href="" onclick="return false;">Nausea or vomiting</a></li> 
+<li><a  id="sym13"  href="" onclick="return false;">Skin rashes</a></li> 
+<li><a  id="sym14"  href="" onclick="return false;">Sore throat</a></li> 
+<li><a  id="sym15"  href="" onclick="return false;">Urinary problems</a></li> 
+<li><a  id="sym16"  href="" onclick="return false;">Vision problems</a></li> 
+<li><a  id="sym17"  href="" onclick="return false;">Wheezing</a></li> 
+</div>
+</div>
+
+<div id="symptom1" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Abdominal Pain</b>   
+
+			<div class="refine tva">
+
+				<label>Pain is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="04483174-94FA-0EB5-DB3F4639C4E0C1F7"/><p>Extreme</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04483183-B99C-B863-3B86EF841FA777B5"/><p>Mild to moderate</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04483193-E1CF-FFA6-C231C31617BFE8A6"/><p>Moderate to severe</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Onset is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="044917B6-96D3-8A32-C1FFD660D70CFACA"/><p>Intermittent or episodic</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044917C6-BC0C-7B94-3FBA675B0AF96256"/><p>Recent (hours to days)</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="044917D6-0459-8003-BC53C72A77FE4317"/><p>Sudden (minutes to hours)</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Preceded by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="044A1898-BC7E-7C7B-EB5FBD3032E8A8D7"/><p>Eating suspect food</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044A4AB3-9E96-5710-85673D8115798F57"/><p>Recent antibiotic use</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Triggered or worsened by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="536DDE0E-2A5D-9994-E467D7F6D2D26F2E"/><p>Coughing or other jarring movements</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="536DDE1E-2A5D-9994-ECD199A400961E98"/><p>Eating certain foods</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69983930-E7FF-0DBD-1FF8EABC44EB2BB7"/><p>Menstrual cycle</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69983940-E7FF-0DBD-1A4D8DD9B9077A99"/><p>Stress</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+
+				<label>Relieved by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="536F218B-2A5D-9994-ECBF26E753E9EAFC"/><p>Avoiding certain foods</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="536F21AB-2A5D-9994-EFE949AABE77DD4C"/><p>Drinking more water</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="536F21BA-2A5D-9994-EA05064580ED393B"/><p>Eating more fiber</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="537080CE-2A5D-9994-EFCB77BCF802B010"/><p>Abdominal swelling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6999A4F1-E7FF-0DBD-118CFC15B6BC25BE"/><p>Constipation</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044BC065-E364-4573-AAA363A0419F622D"/><p>Delayed growth or sexual development</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="537080ED-2A5D-9994-EC8EC90F4F38BFB8"/><p>Diarrhea</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044C1D87-FD9F-268B-54B8252A1BBDC95D"/><p>Failure to thrive (infant or toddler)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044C6B87-D32D-CD15-53BFFE21D2FD57F7"/><p>Family history of migraines</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="537080FD-2A5D-9994-ED484232B92D4092"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044CB3F8-B64E-D2F1-E0F6B48E981B0161"/><p>Lump in abdomen</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="5370810C-2A5D-9994-E829E295CAD5C915"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5370811C-2A5D-9994-E5B44F1637F25213"/><p>Passing gas</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6999A510-E7FF-0DBD-12B33F1B985A63E0"/><p>Rash</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044CDF5D-908C-9D80-B9C3502FDCCD6630"/><p>Stomach growling or rumbling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044D5661-FF49-D9A8-A8452C9B7EA77929"/><p>Stools with blood</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="044D5671-9194-5C06-C76FB3997FB97796"/><p>Stools with pus</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="6999D620-E7FF-0DBD-1BD4CBFAEC20A0AD"/><p>Weight loss</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(1);return false;"/>
+</div>
+
+
+
+<!--breaker-->
+
+<div id="symptom2" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Constipation</b>
+			<div class="refine tva">
+
+				<label>Problem is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="04664DF2-B0C3-63EB-41F96038F87D3F01"/><p>Ongoing or recurrent</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="046670AD-F619-3729-0CE20986853B1B0C"/><p>Recent</p></li>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine ">
+				<label>Triggered by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="04674E2E-F153-0205-22F252DA5B61215F"/><p>Avoiding regular bowel movements</p></li>
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="43967EAE-2A5D-9994-EC2BF83A7E0EB136"/><p>Abdominal pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04685D3E-FD49-52D6-3D0111E9BE83BB09"/><p>Abdominal swelling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="43992AA5-2A5D-9994-EAA8E6AD4052DF67"/><p>Anal or rectal pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="43992AB4-2A5D-9994-EB117D5A0184428B"/><p>Bloody stools</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="43992AD4-2A5D-9994-ECF93C8960E2EC48"/><p>Diarrhea</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="43992AE3-2A5D-9994-EC480773165B9FD6"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04685D4E-CC7D-9FB9-9D382989F5E874B8"/><p>Lack of appetite</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="43992B03-2A5D-9994-E67298827885EACF"/><p>Leaking stool</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04685D5E-BED9-8333-60866256E5B67714"/><p>Lump in abdomen</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="04685D6D-D0A2-DD1A-D162B4D6A14BB859"/><p>Nausea or vomiting</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(2);return false;"/>
+</div>
+
+
+<!--breaker-->
+
+<div id="symptom3" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Cough</b>   
+
+			<div class="refine tva">
+
+				<label>Cough is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="538BCC18-2A5D-9994-E04FEA4FA237322E"/><p>Dry</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0481143B-C102-0E20-F5D17E1AF4F5535C"/><p>Followed by a "whoop" when inhaling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="538CB4B3-2A5D-9994-ECD1F4CCAFBF8533"/><p>Gasping</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="538CB4C3-2A5D-9994-ED88827C9EFB9E07"/><p>Harsh or barking</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0481145A-B97F-B398-CE3187AAFF443552"/><p>Producing phlegm or sputum</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Problem is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0481C3D5-FF92-DF23-2C6DABE9BD2DF40F"/><p>New or recent</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0481C3E5-E7AE-3785-5BFE9F0BE7D4A909"/><p>Ongoing or recurrent</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0481C3F4-D1E0-1B21-AE5583F5188D6E40"/><p>Progressive or worsening</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Triggered or worsened by</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="538DE312-2A5D-9994-E675D5870896C410"/><p>Allergens or irritants</p></li>
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+
+				
+					<li><input type="checkbox" name="differentiatorID" value="0482CC8D-E58E-3C5D-CADA752C20AC6803"/><p>Bluish skin on face</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5390964C-2A5D-9994-E749817702C25093"/><p>Chest pain or tightness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="048331DF-EC3A-4CEC-DDC604CD00C69B0F"/><p>Chills or sweating</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="048400AA-B718-A796-25A9B628DD86E4AF"/><p>Decreased energy or fatigue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="048400BA-F4FD-17D2-37BD44073D2D02FD"/><p>Diarrhea</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0484A141-0D00-26E4-8D68820F9162D965"/><p>Drooling or difficulty swallowing</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="5390965C-2A5D-9994-E9B6888A0655DDDE"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0484A151-065B-488E-69C79EC39602A8DA"/><p>Headache or facial pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0485536C-A980-E052-2BB48881CD0FC3B5"/><p>High-pitched breathing sound when inhaling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5390967B-2A5D-9994-E807922BC9DEEBCA"/><p>Hoarse voice</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04858AD8-E11B-5A26-F41CFF454A1A036B"/><p>Lack of appetite</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="5390968B-2A5D-9994-E5C7587E9238126D"/><p>Muscle aches</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0485DF80-0FA4-0AB8-9CC5350DB6C5DC3F"/><p>Rapid heartbeat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04862A55-93A0-57B6-6720904DB0F1BC38"/><p>Rapid or difficult breathing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69B47825-E7FF-0DBD-1BD6403B47944D02"/><p>Red eyes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69B47834-E7FF-0DBD-109AC4DB56CC6948"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="539096B9-2A5D-9994-ED626488D503E635"/><p>Shortness of breath</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="539096C9-2A5D-9994-E2D81202AEF7A044"/><p>Sneezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="539096D9-2A5D-9994-E51450596E0679C5"/><p>Sore throat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0486AA25-FDC8-2834-A38F9307B1BC12D7"/><p>Vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0486AA35-B937-71EF-235C113844D4CC72"/><p>Watery or itchy eyes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="539096F8-2A5D-9994-E8B24E34C59DE282"/><p>Wheezing</p></li>
+					
+				</ul>
+
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(3);return false;"/>
+</div>
+
+
+
+<!--breaker-->
+
+<div id="symptom4" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Decreased hearing</b>   
+
+			<div class="refine tva">
+
+				<label>Triggered by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="69C3EB7C-E7FF-0DBD-157F9ADAA85FFF5E"/><p>Change in air pressure</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="543C3B31-2A5D-9994-E0FD698E13B27B84"/><p>Cold or upper respiratory illness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="049F6FB0-BC68-09ED-5A545435DA373BFD"/><p>Foreign object in ear</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="543C3B41-2A5D-9994-ED1C91941925EC05"/><p>Injury or trauma</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="543C3B50-2A5D-9994-E8BEF625F0882D7B"/><p>Loud, sudden noise</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Preceded by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="049FFA6D-04F5-D400-63305158A43C90C9"/><p>Middle ear infection</p></li>
+
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="543E8F05-2A5D-9994-E792C4D481B3DDB5"/><p>Bleeding from ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="543E8F15-2A5D-9994-E24198B3D23670E3"/><p>Clear or pus-filled drainage</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A07607-D67E-55D1-1FFD7BB21DC20D93"/><p>Dizziness or spinning sensation</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="543E8F34-2A5D-9994-EE28089DD068C0E4"/><p>Ear pain or discomfort</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="543E8F53-2A5D-9994-EEB004F28F849040"/><p>Feeling of fullness in ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A1656A-AFED-A604-1B5985A6E05AA235"/><p>Fever</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A1657A-A6DB-68CB-BFBF103BADFB3508"/><p>Headache</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A16589-B2E0-4321-FA42ACE2E7803685"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A1BE0A-BFE9-C1B9-DA67DD6EF3357FAF"/><p>Redness in ear canal</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="543E8F63-2A5D-9994-EF6093722904E85F"/><p>Redness or swelling of outer ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A26F5A-F86A-CED3-FBE451E5695EFBCE"/><p>Ringing or buzzing in ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="04A26F6A-C06E-B60A-B344118040BDF076"/><p>Scaly or flaking skin on outer ear</p></li>
+					
+				</ul>
+
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(4);return false;"/>
+</div>
+
+
+<!--breaker-->
+
+<div id="symptom5" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Diarrhea</b>   
+
+			<div class="refine tva">
+
+				<label>Problem is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="055FB8F5-91A0-88E6-92F2249D985310EE"/><p>Ongoing or recurrent (weeks to years)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05604577-90F0-9B85-D9FD9ED5030F7A0E"/><p>Recent (days to weeks)</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05604587-FBD5-6321-F8BAEDCA34553EF4"/><p>Sudden (hours to days)</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Preceded by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0560E581-C539-5B39-3AF203C3FDA68285"/><p>Eating suspect food</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0560E591-016F-5926-2B0093A1491BF107"/><p>Recent antibiotic use</p></li>
+
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Triggered or worsened by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="54468732-2A5D-9994-E89E0A767ECC847B"/><p>Eating certain foods</p></li>
+					
+						</ul><ul>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Relieved by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="544750AC-2A5D-9994-E6CE36537E916B42"/><p>Avoiding certain foods</p></li>
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="056220C3-B845-3CC6-996FF0F0CC915821"/><p>Abdominal pain or cramping</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="056220D2-A4D2-7162-A939BDC6C12A5F7C"/><p>Bloating or abdominal swelling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496C88-2A5D-9994-E9C6F7FD815C4F7A"/><p>Bloody stools</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496C98-2A5D-9994-ED8BBC930488C5B0"/><p>Constipation</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="056255CD-A04D-D62A-F9D7E24DB9B3036A"/><p>Cough or wheezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05629354-9A92-D302-F3D9CEC32EA98E85"/><p>Decreased energy or fatigue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0562CC56-CD1A-3729-B866EF55A3181DB3"/><p>Delayed growth</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="056317C7-DB87-A642-AD2252FC382457FD"/><p>Delayed puberty</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05638509-ADE1-8819-BBDFAB68A7CA1AD0"/><p>Enlargement or rounding of fingertips or toes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0563D656-0825-A96A-6845F2798050DE73"/><p>Failure to thrive (infants and toddlers)</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496CB7-2A5D-9994-E7EF799FD6C2B84B"/><p>Fever</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496CC7-2A5D-9994-EE003C76BEED565B"/><p>Foul-smelling stools</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05643918-D6C5-01D3-3D2818D3CE104930"/><p>Frequent respiratory infections</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05647D27-FE5C-936D-809E6C2E64DA9563"/><p>Hallucinations</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05655930-D80B-14A8-DC367D68012EFED3"/><p>Lump in abdomen</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="05655940-EDD3-37CE-14BC516BA915D85F"/><p>Mucus in stools</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="05655950-EC81-E29D-90167CB716334B11"/><p>Muscle aches or joint pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496CD6-2A5D-9994-E84AEEB2F92EB23F"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496CE6-2A5D-9994-EE23F03D176554A9"/><p>Passing gas</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0565595F-9C1D-619C-1BB7B0ABFD5CC948"/><p>Stomach growling or rumbling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0565597F-A192-D348-8D72985732250D4C"/><p>Urgency to have a bowel movement</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="54496D05-2A5D-9994-ED4E11E955B053A6"/><p>Weight loss</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(5);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom6" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Earache</b> 
+			<div class="refine tva">
+
+				<label>Triggered by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="545E92EF-2A5D-9994-EEB86E5763A6B27C"/><p>Change in air pressure</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="545E92FF-2A5D-9994-EC422C6CA642AE98"/><p>Cold or upper respiratory illness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DD3CD3-9E47-333C-C14101334A8305DC"/><p>Exposure to allergens or irritants</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DD94C7-0EAF-1C28-7F7683AD7541DD2B"/><p>Foreign object in ear</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="545E930E-2A5D-9994-E118BB312B1B17BB"/><p>Injury or trauma</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DDB30E-A6AE-BBC3-DADF0062E3552A55"/><p>Loud, sudden noise</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+
+				
+					<li><input type="checkbox" name="differentiatorID" value="54601942-2A5D-9994-E8C69D60A5111BAE"/><p>Bleeding from ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54601951-2A5D-9994-E55BF0ECCE68972B"/><p>Clear or pus-filled drainage</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DE2AB0-CDD6-B78B-EB487CBDD90FCB32"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DEAE0B-CB81-C31E-8FC3BFEF574031D9"/><p>Decreased hearing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DF287C-9670-058A-40346A83A9B33236"/><p>Difficulty sleeping or irritability (infant or toddler)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DFC4DD-E53F-D66F-E763EAE40FE49A0F"/><p>Dizziness or spinning sensation</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="54601971-2A5D-9994-E930B6AF69A8B47D"/><p>Feeling of fullness in ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54601980-2A5D-9994-EF68F8681779163E"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09DFC4ED-B253-47B9-54AA5A085765682B"/><p>Headache or facial pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E07505-0174-5F8F-3379C59F55EF6A49"/><p>Itchy nose, mouth or throat</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C130-C02F-7592-8A0F00AE9D188DA8"/><p>Mild body aches</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C14F-04A0-EAE3-E4E4E3E6A440793D"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C15F-E383-20E0-8A6934C1CC013A07"/><p>Redness in ear canal</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5460199F-2A5D-9994-E804F079799035D8"/><p>Redness or swelling of outer ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C16E-B5EA-295E-BB31AD640BFCAE5E"/><p>Ringing or buzzing in ear</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C17E-F35C-C721-F48F10F38244C359"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C18E-BEBD-1E66-EBF5B611DE4C1E79"/><p>Scaly or flaking skin on outer ear</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C19D-D8B6-107B-A02EFD8058E57FDD"/><p>Sneezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C1AD-0617-D2F5-7242392C85D56078"/><p>Sore throat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="09E1C1CC-A295-44CC-1C783A6D76E14F88"/><p>Watery or itchy eyes</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(6);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom7" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Eye discomfort and redness</b> 
+			<div class="refine tva">
+
+				<label>Eye discomfort best described as</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A13037E-CB3E-7009-6F09A106C9A2D705"/><p>Dry or itchy</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A135931-018B-16A7-E6F783B7C143EB99"/><p>Gritty sensation</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A13A02D-B581-045C-DB82B26592462F9E"/><p>Severe pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A13C9AF-9F1F-B209-7FDD8240F48E6E11"/><p>Stinging or burning sensation</p></li>
+
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Appearance of eye includes</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A142906-FDF3-7EE6-FF6B63D36391457C"/><p>Crusted eyelashes after sleeping</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A15223E-D251-DFEE-33B727FB2EB7642C"/><p>Excessive tearing</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A15224D-CC6D-E329-881ABAAFBE2E2995"/><p>Red, painful lump on the eyelid</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A15225D-03B0-379D-D1F655EB8C80D49E"/><p>Redness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A15226D-D6C6-B56C-25618C9395C89035"/><p>Stringy mucus in or around the eye</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A157DAD-A779-4B4A-C944429250F14350"/><p>Swelling around the eye</p></li>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine tva">
+				<label>Vision problem includes</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A161C7F-0817-0421-6B3FF6E16479997B"/><p>Blurred vision</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A161C8F-E7EF-42CD-656F5D36FBA35255"/><p>Vision loss</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Triggered by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A166159-9A5A-33AA-850BEA6C8CB14152"/><p>Allergens or other irritants</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="43BFA470-2A5D-9994-EE6C386257BC3462"/><p>Injury or trauma</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A16B314-EBBC-8D55-E28AF817ED27325B"/><p>No clearly recognized cause</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Worsened by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A172A58-0C20-2199-D1744641772E267E"/><p>Eye movement</p></li>
+
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A196D79-0A2A-B2B0-B4EC78460D6AEF44"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A19E700-DCDF-51E0-48436832A93DA9E0"/><p>Difficulty sleeping or irritability (infants or toddlers)</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A18B7D3-F133-A1A4-84E7D0DB84473AD1"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A18B7E3-BA0C-5B58-9E6CE86815173EEF"/><p>Headache or facial pain</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A18B7F2-F88D-14BA-74C6FA84B7B0D554"/><p>Mild body aches</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69DAD4B3-E7FF-0DBD-10166227D056535B"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A18B802-FA65-A01D-12DAC912D22E2874"/><p>Sneezing</p></li>
+
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(7);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom8" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Fever</b> 
+			<div class="refine tva">
+
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0A276F71-9E67-D587-D803A41715F3A125"/><p>Abdominal pain or cramping</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A286903-EDD4-2549-717DDA70BEB409FA"/><p>Bloody or cloudy urine</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A286912-0F94-AEFB-F46DF38B4C365744"/><p>Bloody stools</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A286922-CDF1-ACDE-1D83210B3F86AAA7"/><p>Chest pain or tightness</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="546AD979-2A5D-9994-E20D71F417B1CF03"/><p>Chills</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A286932-B35C-052A-E1C8D5B738448555"/><p>Confusion</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546AD988-2A5D-9994-EEE67D3CB73A2308"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A286941-E793-9007-C11ACED98F3C2867"/><p>Decreased energy or fatigue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546AD998-2A5D-9994-EF69E7A41B4E1A06"/><p>Diarrhea</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A28F24F-EE4A-0DE2-9D087F66CB4AAED4"/><p>Ear pain or discharge</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="54738064-2A5D-9994-E0704686B32BCF39"/><p>Frequent or painful urination</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A299165-02ED-E1A5-66F5FAF6C06BD730"/><p>Headache</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546AD9D6-2A5D-9994-EE52A488648B2474"/><p>Loss of appetite</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69EF36A7-E7FF-0DBD-1F2D26E85E51F7B0"/><p>Muscle aches</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546AD9E6-2A5D-9994-ED0EA15AD343A105"/><p>Nausea or vomiting</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="69EDA6D6-E7FF-0DBD-1646266CA201E2B0"/><p>Night sweats</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A2991E2-D5CC-B907-4851E9295AE902C6"/><p>Rapid heartbeat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546AD9F6-2A5D-9994-EF4EBC0D7B2D960D"/><p>Rapid or difficult breathing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546ADA05-2A5D-9994-EB8929D206FC15B0"/><p>Rash</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A2A68D0-9F14-72EF-FABBBC67517F8EED"/><p>Red spots at the back of the roof of the mouth</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="546ADA15-2A5D-9994-E313324919B4EF25"/><p>Red, swollen tonsils</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="54731AB5-2A5D-9994-E645683ED8CE751F"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A2A68DF-A9DD-E7F1-3E84D93F3AFD68CE"/><p>Shortness of breath</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A2A68EF-C51D-5F26-522C3EC44419180D"/><p>Sneezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69EE42FE-E7FF-0DBD-119944629CB6C617"/><p>Sore throat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54731AD4-2A5D-9994-E3EB52149BC2389E"/><p>Stiff neck</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="69EE91D5-E7FF-0DBD-1B52D88FBD31BA32"/><p>Swollen glands (lymph nodes) in neck</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A2A68FF-DCB1-D198-A4D56D6854553A77"/><p>Watery or itchy eyes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="54714F5A-2A5D-9994-E6DA3A28EFBC4381"/><p>Wheezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0A2A690E-F9C0-F12F-2536A80087FA5D5C"/><p>White patches or pus on tonsils</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(8);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom9" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Headaches</b> 
+	
+		
+			<div class="refine tva">
+				<label>Pain is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EA5948C-FD73-437B-1A4AE4565BC7F1C6"/><p>Extreme</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA594AB-03D8-2870-6DC945DB00D8DE48"/><p>Mild to moderate</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA594BB-B681-A462-412C64EE35FFF1FC"/><p>Moderate to severe</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA594CA-BAE9-D350-078320873EEFC1F3"/><p>Pressure or squeezing sensation</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA594DA-E5E4-5D33-897635A94DAB6F6D"/><p>Stabbing or burning</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7E61303E-E7FF-0DBD-176A46A611D2C9AB"/><p>Throbbing</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Pain located</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EA651C4-F7B8-07A7-94479F90692F8EE1"/><p>Around one eye or radiates from one eye</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA6F71E-CA08-A532-3552554CA4249B85"/><p>Behind eyes or radiates from eyes</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA73020-0EB4-DD99-376330518910B93E"/><p>On both sides of head</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA77AF5-9FF8-FC6A-B5AC45B1038E5388"/><p>On one side of head</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine tva">
+				<label>Onset</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EA8C57A-C01D-CF5D-ACD622066DC2E8E4"/><p>Is gradual</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA93CA0-9FD9-BD3B-F2ACCD0F6838C233"/><p>Is preceded by head injury or fall</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA8C58A-9060-01D1-E68FE7F8BCBEA40B"/><p>Is preceded by visual or other sensory disturbances</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA8C59A-C5FB-0D55-0C6533A14F4FB8E3"/><p>Is sudden</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Duration of headache is</label>
+				<ul>
+
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EAAD323-F9E1-FFC8-C18990E11DA20CE7"/><p>Several hours to several days</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAAEE2D-D975-EF13-E4678C93C7F09024"/><p>Several minutes to a few hours</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Recurrence of headache</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EACB3A0-FDD7-07EB-DC7E9D0344F3D476"/><p>Gradually becomes more frequent</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EACB3B0-A75B-16C9-7DCB59047468CDEB"/><p>Is daily</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EACF59C-E93A-2C73-E1045159D8F3AEB1"/><p>Is often in the morning</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EACB3C0-9C93-52E4-C6EBCF0058C7CA2D"/><p>Is often the same time every day</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Triggered or worsened by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="5801BA14-2A5D-9994-E05387F3C2E22EE3"/><p>Change in sleep patterns</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5801BA23-2A5D-9994-EDF9C2D48EA382A8"/><p>Clenching or grinding teeth</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EA9F7D4-90E0-A333-37DD5B35DEE16D74"/><p>Everyday activities</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5801BA33-2A5D-9994-E636E209395D321D"/><p>Hormonal changes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAA36E1-F098-35A6-F1EC8C15E1E190F4"/><p>Poor posture</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAA36F1-E2E1-C363-9C9A0BEFBE0F9ECB"/><p>Stress</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+
+				<label>Relieved by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EBA06F9-ED32-4887-3A763778E64CC7CA"/><p>Lying down in the dark</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAD9C0F-F7D7-9689-EE310D1BE903779A"/><p>Over-the-counter pain medication</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAD9C1F-FEE1-8223-E2F8A1266C02CEE0"/><p>Rest</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EAF7F3C-0E9D-0C2C-9DAAB3F4FBD8F9B0"/><p>Achy joints or muscles</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAF7F4C-9695-3D01-F0ACF846987E1C92"/><p>Change in personality, behaviors or mental status</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAF7F5B-0648-70BF-D4B6B9A348582479"/><p>Confusion</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAF7F6B-B790-39C3-C7106B49D9ED5B85"/><p>Difficulty speaking</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAF7F7B-94D4-4C6D-5FD9E1E2F094F9D5"/><p>Dizziness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58062697-2A5D-9994-E0848F416F7A79B4"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="580626A7-2A5D-9994-E11DFFD817F0E684"/><p>Jaw pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EAFFCAB-C3C8-05EB-65C8649B1BA3AF75"/><p>Memory loss or forgetfulness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="580626D6-2A5D-9994-E66D604EA283C08F"/><p>Nausea or vomiting</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EB088A1-0CDD-A89A-E0B3D315C7237150"/><p>Persistent weakness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EB088B0-C862-57BA-C7A96DC49155F146"/><p>Restlessness or agitation</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EB0BE76-EF3A-028E-DBD61BE09F9EC022"/><p>Ringing in ears</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7E64257D-E7FF-0DBD-1E8542FA746896A2"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58062705-2A5D-9994-E103F93E277B3816"/><p>Seizures</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="58062724-2A5D-9994-E0175D109F34D7A2"/><p>Sensitivity to light or noise</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EB27340-9802-A209-3C5A379CF5EAAC63"/><p>Stiff neck</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EB0E8A4-CE5A-1C27-36D88E9B6A62E1EE"/><p>Vision problems</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58074074-2A5D-9994-E9235ADCEACFD174"/><p>Weakness on one side of body</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(9);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom10" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Joint pain or muscle pain</b> 
+			<div class="refine tva">
+				<label>Problem is</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0ED59658-94F2-26C3-37596A2CD3120C9C"/><p>Bone pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED59667-A79E-EB40-C035E5C6A2DFD4C5"/><p>Joint pain</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED5F30F-B853-EFCA-0DFDD172D6088018"/><p>Muscles aches, cramps or pain</p></li>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine ">
+				<label>Location of pain</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0ED6E060-EE2F-2D47-BE0B7619A469B4CB"/><p>Is limited to a specific area</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED6E070-B0A2-778E-419590A198E86951"/><p>Is throughout the whole body</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED6E07F-09F5-5942-C7DE0F3C6D71D0EE"/><p>Migrates from one site to another</p></li>
+
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Onset is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0ED79A0D-02A1-2ADA-8550A7EC55C669A9"/><p>Gradual</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED79A2D-C434-0261-1909AB0B848728D8"/><p>Intermittent or episodic</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED79A3C-9D00-59FA-38401A2B91B288D4"/><p>Sudden</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Preceded by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0ED8975C-C38B-D8D7-2B39334AC0979D14"/><p>Recent sore throat</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED8976C-D4E4-0F06-E5017B1D8372AD36"/><p>Tick bite or possible exposure to ticks</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Occurs</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0ED9BEF7-08E2-34FD-7B02A87DCBACD57A"/><p>At night</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED9BF07-EBC8-2A7A-BE627641B9941A82"/><p>In late afternoon or early evening</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0ED9BF16-E41C-3821-32DDE5BC97990CE7"/><p>In the morning or after a nap</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Triggered or worsened by</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0EDA4187-E99C-33A7-C62B2537EEC5E5A9"/><p>Activity or overuse</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5816ABDE-2A5D-9994-EEC3D54096191FF7"/><p>Injury</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="581AEE15-2A5D-9994-E42B7A428251293A"/><p>Abdominal pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDB4CB0-C093-8C14-5A4AEF6EEF181C47"/><p>Bloody stools</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEE25-2A5D-9994-EC37B56D82A39BDC"/><p>Chest pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDB818C-D55F-4787-E106EEE3EF7D7715"/><p>Concentration or memory problems</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDBA66A-BD3F-D6B4-E2A12ACBD5993141"/><p>Easy bruising or bleeding</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDBF8B1-EEA4-88CE-A955750CF32B4C08"/><p>Emotional outbursts or unusual behaviors</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDC46D2-BEA2-E42B-2A4BA46AF6AC844D"/><p>Eye discomfort</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEE54-2A5D-9994-E0B05AFBC86B1B5A"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDC94F3-DD4F-790C-670CBCB90ED01496"/><p>Fever with no apparent cause</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEE73-2A5D-9994-E886BDD7ABCE0921"/><p>Headache</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDCE556-0D65-60FA-96DBB1EC67AEB7C8"/><p>Jerky, uncontrollable body movements</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDD2B2A-EEDD-AD54-1D67F405CC707D1F"/><p>Joint stiffness</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDD8AA1-0F74-9E7E-040C44A81B8AC2DD"/><p>Loss of appetite</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEE83-2A5D-9994-E3AFA120B4C3DAD1"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDE01C6-BA7C-78A9-47E5BBE7214FCA73"/><p>Persistent decreased energy or fatigue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEEA2-2A5D-9994-EE9B15931A12DA80"/><p>Rash</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEEB2-2A5D-9994-E72E3EE229210B7B"/><p>Shortness of breath</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDE5CE7-FB5D-261B-EC07B0BF4774EED9"/><p>Skin redness or warmth near affected area</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDEBB45-0F24-FF0E-B721D0C46471C885"/><p>Small lumps under the skin</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDF51D9-9A56-A53F-D5E92AB3F5A1D22F"/><p>Swelling or tenderness near affected area</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EDFAA2C-A6E6-5459-40E4B1DF3CA61A03"/><p>Swollen lymph nodes in neck, groin or underarms</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0EE00E17-9C7B-BB75-FFA86664152DC700"/><p>Tiny red spots on skin</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="581AEEE0-2A5D-9994-EF49089850D25598"/><p>Weight loss</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(10);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom11" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Nasal congestion</b> 
+			<div class="refine tva">
+
+				<label>Problem is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0F141FB7-0A09-DC3D-91D5D94820D4A5A3"/><p>New or recent</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F146F11-9059-E586-8C836A47CD597AC6"/><p>Persistent or recurrent</p></li>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine ">
+				<label>Nasal discharge is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0F14CB6A-E3AB-088D-42BFAAD627EA174A"/><p>Clear or watery</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F14EDF7-D38F-7C96-CD8A32BAF9AB0BF3"/><p>Yellow or greenish</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="582882EA-2A5D-9994-EF0A96D43926DC7D"/><p>Bad breath</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F15E942-E143-1AEB-CCE5508F4FBDA56C"/><p>Blue-colored skin under the eyes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F160AA5-0FD8-F24B-1C33310F73FE083F"/><p>Chills</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="582882F9-2A5D-9994-ECBC0D449E0F95A0"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F16A8EA-CB88-780B-8F15C78B87CD3181"/><p>Decreased energy or fatigue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F16A8FA-0E62-AC5E-FF0FB2F9E8882852"/><p>Diarrhea</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58288318-2A5D-9994-EADA35B6498BFDDA"/><p>Ear pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58288338-2A5D-9994-E69598CC46C62744"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F17769D-CB45-7CD9-4FAFE174889B251E"/><p>Frequent snoring</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F1776AC-F29B-2EF1-1B3FDFD6E10C9029"/><p>Headache or facial pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58288357-2A5D-9994-EF0B0950BD0BE60C"/><p>Itchy eyes, nose, mouth or throat</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58288376-2A5D-9994-E74A0B9EA9BF4819"/><p>Mild body aches</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F1776BC-9406-B8BE-22B1E92D5FAB892F"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F1776CC-95C4-EBA1-23A9FA7336ED875F"/><p>Rapid heartbeat</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F1776DB-DBEA-43A5-39971458D671FD13"/><p>Rapid or difficult breathing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58288395-2A5D-9994-ECCE73BB26B434F6"/><p>Reduced sense of smell or taste</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F1776EB-D589-16F4-3DD6E40E15A8DD9D"/><p>Runny nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="582883B5-2A5D-9994-E874BCB84B5FC0E8"/><p>Sneezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="582883C4-2A5D-9994-E92FC832D292D715"/><p>Sore throat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="582883D4-2A5D-9994-E25BF461FD28360C"/><p>Upper jaw or tooth pain</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="582883E4-2A5D-9994-EE4B3783ED96F534"/><p>Watery eyes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="58288403-2A5D-9994-E841ABF929170659"/><p>Wheezing</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(11);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom12" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Nausea or vomiting</b> 
+			<div class="refine tva">
+
+				<label>Triggered or worsened by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="5905EA4C-2A5D-9994-E2028B088FDC0F47"/><p>Eating certain foods</p></li>
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Onset is</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="1E237D9C-CE34-EE51-8AFECAB281F75EF9"/><p>Intermittent or episodic</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E23A558-DAC4-C132-6C95E48E5C5BEE31"/><p>Recent (hours to days)</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E23C7B5-ED94-4949-E968F478106AC657"/><p>Sudden (minutes to hours)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E241A7A-00C6-C9DD-1836BABBDCF3E901"/><p>Within the first two months of life</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="1E257A7A-9DB2-B74C-6956CF5AD5DC7ED1"/><p>Abdominal bloating or swelling</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E25CC45-EDEB-04C3-635C0C23A30BA8D1"/><p>Abdominal pain that's severe and progressive</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E257A9A-EC96-E61B-27F07B2ED46B5C93"/><p>Abdominal pain, discomfort or cramps</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="590A647B-2A5D-9994-EF15BC7A8569C9C2"/><p>Bloody stools</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E28350D-9726-B0CA-90018E43E39A099D"/><p>Body aches or pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E28352D-95A5-EAF4-DD195EF18866F694"/><p>Chills</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="590A648B-2A5D-9994-E884BFCAA88C652D"/><p>Constipation</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E28353C-F2D8-B510-9626D7D2A2B7DE23"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E28354C-A186-2D7B-FB16CAB2E9F1C8CA"/><p>Dark urine</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="590A64AA-2A5D-9994-E0FDC49314CBC549"/><p>Diarrhea</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E28355C-EE97-D60B-67FA3016F3E374E7"/><p>Difficulty breathing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E28AD8A-FFAF-3618-3DF0E8B537425798"/><p>Failure to thrive or gain weight (infant)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="590A64BA-2A5D-9994-EA3DB899C4DAEAB9"/><p>Fever</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E297FFF-FADB-3C79-5DBED8C2EB5DB668"/><p>Fussiness or irritability</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="79AC46F0-E7FF-0DBD-10FEF24E6AD8A9FB"/><p>Headache</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E29800F-A5AE-6114-3A2FD941EE542B01"/><p>Hives or rash</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E29801F-0EB0-67AF-97D8295A674B7256"/><p>Lack of appetite</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E29D573-DD17-0CCE-D817D27D40F49884"/><p>Poor feeding (infant)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E2AA548-D265-F61D-F1C8B1A0F4EEC3A5"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E2AA558-C7DD-5C3A-A2B56CC0A7C35409"/><p>Sore throat</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E2AA577-9B82-1EA9-91995C19C2941144"/><p>Swelling or tingling of lips, face and tongue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="590A64E9-2A5D-9994-E098E4966EEB09EB"/><p>Weight loss</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79AD4E58-E7FF-0DBD-11A083A508A3991E"/><p>Wet burps or spit up</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E2AA587-90B8-F82E-32890B1AB74282F8"/><p>Wheezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E2ADA34-C1EE-269F-D1276FECE8A9E72F"/><p>Yellowing of skin or eyes</p></li>
+					
+				</ul>
+
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(12);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom13" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Skin rashes</b> 
+			<div class="refine tva">
+
+				<label>Rash best described as</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0F293531-F18E-4E11-39949127E7245242"/><p>Blisters</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="591535AA-2A5D-9994-E6EEDC0113356C33"/><p>Itchy</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F298621-9438-F774-A3B8DFC5DBFA348B"/><p>Lacy and slightly raised</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F29C609-C8B6-7AD7-B8E09420C144A545"/><p>Oozing sores that become crusty</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2A381D-D3AC-E73D-2917BF9EE4821824"/><p>Pus-filled, crusty swellings</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79C026CE-E7FF-0DBD-1DE14DBC8355A2B1"/><p>Raised, red welts</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2B2DEA-D74F-5C11-37864933EBBAF260"/><p>Red or discolored blotches</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2B2E19-0969-064B-71FE607A04778107"/><p>Red or discolored bumps</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2B2E28-D809-1E68-E11618E471BF2FDC"/><p>Red or discolored skin</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="79CF4A0E-E7FF-0DBD-12D6C79C5000E29A"/><p>Ring shaped</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2B9D8D-913F-5B88-29E09A5F033F9F73"/><p>Scaly or flaky</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2C13A9-FE68-9B24-EB79B1572144BC4B"/><p>Thick and leathery</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2C13C8-B6E4-9FD9-74EFE61CBACF1C09"/><p>Tracks or lines</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+
+				<label>Affects</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0F2CBBB3-0A8F-3EC8-E311FD68F8CFEF44"/><p>A small site and then spreads</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2D5AC3-0AE0-B7AA-E96D38D02A402146"/><p>Buttocks</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5917F5C5-2A5D-9994-EC48286FB6024DBF"/><p>Diaper area</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2DDE4D-BA3C-DF40-DF9152CEBCBD9EC4"/><p>Face or neck</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2E4D34-D403-FC73-C51ECCE2EACE937C"/><p>Folds of skin</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79C15EFA-E7FF-0DBD-1F96C984C08482ED"/><p>Genital area</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F2E7BE6-D883-3124-88AF248A26270151"/><p>Hands or feet</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5917F5E4-2A5D-9994-E7CF1462532CFEDD"/><p>Scalp</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79C19422-E7FF-0DBD-1D2AB1D814EE37B1"/><p>Trunk</p></li>
+
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Preceded by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="59195788-2A5D-9994-E9BDA3762A1EE70C"/><p>Eating certain foods</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F308614-C692-5C15-6A50481751AEDE8D"/><p>Exposure to allergen or irritant</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F308624-D46D-EF68-E707608AF0D335F5"/><p>Exposure to irritating plants</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F308633-96E8-90AB-A05BA4EFB66CC349"/><p>Exposure to lake or river water</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F308643-E567-7BAA-E8EEB4F8AC3D640B"/><p>Prolonged exposure to heat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F308653-0C87-FE5B-4FEDF26DAFA9296F"/><p>Tick bite or possible exposure to ticks</p></li>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0F312275-BBAF-F540-9B09415DF7790427"/><p>Abdominal pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F315CCF-C070-F7BA-AA3DCF5506AF5EF6"/><p>Brittle hair and hair loss</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79C39094-E7FF-0DBD-1EC2806877EB12A8"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F323B89-935C-8789-C1156197B65BB875"/><p>Dandruff</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E070-2A5D-9994-E7D43055ABDDA905"/><p>Diarrhea</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F323B99-A4B5-5AD2-C2AA005607910F94"/><p>Difficulty breathing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E090-2A5D-9994-EC94CCB3532DCB99"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F323BA9-DEEA-1D31-2BC5B9A81F8A2784"/><p>Headache</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E0AF-2A5D-9994-E8D7CB1C7514F188"/><p>Joint pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E0BE-2A5D-9994-EC5F98601BB69DFF"/><p>Loss of appetite</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="59229F38-2A5D-9994-E33A72FE1870DD4B"/><p>Mouth or tongue sores</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F32AF82-C105-8771-C280E1254EB2F906"/><p>Muscle aches or pains</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E0CE-2A5D-9994-EFC8B408613B7066"/><p>Muscle weakness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F32AF92-0684-985B-F23D834D7CD56293"/><p>Nausea or vomiting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F333500-B68B-8420-D1840DEE62A7CF70"/><p>Peeling skin on hands or feet</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F339D02-CC3C-6B22-1599E5EFBD75B915"/><p>Persistent fatigue or weakness</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E0DE-2A5D-9994-E54F624BDB21E546"/><p>Red eyes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F370E65-FD4C-2ABB-C6F67657C556C13D"/><p>Red, swollen tongue</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F370E75-C228-0205-1154980AE95AB8AC"/><p>Runny nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E0ED-2A5D-9994-ECAAF5620EE44C5C"/><p>Sore throat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F34E4F7-F46F-E7EB-1A76B32F673481F9"/><p>Swelling of lips, face or tongue</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F3558B1-BB33-2656-B15E74A4C21C3525"/><p>Tender or painful scalp</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="5920E0FD-2A5D-9994-EF698FB9C6A59C09"/><p>Weight loss</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(13);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom14" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Sore throat</b> 
+	
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="79EB9323-E7FF-0DBD-1C872EF2F4B22314"/><p>Blue-colored skin or lips</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F5800DB-AFEC-6DAE-567468CAF9978B8F"/><p>Chills or sweats</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CA99EC0-2A5D-9994-EFC6B51329A8F5E0"/><p>Cough</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CA99ED0-2A5D-9994-EBC8A44F5FEB203A"/><p>Difficult or painful swallowing</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F5800EA-E359-8901-F820EBF2DA251368"/><p>Difficult or raspy breathing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F5800FA-A2D1-411D-D38C2132724BE649"/><p>Enlarged, tender lymph nodes in neck</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F58010A-931C-3AEA-117964C1E4499A9D"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F580119-B750-C0F5-93EF4342D0603A49"/><p>Headache or facial pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79EF0F96-E7FF-0DBD-10AA18860F393E09"/><p>Hoarse or muffled voice</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F580129-CE85-A106-71256B90AF8F2A01"/><p>Mild body aches</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CA9A008-2A5D-9994-EBCC1706D773ABFE"/><p>Red, swollen tonsils</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="79F03D52-E7FF-0DBD-1A836D6D61D34F56"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CA9A018-2A5D-9994-E5FA9175C263475D"/><p>Skin rash</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CA9A027-2A5D-9994-E07B1E6B0969042E"/><p>Sneezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CA9A037-2A5D-9994-EE0E6EB4F01381DE"/><p>Watery eyes</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F580138-F272-3F52-0B420C4A48B77F90"/><p>White patches or pus on tonsils</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1DFE9F71-0167-5C51-94D616B0F43C95A1"/><p>Yellow or greenish phlegm or discharge from nose</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(14);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom15" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Urinary problems</b> 
+			<div class="refine tva">
+
+				<label>Problem is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="7F48713E-E7FF-0DBD-1C2C0BE3D53C900C"/><p>Blood in urine</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7F48714E-E7FF-0DBD-17E862D42C281CE2"/><p>Change in urine color</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7F48715D-E7FF-0DBD-1A2EFF3C8278025D"/><p>Cloudy urine</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7F48716D-E7FF-0DBD-14413EDC673BD78E"/><p>Frequent urination</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7F4938F2-E7FF-0DBD-162E9714BD3D3221"/><p>New episodes of bed-wetting</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7F495DBD-E7FF-0DBD-169EC7DD52AC51D5"/><p>New episodes of daytime wetting or accidents</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8B766B-C7C6-A23B-1BF2D292445228A8"/><p>Pain or burning when urinating</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7F49FC32-E7FF-0DBD-10FE7DA7274E9D3C"/><p>Strong, persistent urge to urinate</p></li>
+					
+				</ul>
+			</div>
+
+		
+			<div class="refine ">
+				<label>Preceded by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0F8C0CE0-AAE3-F1E4-904B8B844C00042F"/><p>Severe or bloody diarrhea</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8C47C7-AB99-518B-F68E0971138D9A59"/><p>Sore throat or upper respiratory infection</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine tva">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="7F4B96D3-E7FF-0DBD-12022A601A99A6D0"/><p>Abdominal pain or discomfort</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CBBEED4-2A5D-9994-E6B75CA6B9967C68"/><p>Back, side or groin pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8CE66A-E501-0967-123B5A10DDF389A0"/><p>Fatigue or weakness</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CBBEF03-2A5D-9994-EDCA4530D745CA80"/><p>Fever</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8D4DB1-CB09-2162-B1C6DBF2D4BA923C"/><p>Irritability (infant)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8D9DD6-A0A0-6A3D-5338F67A8DBAC88D"/><p>Pale skin</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8E3C98-F3EC-1A41-C7423266F0CDE96A"/><p>Swelling in face, hands, feet or abdomen</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0F8EA91F-DEA4-36D2-6D487D9304EEF109"/><p>Vomiting (infant)</p></li>
+
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(15);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom16" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Vision problems</b> 
+			<div class="refine tva">
+
+				<label>Problem is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="6CD8539D-2A5D-9994-E180DBEC39A696DE"/><p>Blurry distant objects</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CD853AD-2A5D-9994-E4B181B75888A4C3"/><p>Blurry nearby objects</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA05F52-981B-5209-435100AE93899BCF"/><p>Blurry vision at all distances</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA0AEAB-C0D5-5210-6B8BB6F3492E61F7"/><p>Bright zigzag lines</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E3F2-AC13-9280-CE10FFB59EB7477D"/><p>Fading colors</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E412-FB8D-AA85-2E2F1EE5144BC57C"/><p>Flashes of light</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E421-0E9C-B698-24987356CBC17495"/><p>Inability to distinguish certain shades of color</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E431-CBD7-3B72-64A4314156AC6389"/><p>Objects appear distorted</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E441-AC68-FC10-92BCC39DE6769B56"/><p>Sensitivity to light</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E450-E0C2-C572-4961597B62699906"/><p>Shimmering spots or stars</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E460-D70C-F1E6-3C0FE7A71814F68C"/><p>Spots or strings floating in field of vision</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA1E46F-ED05-28EF-532AD4AEEDEFB564"/><p>Vision loss, partial or total</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Problem affects</label>
+
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0FA24E18-B39F-51E1-5F4F6A505D0D864F"/><p>One eye</p></li>
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>You observe your child</label>
+				<ul>
+
+				
+					<li><input type="checkbox" name="differentiatorID" value="0FA2B4C2-986E-ABA9-9DA2CF2AA7C157A1"/><p>Favoring one eye over the other</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA2F91F-F870-B70E-33B531DD3A545273"/><p>Having one eye that wanders</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA3711F-0909-DBA0-684FD38113469DB3"/><p>Holding objects away from his or her face</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA3712F-E2D1-1FF7-AEF834D2928DE836"/><p>Holding objects close to his or her face</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA3BE94-F563-79E6-5EBB0ABB5ECBAE1F"/><p>Squinting frequently</p></li>
+
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Onset is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0FA43423-CE85-CEED-CE59AEB688ECA785"/><p>Gradual or progressive</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA43433-C4E3-1B15-2D14DDA8F09D075E"/><p>Recent (hours to days)</p></li>
+
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA43442-F2DB-94F6-CFE5C37485F65A7A"/><p>Sudden (seconds to minutes)</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Duration is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0FA467B7-BABF-4CF0-F2E9FC01A1F4A98D"/><p>Usually no longer than 30 minutes</p></li>
+
+					
+						</ul><ul>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="0FA558D0-B9A4-A2CD-6F25431C7B75B00A"/><p>Eye pain or discomfort</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA558E0-C749-6D31-F2A06F4587528BC9"/><p>Eye redness</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="7A283AA2-E7FF-0DBD-11741B747FB5F092"/><p>Eyestrain</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7A283AB1-E7FF-0DBD-1A5AF860BDBBD3D7"/><p>Headache</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA558EF-0A46-B070-F95C17D4182BC4BD"/><p>Other sensory disturbances</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="0FA558FF-A98E-62DC-1F9B3762E17DDCD8"/><p>Swelling around the eye</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(16);return false;"/>
+</div>
+
+<!--breaker-->
+
+<div id="symptom17" style="display: none;">
+<img id="close" src="http://tom-gadgets.googlecode.com/svn/trunk/close1.gif" onclick="adjust();"></a> <b>Wheezing</b> 
+			<div class="refine tva">
+
+				<label>Wheezing is</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="1E3EC75A-BAB3-3788-30AF374A6DECD485"/><p>New or recent</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E3EE7A4-AD50-0EA6-BAD849F0F9F5EBFA"/><p>Ongoing or recurrent</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E3F103B-CDA8-F275-0F0C9803865904E8"/><p>Progressive or worsening</p></li>
+					
+				</ul>
+
+			</div>
+		
+			<div class="refine ">
+				<label>Triggered or worsened by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="6CE5811C-2A5D-9994-E9C0E791CB96F61C"/><p>Allergens or irritants</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E3FD1A8-F453-4E6B-0941743D3272986E"/><p>Exposure to cold air</p></li>
+					
+						</ul><ul>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E3FD1B8-01F0-E708-626F0DC5249CC96A"/><p>Mild to moderate exertion</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine tva">
+				<label>Related cough</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="1E408932-A43E-8F7D-E999243962F7A7A3"/><p>Disrupts sleep</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E40B9E8-D6AA-19E3-133055FD42449598"/><p>Is dry</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E411EFC-D60C-188D-7A1F8DCE25B580B2"/><p>Is gasping, harsh or barking</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E415FAF-CEC5-E0EC-44D8E1E863DEC6F2"/><p>Produces phlegm or sputum</p></li>
+					
+				</ul>
+			</div>
+		
+			<div class="refine ">
+
+				<label>Accompanied by</label>
+				<ul>
+				
+					<li><input type="checkbox" name="differentiatorID" value="1E427567-E7F2-47C0-5A92D4D97D810CDE"/><p>Bluish skin on face</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E427577-0F8B-AD0C-7F7FC7A4B773F608"/><p>Chest pain, tightness or discomfort</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E427587-A273-6E53-33A0BEEBDBC4D67A"/><p>Chills or sweating</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E427596-D3D7-3882-2B739E8945CBB79B"/><p>Delayed growth</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E4275A6-C1AB-0D4F-70105B4EDD4DED07"/><p>Drooling or difficulty swallowing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440BF9-F983-589D-EA9980AC9B85EBF1"/><p>Easy tiring during exercise or activity</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C09-EB7A-3D16-E5EEFA622E9F947F"/><p>Enlargement or rounding of fingertips or toes</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C19-9AA7-5ADC-87729B37DAA5DD5D"/><p>Failure to thrive (infant or toddler)</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="6CE7CCB3-2A5D-9994-EB886695684088B3"/><p>Fever</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C28-FBC8-C720-CDDB10E4B553E02D"/><p>Foul-smelling stools</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C38-B879-4CDD-DB9533CD663D7658"/><p>Headache or facial pain</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C48-E2DF-7BCC-60B8092345208E57"/><p>Hoarse voice</p></li>
+					
+						</ul><ul>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C57-FDC8-32C6-23AB356B3138BA59"/><p>Mild body aches</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C67-F5ED-5A02-88DAD3D2CCE42504"/><p>Rapid heartbeat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E440C76-C9FD-0DA0-A1618283BDF986D6"/><p>Rapid or difficult breathing</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E448021-F571-A142-B48E7D149B7D05E6"/><p>Recurrent, severe respiratory infections</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E455FE4-C427-F5FA-34B533E2B6BCE13C"/><p>Repeated stops and starts in breathing during sleep</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="7A4471B6-E7FF-0DBD-1F317251EC7F07B4"/><p>Runny or stuffy nose</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E455FF4-F39B-5382-7BD8D99972F9EA6A"/><p>Shortness of breath</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E456004-C61D-D6E0-B14BB511BA5FD381"/><p>Sneezing</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E456013-E691-847B-975270976561403F"/><p>Snoring</p></li>
+
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E456023-C00F-3911-734AA2D09C199235"/><p>Sore throat</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E45DCD6-F69E-04A9-7D4B91493684F918"/><p>Swelling in hands, ankles or feet</p></li>
+					
+					<li><input type="checkbox" name="differentiatorID" value="1E45DCE6-0E79-A9E4-E751597F2289F49B"/><p>Watery or itchy eyes</p></li>
+					
+				</ul>
+			</div>
+
+<input type="submit" value="Find Possible Causes" onclick="doit(17);return false;"/>
+</div>
+
+<!--breaker-->
+
+
+
+
+
+
+<div id="details" style="display: none;">
+
+<table>
+<tr>
+<td><img src="http://tom-gadgets.googlecode.com/svn/trunk/prev_arrow.gif" onclick="adjust();"></a></td>
+<td><div id="category"></div></td>
+</tr>
+</table>
+
+<div id="list"></div>
+
+<div id="listsym"></div>
+</div>
+
+
+
+
+
+
+<br>
+<div id="box" style="font-size: 10">
+<DIV id="disclaimer" style="font-size: 10"><a href="" onclick="return false;">*Disclaimer</a></div>
+<DIV id="note" style="display: none;font-size: 10;">Child Symptoms checker is for informational purposes only and should not be considered medical advice, diagnosis or treatment recommendations.</div>
+</div>
+
+
+<iframe
+style="display:none" 
+src ="http://tom-gadgets.googlecode.com/svn/iframe.html"
+width="100%"
+height="70"
+scrolling="no"
+frameborder="0"
+id="frame1"
+name="frame1">
+</iframe>
+
+<div id="link" style="font-size: 10"></div>
+
+</div>
+
+
+
+
+<script>
+gadgets.window.adjustHeight();
+</script>
+]]>
+</Content>
+</Module>
