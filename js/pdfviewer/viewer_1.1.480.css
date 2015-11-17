@@ -1279,7 +1279,7 @@ html[dir='rtl'] .outlineItemToggler::before {
 .outlineItemToggler:hover ~ .outlineItems,
 .outlineItem > a:hover,
 .attachmentsItem > button:hover {
-  background-color: hsla(0,0%,0%,.02); /*edit hsla(0,0%,100%,.02);*/
+  background-color: hsla(0,0%,0%,.05); /*edit hsla(0,0%,100%,.02);*/
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
   background-clip: padding-box;
   box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
