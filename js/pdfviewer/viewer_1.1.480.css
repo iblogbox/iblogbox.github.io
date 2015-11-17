@@ -1960,7 +1960,7 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   }
   #sidebarContent {
     top: 32px;
-    background-color: hsla(0,0%,0%,.7);
+    background-color: #DADADA; /*edit hsla(0,0%,0%,.7);*/
   }
 
   html[dir='ltr'] #outerContainer.sidebarOpen > #mainContainer {
