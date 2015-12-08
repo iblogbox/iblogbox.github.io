@@ -438,7 +438,7 @@ function handleFileSelect(files){
 	if(!files || files.length==0) return;
 	self._Thumbnail.createImage(files);
 }
-	var holder = document.body;
+	var holder = document;
 	holder.ondragover = function (e) { 
 		try{var ua=navigator.userAgent;
 			if(ua && ua.indexOf("Chrome")>=0){					
@@ -1555,13 +1555,16 @@ PhotoEditor.Effect.prototype = {
     },
 	onLoadFilter: function (canvasImage) {
 		var self=this;
-		self.onLoadFilter2(canvasImage);
-		if(issafari){
-			clearTimeout(this._loadtimer);
-			this._loadtimer=setTimeout(function(){						
-				self.onLoadFilter2(canvasImage);
-			},1000);
-		}
+		clearTimeout(self._loadtimer);
+		self._loadtimer=setTimeout(function(){						
+			self.onLoadFilter2(canvasImage);
+			if(issafari){
+				clearTimeout(self._loadtimer);
+				self._loadtimer=setTimeout(function(){						
+					self.onLoadFilter2(canvasImage);
+				},900);
+			}
+		},100);
 	},
     onLoadFilter2: function (canvasImage) {
 		this._originContext.fillStyle = "silver";    
