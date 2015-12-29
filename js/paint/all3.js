@@ -324,7 +324,7 @@ function proc_loadsetting(){
 
 
 function proc_clipboard(){
-	alert('This feature only supports Chrome browser.\n\nLoad a image from clipboard. Press the Ctrl+V, Shift+Ins, AppleKey+V after copying the image.');
+	alert('This feature only supports Chrome, Edge browser.\n\nLoad a image from clipboard. Press the Ctrl+V, Shift+Ins, AppleKey+V after copying the image.');
 }
 function init_clipboard(){
 	if(!window.addEventListener)return;
