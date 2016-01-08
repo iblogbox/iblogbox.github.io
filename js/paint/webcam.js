@@ -320,13 +320,13 @@ var Webcam = {
 		// make sure we aren't running locally (flash doesn't work)
 		if (location.protocol.match(/file/)) {
 			this.dispatch('error', "Flash does not work from local disk.  Please run from a web server.");
-			return '<font style="color:red;font-size:15px">ERROR: The Flash fallback does not work from local disk.  Please run it from a web server.</font>';
+			return '<font style="color:#aa2222;font-size:15px">ERROR: The Flash fallback does not work from local disk.  Please run it from a web server.</font>';
 		}
 		
 		// make sure we have flash
 		if (!this.detectFlash()) {
 			this.dispatch('error', "Adobe Flash Player not found.  Please install from get.adobe.com/flashplayer and try again.");
-			return '<font style="color:red;font-size:15px">ERROR: No Adobe Flash Player detected.</font>'; //Webcam.js relies on Flash for browsers that do not support getUserMedia (like yours).
+			return '<font style="color:#aa2222;font-size:15px">ERROR: No Adobe Flash Player detected.</font>'; //Webcam.js relies on Flash for browsers that do not support getUserMedia (like yours).
 		}
 		
 		// set default swfURL if not explicitly set
