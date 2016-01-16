@@ -467,3 +467,9 @@ function show_onoff(name){
 		}
 	}
 }
+
+function getextension(s){
+	var arr=(s || '').split('.');
+	if(arr.length>1) return arr[arr.length-1].toLowerCase();
+	else return '';
+}
