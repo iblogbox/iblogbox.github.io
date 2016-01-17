@@ -1,41 +1,21 @@
-
-var cp_imgbloburl,cp_lastprogress,cp_xhr;
+/* 
+paste.js is an interface to read data ( text / image ) from clipboard in different browsers. It also contains several hacks.
+https://github.com/layerssss/paste.js
+ */
+var cp_imgbloburl,cp_lastprogress,cp_xhr,cp_working;
+var cp_kind=1;
 (function() {
   var $, Paste, createHiddenEditable, dataURLtoBlob;
 
   $ = window.jQuery;
 
-	function _resize(){
-	  	if(document.getElementById('cp_imgprogress') && window.hide_message) hide_message();
-	}
-	if (window.addEventListener){
-		window.addEventListener("resize", _resize, false);
-	}else if (window.attachEvent){
-		window.attachEvent("onresize", _resize);
-	}
-var cp_message = function(s,x,y,padding,timeout,fkind) {
-	if (!x) x=10;
-	if (!y) y=10;
-	if (!padding) padding=5;
-	if (!timeout) timeout=2000;
-
-	var kind=1;
-	for(var i=1; i <= 4; i++){
-		var s1="layer_message";
-		if (i>1) s1="layer_message"+i;
-		var obj=document.getElementById(s1);
-		if (obj){
-			kind=i;
-			break;
-		}
-	}
-			
-	obj.style.left="1px";
-	obj.style.top="1px";		
-	obj.innerHTML="<label>"+s+"</label>";
-	obj.style.display="";	
-	if(fkind) kind=fkind;
-	
+var mx,my;
+function _resize(){
+	var obj=_getid('cp_message');
+	if(!obj || obj.style.display!='')return;
+	var x=mx || 10;
+	var y=my || 10;
+	var kind=cp_kind || 1;
 	if (kind==1) {
 		x=getScrollLeft()+x;	
 		y=getScrollTop()+y;
@@ -50,17 +30,40 @@ var cp_message = function(s,x,y,padding,timeout,fkind) {
 		y=getScrollTop()+y;
 	}
 	x=parseInt(x);
-	y=parseInt(y);
-	
-	obj.style["border"]="1px solid #000000";
-	obj.style["padding"]=padding+"px";
+	y=parseInt(y);	
 	obj.style.left=x+"px";
 	obj.style.top=y+"px";
-	
-	if (messagetimer) clearTimeout(messagetimer);
-	messagetimer=setTimeout(hide_message, timeout);
-};
-
+}
+if (window.addEventListener){
+	window.addEventListener("resize", _resize, false);
+}else if (window.attachEvent){
+	window.attachEvent("onresize", _resize);
+}
+function _showmessage(s,x,y,padding){
+	if (!padding) padding=5;
+	mx=x || 10;
+	my=y || 10;
+	var obj=_getid('cp_message');
+	if(!obj){
+		obj=document.createElement("div");
+		obj.id='cp_message';
+		obj.setAttribute("style","z-index:10000002;display:none;background-color:#FFFFE1;position:absolute;overflow:hidden;-webkit-box-shadow: 0 0 25px #999;-moz-box-shadow: 0 0 25px #999;box-shadow: 0 0 25px #999;");
+		document.body.appendChild(obj);		
+	}			
+	obj.style.left="1px";
+	obj.style.top="1px";		
+	obj.innerHTML='<lable>'+s+'</label>';
+	obj.style.display="";	
+	obj.style["border"]="1px solid #000000";
+	obj.style["padding"]=padding+"px";
+	_resize();
+}
+function _hidemessage(){
+	var obj=_getid('cp_message');
+	if (obj){
+		obj.style.display="none";
+	}
+}
 
   $.paste = function(pasteContainer) {
     var pm;
@@ -363,10 +366,16 @@ var cp_message = function(s,x,y,padding,timeout,fkind) {
 
 		if(src.indexOf("http")==0){
 			function end(){
-				if(window.hide_message) hide_message();
+				cp_working=false;
+				_hidemessage();
 			}
+
 				try{
-					if(window.show_message) show_message('<div id="cp_imgprogress">Downloading...</div>','','','',1000*60,2);
+					if(cp_working)return;
+					cp_working=true;
+					cp_lastprogress=(new Date()).getTime();
+					_showmessage("<table><tr><td><div id='cp_progress'>Downloading...</div><td>&nbsp;<a href='#' id='cp_cancel' style='display:none'>Cancel</a></table>");
+
 					var url='https://proxyrss.herokuapp.com/geturl.php?url='+encodeURIComponent(src)+"&ref=1";					
 					if(!cp_xhr){
 						cp_xhr=new XMLHttpRequest();
@@ -374,22 +383,33 @@ var cp_message = function(s,x,y,padding,timeout,fkind) {
 						cp_xhr.abort();
 					}
 				    var xhr = cp_xhr;
+					var c=_getid('cp_cancel');
+					if(c){
+						c.style.display='';
+						c.onclick=function(){
+							xhr.abort();
+							end();
+							return false;
+						}
+					}
 					xhr.open('GET', url);
 					xhr.responseType = 'arraybuffer';
 					xhr.onprogress=function(event){
 						if(cp_lastprogress){
 							var elaspetime = new Date();
-							var dt=(elaspetime.getTime()-cp_lastprogress)/1000;
-							if(dt<1)return;
+							var dt=(elaspetime.getTime()-cp_lastprogress);
+							if(dt<300)return;
 							cp_lastprogress=elaspetime.getTime();
 						}
 						var a=event;
 						var total=a.totalSize || a.total || 0;
 						if(total>=18446744073709552000) total=0;
 						var current=a.position || a.loaded  || 0;
-						//var c=_getid('layer_message');
-						//if(c) c.innerHTML='<label>Downloading... ('+number_format(current)+'/'+number_format(total)+')</label>';
-						if(window.show_message) show_message('<div id="cp_imgprogress">Downloading... ('+number_format(current)+'/'+number_format(total)+')</div>','','','',1000*60,2);
+						var c=_getid('cp_progress');
+						if(c){
+							c.innerHTML='Downloading... ('+number_format(current)+'/'+number_format(total)+')';
+							_resize();
+						}
 					};
 				    xhr.onload = function(){
 						end();
