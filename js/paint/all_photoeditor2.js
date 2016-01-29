@@ -786,11 +786,13 @@ function handleFileSelect(files){
 			proc_save(this._CanvasImage.fileIdx, resp, strMime, strData.substr(strData.indexOf(",")+1,strData.length), filename+'.'+ext);
 		}else{
 			if(preview){
+				var blob=b64toBlob(strData.substr(strData.indexOf(",")+1,strData.length), strMime);
 				if(navigator.msSaveBlob){			
-					var blob=b64toBlob(strData.substr(strData.indexOf(",")+1,strData.length), strMime);
 					navigator.msSaveBlob(blob, filename+'.'+ext);
 				}else{
-					window.open(strData); //edit
+					if(glastbloburl) window.URL.revokeObjectURL(glastbloburl);
+					glastbloburl=window.URL.createObjectURL(blob);
+					window.open(glastbloburl); //edit
 				}
 			}else{
 					var blob=b64toBlob(strData.substr(strData.indexOf(",")+1,strData.length), strMime);
