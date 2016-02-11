@@ -51,6 +51,7 @@ function html_entity_encode(str){
   str = str.replace(/\'/gi, "&#039;");
   return str;
 }
+var henc=html_entity_encode;
 
 function shortstring(s,len){
 	if (!s) s='';
@@ -261,7 +262,7 @@ function html_entity_decode(str){
   str = str.replace(/&gt;/gi, ">");
   str = str.replace(/&lt;/gi, "<");
   str = str.replace(/&quot;/gi, "\"");
-  str = str.replace(/&#039;/gi, "'");
+  str = str.replace(/&#039;/gi, "'").replace(/&#39;/gi, "'").replace(/&#44;/gi, ",");
   str = str.replace(/&amp;/gi, "&");  
   return str;
 }
