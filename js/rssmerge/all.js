@@ -262,7 +262,7 @@ function html_entity_decode(str){
   str = str.replace(/&gt;/gi, ">");
   str = str.replace(/&lt;/gi, "<");
   str = str.replace(/&quot;/gi, "\"");
-  str = str.replace(/&#039;/gi, "'").replace(/&#39;/gi, "'").replace(/&#44;/gi, ",");
+  str = str.replace(/&#039;/gi, "'").replace(/&#39;/gi, "'").replace(/&#44;/gi, ",").replace(/&#34;/gi, '"');
   str = str.replace(/&amp;/gi, "&");  
   return str;
 }
