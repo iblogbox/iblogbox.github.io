@@ -277,7 +277,7 @@ PhotoEditor.File = function(){
 };
 PhotoEditor.File.prototype = {
     FILE_MAX_COUNT : 6,
-    FILE_MAX_SIZE_MB : 5,
+    FILE_MAX_SIZE_MB : 10,
     ERROR_TYPE_OVER_MAX_SIZE : "size_error",
     ERROR_TYPE_NOT_IMAGE : "type_error",
 
