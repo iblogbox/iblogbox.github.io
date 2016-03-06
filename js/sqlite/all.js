@@ -220,6 +220,16 @@ See http://github.com/bgrins/filereader.js for documentation.
         }
 
         function dragover(e) {
+			try{var ua=navigator.userAgent;
+				if(ua && ua.indexOf("Chrome")>=0){					
+					if(e.originalEvent) e = e.originalEvent;
+					if(e.dataTransfer){
+						var b = e.dataTransfer.effectAllowed;
+						e.dataTransfer.dropEffect = ('move' === b || 'linkMove' === b) ? 'move' : 'copy';
+					}
+				}
+			}catch(err){}
+
             e.stopPropagation();
             e.preventDefault();
             if (dragClass) {
