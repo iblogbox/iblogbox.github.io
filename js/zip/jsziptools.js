@@ -2,6 +2,7 @@
  * jsziptools.js 2.4.1 - MIT License. https://github.com/ukyo/jsziptools/blob/master/LICENSE
  * ES6-Promises - MIT License. https://github.com/jakearchibald/es6-promise/blob/master/LICENSE
  */
+var maxunzipcount=500;
 ;(function(){(function() {
 var define, requireModule, require, requirejs;
 
@@ -1302,8 +1303,8 @@ return this.files = f, this.folders = g, this.localFileHeaders = e, this.central
                 return a(c, c + 30 + e + f)
             }).then(function(a) {
 				gcount++;
-				if(gcount>500){
-					alert('Too many number of files. (around 500 files limit in a zip)');
+				if(gcount>maxunzipcount){
+					alert('Too many number of files. (around '+maxunzipcount+' files limit in a zip)');
 					return false;
 				}
                 var c = ZipArchiveReader.prototype._getLocalFileHeader.call({
