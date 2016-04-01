@@ -1,5 +1,4 @@
-
-/*var Module = {
+var Module = {
 	noInitialRun: true,
 	print: function(text) {
 		postMessage({ type: 'log', content: text });
@@ -23,18 +22,31 @@ self.onmessage = function(e) {
 		case 'start':
 			self.postMessage({
 				type: 'started'
-			});
-			
-			// Use -t flag since otherwise Object #<Uint8Array> has no method 'push'
-			//Module['callMain'](['-t', '-r', '/file.mp3']);
-			Module['callMain'](['-h','/file.mp3']);
-			self.postMessage({
-				type: 'result',
-				content: getFileData('file.mp3')
-			});
+			});			
+			var o_gtype=msg.o_gtype;
+			var o_decibels=msg.o_decibels;
+			try{
+				if(o_gtype==0){
+					Module['callMain'](['-t', '-r', '/file.mp3']);
+				}else if(o_gtype==1){
+					Module['callMain'](['-t', '-g', o_decibels, '/file.mp3']);
+				}else if(o_gtype==2){
+					Module['callMain'](['-t', '-g', o_decibels*(-1), '/file.mp3']);
+				}
+				self.postMessage({
+					type: 'result',
+					error: '',
+					content: getFileData('file.mp3')
+				});
+			}catch(err){
+				self.postMessage({
+					type: 'result',
+					error: ''+err
+				});
+			}			
 			break;
 	}
-};*/
+};
 // Note: For maximum-speed code, see "Optimizing Code" on the Emscripten wiki, https://github.com/kripken/emscripten/wiki/Optimizing-Code
 // Note: Some Emscripten settings may limit the speed of the generated code.
 try {
@@ -3577,6 +3589,6 @@ if (Module['noInitialRun']) {
 run();
 // {{POST_RUN_ADDITIONS}}
   // {{MODULE_ADDITIONS}}
-/*self.postMessage({
+self.postMessage({
 	type: 'ready'
-});*/
+});
