@@ -43,7 +43,7 @@ self.onmessage = function(e) {
 					type: 'result',
 					error: ''+err
 				});
-			}			
+			}
 			break;
 	}
 };
@@ -1621,7 +1621,12 @@ function copyTempDouble(ptr) {
         return -1;
       } else {
         var contents = stream.object.contents;
-        while (contents.length < offset) contents.push(0);
+		//console.log(contents);
+		//console.log(offset);
+		//edit
+		if(contents.push){
+			while (contents.length < offset) contents.push(0);
+		}
         for (var i = 0; i < nbyte; i++) {
           contents[offset + i] = HEAPU8[(((buf)+(i))|0)];
         }
