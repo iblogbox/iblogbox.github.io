@@ -488,7 +488,7 @@ if(navigator.appName!="Netscape"){
 	if(navigator.userAgent.indexOf("MSIE")>=0) ismsie=true;
 }
 var g_arr=[];
-var g_arr_added, g_arr_load_start, g_arr_load_end;
+var g_arr_added, g_arr_load_start, g_arr_load_end, g_arr_load_cancel, g_arr_load_progress, g_arr_filesize, g_arr_urlselect;
 
 var dwv = dwv || {};
 
@@ -817,7 +817,7 @@ dwv.App = function()
      */
     this.onChangeURL = function(event)
     {
-        this.loadURL([event.target.value]);
+		this.loadURL([event.target.value]);
     };
 
     /**
@@ -825,12 +825,13 @@ dwv.App = function()
      * @method loadURL
      * @param {Array} urls The list of urls to load.
      */
-    this.loadURL = function(urls, filename) 
+    this.loadURL = function(urls, filename, filesize) 
     {
         // clear variables
         this.reset();
         // create IO
-		if(g_arr_load_start) g_arr_load_start();
+		g_arr_filesize=filesize;
+		if(g_arr_load_start) g_arr_load_start();		
 
         var urlIO = new dwv.io.Url();
         urlIO.onload = function (data) {
@@ -1490,6 +1491,9 @@ dwv.dicom.DataReader = function(buffer, isLittleEndian)
      * @return {Array} The read data.
      */
     this.readUint8Array = function(byteOffset, size) {
+		/*if(byteOffset+size>buffer.byteLength){
+			size=buffer.byteLength-byteOffset;
+		}*/
         return new Uint8Array(buffer, byteOffset, size);
     };
     /**
@@ -1514,7 +1518,7 @@ dwv.dicom.DataReader = function(buffer, isLittleEndian)
      * @return {Array} The read data.
      */
     this.readUint32Array = function(byteOffset, size) {
-        var arraySize = size / 4;
+        var arraySize = Math.floor(size / 4);
         var data = null;
         if ( (byteOffset % 4) === 0 ) {
             data = new Uint32Array(buffer, byteOffset, arraySize);
@@ -1825,24 +1829,25 @@ dwv.dicom.DicomParser.prototype.readDataElement = function(reader, offset, impli
         }
         else {
             vr = reader.readString( offset+tagOffset, 2 );
+			//console.log(vr);
 			//edit
             isOtherVR = (vr[0].toUpperCase() === 'O');
 
             vrOffset = 2;
             // long representations
-            if ( isOtherVR || vr === "SQ" || vr === "UN" ) {
+            if ( isOtherVR || vr === "SQ" || vr === "UN" || vr==="UT") {
                 vl = reader.readUint32( offset+tagOffset+vrOffset+2 );
                 vlOffset = 6;
             }
             // short representation
             else {
-                vl = reader.readUint16( offset+tagOffset+vrOffset );
+                vl = reader.readUint16( offset+tagOffset+vrOffset );				
                 vlOffset = 2;
             }
         }
     }
     
-    var isUnsignedVR = ( vr === "US" || vr === "UL" );
+    var isUnsignedVR = ( vr === "US" || vr === "UL" || vr==="UT");
     
     // check the value of VL
     var vlString = vl;
@@ -1864,8 +1869,12 @@ dwv.dicom.DicomParser.prototype.readDataElement = function(reader, offset, impli
         {
             data = reader.readUint16Array( dataOffset, vl );
         }
-        else // UL
+        else // UL, UT
         {
+			if(vr==="UT"){
+				console.log(vr);
+				//console.log(dataOffset+", "+vl);
+			}
             data = reader.readUint32Array( dataOffset, vl );
         }
     }
@@ -1886,7 +1895,9 @@ dwv.dicom.DicomParser.prototype.readDataElement = function(reader, offset, impli
     else
     {
         data = reader.readString( dataOffset, vl);
-        data = data.split("\\");                
+        data = data.split("\\");     
+		//console.log(tag);
+		//console.log(data);
     }    
 
     // total element offset
@@ -1924,12 +1935,18 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
     offset = 128;
     var magicword = metaReader.readString( offset, 4 );
     if(magicword !== "DICM"){
-		var s="Not a valid DICOM file (no magic DICM word found)";
-		if(metaReader.readString( 20, 8 )=='ACR-NEMA') s='Not a valid DICOM file. This semms to be a ACR-NEMA file.';
-		throw new Error(s);
+		/*magicword=metaReader.readUint8(0);
+		console.log(magicword);
+		if(magicword==8){
+		}else{*/
+			var s="Not a valid DICOM file (no magic DICM word found)";
+			if(metaReader.readString( 20, 8 )=='ACR-NEMA') s='Not a valid DICOM file. This semms to be a ACR-NEMA file.';
+			throw new Error(s);
+		//}
     }
-    offset += 4;
+	offset += 4;
     
+	//if(magicword!=8){
     // 0x0002, 0x0000: FileMetaInformationGroupLength
     var dataElement = this.readDataElement(metaReader, offset);
     var metaLength = parseInt(dataElement.data[0], 10);
@@ -1955,6 +1972,9 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
         // increment index
         i += dataElement.offset;
     }
+	/*}else{
+		var i=8;
+	}*/
 
     // check the transfer syntax
 	var syntax;
@@ -2010,7 +2030,7 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
     var tagName = "";
     var tagOffset = 0;
     var sequences = [];
-
+	var skipped, skipbuffer;
     // DICOM data elements
     while( i < buffer.byteLength ) 
     {
@@ -2044,19 +2064,31 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
         // store pixel data from multiple items
         if( startedPixelItems ) {
             if( tagName === "Item" ) {
+				//console.log(dataElement.data);
                 if( dataElement.data.length === 4 ) {
-                    console.log("Skipping Basic Offset Table.");
+                    console.log("Skipping Basic Offset Table 1");
                 }
                 else if( dataElement.data.length !== 0 ) {
-                    console.log("Concatenating multiple pixel data items, length: "+dataElement.data.length);
-                    // concat does not work on typed arrays
-                    //this.pixelBuffer = this.pixelBuffer.concat( dataElement.data );
-                    // manual concat...
-                    var size = dataElement.data.length + this.pixelBuffer.length;
-                    var newBuffer = new Uint16Array(size);
-                    newBuffer.set( this.pixelBuffer, 0 );
-                    newBuffer.set( dataElement.data, this.pixelBuffer.length );
-                    this.pixelBuffer = newBuffer;
+					skipped=false;
+					if(jpeglossless && dataElement.data.length>4){
+						if(this.pixelBuffer.length==0 && dataElement.data[0]==0 && dataElement.data[1]==0 && dataElement.data[2]==0 && dataElement.data[3]==0){
+							console.log("Skipping Basic Offset Table 2");
+							skipped=true;
+							skipbuffer=new Uint16Array(dataElement.data.length);
+							skipbuffer.set(dataElement.data, 0);							
+						}
+					}
+					if(!skipped){
+	                    console.log("Concatenating multiple pixel data items, length: "+dataElement.data.length);
+		                // concat does not work on typed arrays
+			            //this.pixelBuffer = this.pixelBuffer.concat( dataElement.data );
+				        // manual concat...
+					    var size = dataElement.data.length + this.pixelBuffer.length;
+						var newBuffer = new Uint16Array(size);
+	                    newBuffer.set( this.pixelBuffer, 0 );
+		                newBuffer.set( dataElement.data, this.pixelBuffer.length );
+			            this.pixelBuffer = newBuffer;
+					}
                 }
             }
             else if( tagName === "SequenceDelimitationItem" ) {
@@ -2128,14 +2160,31 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
     }
 	else if(jpeglossless){
 		//console.log("Decode JPEG Lossless.");
-		try {
-			var buf = new Uint8Array( this.pixelBuffer );
-			var decoder = new jpeg.lossless.Decoder(buf.buffer);
-			var decoded = decoder.decode();
-			this.pixelBuffer = new Uint16Array(decoded.buffer);
-        } catch(error) {
-            throw new Error("Cannot decode JPEG Lossless ([" +error.name + "] " + error.message + ")");
-        }
+		var errmsg;
+		var self=this;
+		function go(){
+			try {
+				var buf = new Uint8Array( self.pixelBuffer );
+				var decoder = new jpeg.lossless.Decoder(buf.buffer);
+				var decoded = decoder.decode();
+				self.pixelBuffer = new Uint16Array(decoded.buffer);
+				return true;
+		    } catch(error) {
+				errmsg="Cannot decode JPEG Lossless ([" +error.name + "] " + error.message + ")";
+				return false;
+			}
+		}
+		if(!go()){
+			if(!skipbuffer){
+				throw new Error(errmsg);
+			}else{
+				var newBuffer = new Uint16Array(skipbuffer.length+this.pixelBuffer.length);
+	            newBuffer.set(skipbuffer, 0);
+		        newBuffer.set(this.pixelBuffer, skipbuffer.length);
+				this.pixelBuffer = newBuffer;
+				if(!go()) throw new Error(errmsg);
+			}
+		}
 	}
 	else if(jpegbaseline){
 		//console.log("Decode JPEG Baseline.");
@@ -4499,11 +4548,14 @@ dwv.gui.base.getWindowSize = function()
 dwv.gui.updateProgress = function(event)
 {
     // event is an ProgressEvent.
-    if( event.lengthComputable )
-    {
-        var percent = Math.round((event.loaded / event.total) * 100);
-        dwv.gui.displayProgress(percent);
-    }
+	if(g_arr_load_progress){
+		g_arr_load_progress(event);
+	}else{
+		if( event.lengthComputable ){
+			var percent = Math.round((event.loaded / event.total) * 100);
+			dwv.gui.displayProgress(percent);
+		}
+	}
 };
 
 /**
@@ -6164,6 +6216,7 @@ dwv.gui.base.appendFileLoadHtml = function()
     fileLoadInput.id = "imagefiles";
     fileLoadInput.setAttribute("data-clear-btn","true");
     fileLoadInput.setAttribute("data-mini","true");
+	fileLoadInput.style.width="350px";
 
     // associated div
     var fileLoadDiv = document.createElement("div");
@@ -6201,11 +6254,16 @@ dwv.gui.base.appendUrlLoadHtml = function()
 {
     // input
     var urlLoadInput = document.createElement("input");
-    urlLoadInput.onchange = dwv.gui.onChangeURL;
+    //urlLoadInput.onchange = dwv.gui.onChangeURL;
+	if(g_arr_urlselect){
+		g_arr_urlselect(false,urlLoadInput);
+		urlLoadInput.onkeydown=g_arr_urlselect;
+	}
     urlLoadInput.type = "url";
     urlLoadInput.id = "imageurl";
+	urlLoadInput.style.width="350px";
     urlLoadInput.setAttribute("data-clear-btn","true");
-    urlLoadInput.setAttribute("data-mini","true");
+    urlLoadInput.setAttribute("data-mini","true");	
 
     // associated div
     var urlLoadDiv = document.createElement("div");
@@ -8714,14 +8772,15 @@ dwv.io.File.prototype.load = function(ioArray)
     {
         onerror( {'name': "RequestError", 
             'message': "An error occurred while reading the image file: "+event.getMessage() } );
+		$.mobile.loading("hide");	
     };
-
 
     // Request error
     var onErrorDicomReader = function(event)
     {
         onerror( {'name': "RequestError", 
             'message': "An error occurred while reading the DICOM file: "+event.getMessage() } );
+		$.mobile.loading("hide");	
     };
 
     // DICOM reader loader
@@ -8736,8 +8795,9 @@ dwv.io.File.prototype.load = function(ioArray)
             onerror(error);
         }
         // force 100% progress (sometimes with firefox)
-        var endEvent = {lengthComputable: true, loaded: 1, total: 1};
-        dwv.gui.updateProgress(endEvent);
+        //var endEvent = {lengthComputable: true, loaded: 1, total: 1};
+        //dwv.gui.updateProgress(endEvent);
+		$.mobile.loading("hide");	
     };
 
     // Image loader
@@ -8751,6 +8811,7 @@ dwv.io.File.prototype.load = function(ioArray)
         } catch(error) {
             onerror(error);
         }
+		$.mobile.loading("hide");	
     };
 
     // Image reader loader
@@ -8912,6 +8973,12 @@ dwv.io.Url.prototype.load = function(ioArray)
         request.onload = onLoadRequest;
         request.onerror = onErrorRequest;
         request.onprogress = dwv.gui.updateProgress;
+		if(ioArray.length==1){
+			g_arr_load_cancel=function(){
+				request.abort();
+				if(g_arr_load_end) g_arr_load_end();
+			}
+		}
         request.send(null);
     }
 };
