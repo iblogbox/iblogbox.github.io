@@ -36,6 +36,14 @@ e.scanLines;this.jfif=x;this.adobe=y;this.components=[];for(h=0;h<e.components.l
 2]=p;break;default:throw"Unsupported color mode";}return a},copyToImageData:function(f){var m=f.width,p=f.height,r=m*p*4;f=f.data;var m=this.getData(m,p),b=p=0,x,y,e,k,c;switch(this.components.length){case 1:for(;b<r;)e=m[p++],f[b++]=e,f[b++]=e,f[b++]=e,f[b++]=255;break;case 3:for(;b<r;)k=m[p++],c=m[p++],e=m[p++],f[b++]=k,f[b++]=c,f[b++]=e,f[b++]=255;break;case 4:for(;b<r;)k=m[p++],c=m[p++],e=m[p++],x=m[p++],x=255-x,y=x/255,k=A(x-k*y),c=A(x-c*y),e=A(x-e*y),f[b++]=k,f[b++]=c,f[b++]=e,f[b++]=255;break;
 default:throw"Unsupported color mode";}}};return H}();
 
+var daikon=daikon||{};daikon.RLE=daikon.RLE||function(){this.rawData=null;this.numSegments=this.segElemPut=this.bytesPut=this.bytesRead=0;this.segmentOffsets=[];this.littleEndian=!0;this.size=this.numElements=this.segmentIndex=0;this.output=null};daikon.RLE.HEADER_SIZE=64;
+daikon.RLE.prototype.decode=function(a,b,d){this.rawData=new DataView(a);this.littleEndian=b;this.numElements=d;this.readHeader();this.output=new DataView(new ArrayBuffer(this.size));for(a=0;a<this.numSegments;a+=1)this.readNextSegment();return this.processData()};
+daikon.RLE.prototype.processData=function(){var a,b,d,c;if(1===this.numSegments)return this.output;if(2===this.numSegments){c=new DataView(new ArrayBuffer(this.size));for(a=0;a<this.numElements;a+=1)b=this.output.getInt8(a),d=this.output.getInt8(a+this.numElements),b=(b&255)<<8|d&255,c.setInt16(2*a,b,this.littleEndian);return c}if(3===this.numSegments){c=new DataView(new ArrayBuffer(this.size));b=2*this.numElements;for(a=0;a<this.numElements;a+=1)c.setInt8(3*a,this.output.getInt8(a)),c.setInt8(3*
+a+1,this.output.getInt8(a+this.numElements)),c.setInt8(3*a+2,this.output.getInt8(a+b));return c}throw Error("RLE data with "+this.numSegments+" segments is not supported!");};daikon.RLE.prototype.readHeader=function(){var a;this.numSegments=this.getInt32();this.size=this.numElements*this.numSegments;for(a=0;a<this.numSegments;a+=1)this.segmentOffsets[a]=this.getInt32();this.bytesRead=daikon.RLE.HEADER_SIZE};
+daikon.RLE.prototype.hasValidInput=function(){return this.bytesRead<this.rawData.buffer.byteLength&&this.bytesPut<this.size&&this.segElemPut<this.numElements};daikon.RLE.prototype.readNextSegment=function(){var a;this.bytesRead=this.segmentOffsets[this.segmentIndex];for(this.segElemPut=0;this.hasValidInput();)a=this.get(),0<=a&&128>a?this.readLiteral(a):-1>=a&&-128<a?this.readEncoded(a):-128===a&&console.warn("RLE: unsupported code!");this.segmentIndex+=1};
+daikon.RLE.prototype.readLiteral=function(a){var b=a+1;if(this.hasValidInput())for(a=0;a<b;a+=1)this.put(this.get());else console.warn("RLE: insufficient data!")};daikon.RLE.prototype.readEncoded=function(a){var b=1-a,d=this.get();for(a=0;a<b;a+=1)this.put(d)};daikon.RLE.prototype.getInt32=function(){var a=this.rawData.getInt32(this.bytesRead,this.littleEndian);this.bytesRead+=4;return a};
+daikon.RLE.prototype.getInt16=function(){var a=this.rawData.getInt16(this.bytesRead,this.littleEndian);this.bytesRead+=2;return a};daikon.RLE.prototype.get=function(){var a=this.rawData.getInt8(this.bytesRead);this.bytesRead+=1;return a};daikon.RLE.prototype.put=function(a){this.output.setInt8(this.bytesPut,a);this.bytesPut+=1;this.segElemPut+=1};
+
 /*viewer/ext/openjpeg/openjpeg.js*/
 
 var H=void 0,I=!0,W=null,Y=!1;
@@ -1927,6 +1935,7 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
     var jpeg2000 = false;
 	var jpeglossless=false;
 	var jpegbaseline=false;
+	var jpegRLE=false;
     // default readers
     var metaReader = new dwv.dicom.DataReader(buffer);
     var dataReader = new dwv.dicom.DataReader(buffer);
@@ -2008,7 +2017,7 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
         throw new Error("Unsupported DICOM transfer syntax (JPEG): "+syntax);
     }
     // JPEG-LS
-    else if( dwv.dicom.isJpeglsTransferSyntax(syntax) ) {
+    else if( dwv.dicom.isJpeglsTransferSyntax(syntax) ) {//1.2.840.10008.1.2.4.8
         //console.log("JPEG-LS compressed DICOM data: " + syntax);
         throw new Error("Unsupported DICOM transfer syntax (JPEG-LS): "+syntax);
     }
@@ -2023,7 +2032,8 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
     }
     // RLE (lossless)
     else if( syntax === "1.2.840.10008.1.2.5" ) {
-        throw new Error("Unsupported DICOM transfer syntax (RLE): "+syntax);
+		jpegRLE=true;
+        //throw new Error("Unsupported DICOM transfer syntax (RLE): "+syntax);
     }
 
     var startedPixelItems = false;
@@ -2070,7 +2080,7 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
                 }
                 else if( dataElement.data.length !== 0 ) {
 					skipped=false;
-					if(jpeglossless && dataElement.data.length>4){
+					if((jpegbaseline || jpegRLE || jpeglossless) && dataElement.data.length>4){
 						if(this.pixelBuffer.length==0 && dataElement.data[0]==0 && dataElement.data[1]==0 && dataElement.data[2]==0 && dataElement.data[3]==0){
 							console.log("Skipping Basic Offset Table 2");
 							skipped=true;
@@ -2149,20 +2159,10 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
     }
     
     // uncompress data
-    if(jpegnone) {		
-        // using jpgjs from https://github.com/notmasteryet/jpgjs
-        // -> error with ffc3 and ffc1 jpeg jfif marker
-        /*var j = new JpegImage();
-        j.parse(this.pixelBuffer);
-        var d = 0;
-        j.copyToImageData(d);
-        this.pixelBuffer = d.data;*/
-    }
-	else if(jpeglossless){
-		//console.log("Decode JPEG Lossless.");
-		var errmsg;
-		var self=this;
-		function go(){
+	var uncomfunc,errmsg;
+	var self=this;
+	if(jpeglossless){
+		uncomfunc=function(){
 			try {
 				var buf = new Uint8Array( self.pixelBuffer );
 				var decoder = new jpeg.lossless.Decoder(buf.buffer);
@@ -2174,30 +2174,74 @@ dwv.dicom.DicomParser.prototype.parse = function(buffer)
 				return false;
 			}
 		}
-		if(!go()){
-			if(!skipbuffer){
-				throw new Error(errmsg);
-			}else{
-				var newBuffer = new Uint16Array(skipbuffer.length+this.pixelBuffer.length);
-	            newBuffer.set(skipbuffer, 0);
-		        newBuffer.set(this.pixelBuffer, skipbuffer.length);
-				this.pixelBuffer = newBuffer;
-				if(!go()) throw new Error(errmsg);
+	}else if(jpegbaseline){
+		uncomfunc=function(){
+			try {
+				var decoder = new JpegImage();
+				decoder.parse( self.pixelBuffer );
+				self.pixelBuffer = decoder.getData(decoder.width,decoder.height);	
+				return true;
+	        } catch(error) {
+				errmsg="Cannot decode JPEG Baseline ([" +error.name + "] " + error.message + ")";
+				return false;
+			}
+		}
+	}else if(jpegRLE){
+		uncomfunc=function(){
+		    if( !self.dicomElements.Columns ) {
+			    throw new Error("Missing DICOM image number of columns");
+			}
+		    if( !self.dicomElements.Rows ) {
+			    throw new Error("Missing DICOM image number of rows");
+			}
+			try {
+				var decoder = new daikon.RLE();
+				var buf = new Uint8Array( self.pixelBuffer );
+	            var temp = decoder.decode(buf.buffer, true, self.dicomElements.Columns.value[0]*self.dicomElements.Rows.value[0]);
+				self.pixelBuffer=new Uint16Array(temp.buffer);
+				return true;
+			} catch(error) {
+				errmsg="Cannot decode JPEG RLE ([" +error.name + "] " + error.message + ")";
+				return false;
 			}
 		}
 	}
+	function _go(){
+		if(!uncomfunc()){
+			if(!skipbuffer){
+				throw new Error(errmsg);
+			}else{
+				var newBuffer = new Uint16Array(skipbuffer.length+self.pixelBuffer.length);
+	            newBuffer.set(skipbuffer, 0);
+		        newBuffer.set(self.pixelBuffer, skipbuffer.length);
+				self.pixelBuffer = newBuffer;
+				if(!uncomfunc()) throw new Error(errmsg);
+			}
+		}
+	}
+
+    if(jpegnone) {		
+        // using jpgjs from https://github.com/notmasteryet/jpgjs
+        // -> error with ffc3 and ffc1 jpeg jfif marker
+        /*var j = new JpegImage();
+        j.parse(this.pixelBuffer);
+        var d = 0;
+        j.copyToImageData(d);
+        this.pixelBuffer = d.data;*/
+    }
+	else if(jpeglossless){
+		//console.log("Decode JPEG Lossless.");
+		_go();
+	}
 	else if(jpegbaseline){
 		//console.log("Decode JPEG Baseline.");
-		try {
-			var decoder = new JpegImage();
-			decoder.parse( this.pixelBuffer );
-			this.pixelBuffer = decoder.getData(decoder.width,decoder.height);	
-        } catch(error) {
-            throw new Error("Cannot decode JPEG Baseline ([" +error.name + "] " + error.message + ")");
-        }
+		_go();
+	}
+	else if(jpegRLE){
+		//console.log("Decode JPEG RLE.");
+		_go();
 	}
     else if(jpeg2000){
-        // decompress pixel buffer into Uint8 image
 		//console.log("Decode JPEG 2000.");
         var uint8Image = null;
         try {
@@ -8542,7 +8586,11 @@ dwv.image.View.prototype.generateImageData = function( array )
         }
         break;
     
-    case "RGB":
+/*
+https://github.com/rii-mango/Daikon/blob/01a082a73d1a1ab15dee3278b57934700bcb665b/src/image.js
+*/
+//	case "PALETTE COLOR":
+    case "RGB":	
         // the planar configuration defines the memory layout
         if( planarConfig !== 0 && planarConfig !== 1 ) {
             throw new Error("Unsupported planar configuration: "+planarConfig);
