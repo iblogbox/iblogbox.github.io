@@ -376,7 +376,7 @@ function _hidemessage(){
 					cp_lastprogress=(new Date()).getTime();
 					_showmessage("<table><tr><td><div id='cp_progress'>Downloading...</div><td>&nbsp;<a href='#' id='cp_cancel' style='display:none'>Cancel</a></table>");
 
-					var url='https://proxyrss.herokuapp.com/geturl.php?url='+encodeURIComponent(src)+"&ref=1";					
+					var url='https://speedtesting.herokuapp.com/proxyrss/geturl.php?url='+encodeURIComponent(src)+"&ref=1";					
 					if(!cp_xhr){
 						cp_xhr=new XMLHttpRequest();
 					}else{
