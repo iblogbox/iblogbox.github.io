@@ -386,7 +386,7 @@ var getcat = $('#sym'+cat).text();
 document.getElementById('category').innerHTML = getcat;
 document.getElementById('symptom'+cat).style.display='none';
 document.getElementById('details').style.display='block';
-document.getElementById('list').innerHTML='<img src="http://symptomchecker.flowsoft7.com/images/wait.gif">';
+document.getElementById('list').innerHTML='<img src="https://iblogbox.github.io/js/img/etc/wait.gif">';
 var url = 'http://symptomchecker.flowsoft7.com/gadget/symptomcheck.php?cat='+cat+'&string='+allVals;
 gadgets.io.makeRequest(url, callback, params);
 };
@@ -407,7 +407,7 @@ var params = {};
 params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
 params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.GET;
 document.getElementById('listsym').style.display='block';
-document.getElementById('listsym').innerHTML='<img src="http://symptomchecker.flowsoft7.com/images/wait.gif">';
+document.getElementById('listsym').innerHTML='<img src="https://iblogbox.github.io/js/img/etc/wait.gif">';
 var url = 'http://symptomchecker.flowsoft7.com/gadget/symptomcheck.php?condition='+ escape(condition);
 gadgets.io.makeRequest(url, callback1, params);
 };
@@ -579,7 +579,7 @@ name="frame">
 </div>
 
 <div id="symptom1" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Abdominal Pain</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Abdominal Pain</b>   
 
 <div class="refine tva">
 
@@ -720,7 +720,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom2" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Blood in Stool</b>
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Blood in Stool</b>
 			<div class="refine tva">
 
 				<label>Blood appears</label>
@@ -812,7 +812,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom3" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Chest Pain</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Chest Pain</b>   
 
 			<div class="refine tva">
 				<label>Pain best described as</label>
@@ -936,7 +936,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom4" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Constipation</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Constipation</b>   
 
 			<div class="refine tva">
 
@@ -1005,7 +1005,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom5" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Cough</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Cough</b>   
 
 			<div class="refine tva">
 				<label>Cough is</label>
@@ -1097,7 +1097,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom6" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Diarrhea</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Diarrhea</b> 
 			<div class="refine tva">
 
 				<label>Problem is</label>
@@ -1181,7 +1181,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom7" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Difficulty Swallowing</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Difficulty Swallowing</b> 
 			<div class="refine tva">
 				<label>Swallowing</label>
 
@@ -1273,7 +1273,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom8" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Dizziness</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Dizziness</b> 
 		<div class="refine tva">
 
 				<label>You feel</label>
@@ -1370,7 +1370,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom9" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Eye Discomfort and Redness</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Eye Discomfort and Redness</b> 
 		<div class="refine tva">
 				<label>Eye discomfort best described as</label>
 
@@ -1500,7 +1500,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom10" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Foot Pain or Ankle Pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Foot Pain or Ankle Pain</b> 
 			<div class="refine tva">
 
 				<label>Located in</label>
@@ -1590,7 +1590,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom11" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Foot swelling or Leg Swelling</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Foot swelling or Leg Swelling</b> 
 		<div class="refine tva">
 
 				<label>Swelling occurs</label>
@@ -1710,7 +1710,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom12" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Headaches</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Headaches</b> 
 		<div class="refine tva">
 				<label>Pain is</label>
 
@@ -1898,7 +1898,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom13" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Heart Palpitations</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Heart Palpitations</b> 
 		<div class="refine tva">
 
 				<label>Palpitations often occur when</label>
@@ -1989,7 +1989,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom14" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Hip Pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Hip Pain</b> 
 		<div class="refine tva">
 
 				<label>Pain is</label>
@@ -2069,7 +2069,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom15" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Knee Pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Knee Pain</b> 
 		<div class="refine tva">
 				<label>Pain best described as</label>
 				<ul>
@@ -2182,7 +2182,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom16" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Low Back Pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Low Back Pain</b> 
 		<div class="refine tva">
 
 				<label>Pain</label>
@@ -2285,7 +2285,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom17" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Nasal Congestion</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Nasal Congestion</b> 
 		<div class="refine tva">
 				<label>Nasal congestion is</label>
 
@@ -2364,7 +2364,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom18" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Nausea or Vomiting</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Nausea or Vomiting</b> 
 		<div class="refine tva">
 				<label>Triggered or worsened by</label>
 
@@ -2471,7 +2471,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom19" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Neck Pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Neck Pain</b> 
 		<div class="refine tva">
 
 				<label>Pain started</label>
@@ -2550,7 +2550,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom20" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Numbness or Tingling in Hands</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Numbness or Tingling in Hands</b> 
 		<div class="refine tva">
 
 				<label>Numbness or tingling</label>
@@ -2630,7 +2630,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom21" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Pelvic Pain: Female</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Pelvic Pain: Female</b> 
 		<div class="refine tva">
 
 				<label>Pain best described as</label>
@@ -2735,7 +2735,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom22" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Pelvic Pain: Male</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Pelvic Pain: Male</b> 
 		<div class="refine tva">
 
 				<label>Pain best described as</label>
@@ -2821,7 +2821,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom23" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Shortness of Breath</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Shortness of Breath</b> 
 		<div class="refine tva">
 
 				<label>Problem is</label>
@@ -2923,7 +2923,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom24" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Shoulder Pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Shoulder Pain</b> 
 		<div class="refine tva">
 
 				<label>Pain is</label>
@@ -3004,7 +3004,7 @@ name="frame">
 
 
 <div id="symptom25" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Sore Throat</b>
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Sore Throat</b>
 		<div class="refine tva">
 
 				<label>Accompanied by</label>
@@ -3060,7 +3060,7 @@ name="frame">
 
 
 <div id="symptom26" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Urinary Problems</b>
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Urinary Problems</b>
 		<div class="refine tva">
 				<label>Problem is</label>
 
@@ -3166,7 +3166,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom27" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Vision Problems</b>
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Vision Problems</b>
 		<div class="refine tva">
 				<label>Problem is</label>
 
@@ -3326,7 +3326,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom28" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Wheezing</b>
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Wheezing</b>
 		<div class="refine tva">
 
 				<label>Wheezing is</label>
@@ -3429,7 +3429,7 @@ name="frame">
 
 <table>
 <tr>
-<td><img src="http://symptomchecker.flowsoft7.com/images/prev_arrow.gif" onclick="adjust();"></a></td>
+<td><img src="https://iblogbox.github.io/js/img/etc/prev_arrow.gif" onclick="adjust();"></a></td>
 <td><div id="category"></div></td>
 </tr>
 </table>

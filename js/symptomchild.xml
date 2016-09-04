@@ -375,7 +375,7 @@ var getcat = $('#sym'+cat).text();
 document.getElementById('category').innerHTML = getcat;
 document.getElementById('symptom'+cat).style.display='none';
 document.getElementById('details').style.display='block';
-document.getElementById('list').innerHTML='<img src="http://symptomchecker.flowsoft7.com/images/wait.gif">';
+document.getElementById('list').innerHTML='<img src="https://iblogbox.github.io/js/img/etc/wait.gif">';
 var url = 'http://symptomchecker.flowsoft7.com/gadget/symptomchild.php?cat='+cat+'&string='+allVals;
 gadgets.io.makeRequest(url, callback, params);
 };
@@ -396,7 +396,7 @@ var params = {};
 params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
 params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.GET;
 document.getElementById('listsym').style.display='block';
-document.getElementById('listsym').innerHTML='<img src="http://symptomchecker.flowsoft7.com/images/wait.gif">';
+document.getElementById('listsym').innerHTML='<img src="https://iblogbox.github.io/js/img/etc/wait.gif">';
 var url = 'http://symptomchecker.flowsoft7.com/gadget/symptomchild.php?condition='+ escape(condition);
 gadgets.io.makeRequest(url, callback1, params);
 };
@@ -546,7 +546,7 @@ name="frame">
 </div>
 
 <div id="symptom1" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Abdominal Pain</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Abdominal Pain</b>   
 
 			<div class="refine tva">
 
@@ -680,7 +680,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom2" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Constipation</b>
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Constipation</b>
 			<div class="refine tva">
 
 				<label>Problem is</label>
@@ -746,7 +746,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom3" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Cough</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Cough</b>   
 
 			<div class="refine tva">
 
@@ -863,7 +863,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom4" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Decreased hearing</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Decreased hearing</b>   
 
 			<div class="refine tva">
 
@@ -941,7 +941,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom5" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Diarrhea</b>   
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Diarrhea</b>   
 
 			<div class="refine tva">
 
@@ -1061,7 +1061,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom6" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Earache</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Earache</b> 
 			<div class="refine tva">
 
 				<label>Triggered by</label>
@@ -1144,7 +1144,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom7" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Eye discomfort and redness</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Eye discomfort and redness</b> 
 			<div class="refine tva">
 
 				<label>Eye discomfort best described as</label>
@@ -1260,7 +1260,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom8" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Fever</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Fever</b> 
 			<div class="refine tva">
 
 				<label>Accompanied by</label>
@@ -1342,7 +1342,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom9" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Headaches</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Headaches</b> 
 	
 		
 			<div class="refine tva">
@@ -1530,7 +1530,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom10" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Joint pain or muscle pain</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Joint pain or muscle pain</b> 
 			<div class="refine tva">
 				<label>Problem is</label>
 
@@ -1690,7 +1690,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom11" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Nasal congestion</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Nasal congestion</b> 
 			<div class="refine tva">
 
 				<label>Problem is</label>
@@ -1783,7 +1783,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom12" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Nausea or vomiting</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Nausea or vomiting</b> 
 			<div class="refine tva">
 
 				<label>Triggered or worsened by</label>
@@ -1885,7 +1885,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom13" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Skin rashes</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Skin rashes</b> 
 			<div class="refine tva">
 
 				<label>Rash best described as</label>
@@ -2042,7 +2042,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom14" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Sore throat</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Sore throat</b> 
 	
 		
 			<div class="refine tva">
@@ -2097,7 +2097,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom15" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Urinary problems</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Urinary problems</b> 
 			<div class="refine tva">
 
 				<label>Problem is</label>
@@ -2173,7 +2173,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom16" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Vision problems</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Vision problems</b> 
 			<div class="refine tva">
 
 				<label>Problem is</label>
@@ -2299,7 +2299,7 @@ name="frame">
 <!--breaker-->
 
 <div id="symptom17" style="display: none;">
-<img id="close" src="http://symptomchecker.flowsoft7.com/images/close1.gif" onclick="adjust();"></a> <b>Wheezing</b> 
+<img id="close" src="https://iblogbox.github.io/js/img/etc/close1.gif" onclick="adjust();"></a> <b>Wheezing</b> 
 			<div class="refine tva">
 
 				<label>Wheezing is</label>
@@ -2427,7 +2427,7 @@ name="frame">
 
 <table>
 <tr>
-<td><img src="http://symptomchecker.flowsoft7.com/images/prev_arrow.gif" onclick="adjust();"></a></td>
+<td><img src="https://iblogbox.github.io/js/img/etc/prev_arrow.gif" onclick="adjust();"></a></td>
 <td><div id="category"></div></td>
 </tr>
 </table>
