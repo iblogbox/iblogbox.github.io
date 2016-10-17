@@ -4,6 +4,7 @@ https://github.com/layerssss/paste.js
  */
 var cp_imgbloburl,cp_lastprogress,cp_xhr,cp_working;
 var cp_kind=1;
+var cp_maxsize=33;
 (function() {
   var $, Paste, createHiddenEditable, dataURLtoBlob;
 
