@@ -353,8 +353,7 @@ function pasteHandler(e){
 	}
 }
 function paste_createImage(source){
-	var gmaxsize=20;
-	if(source.length>gmaxsize*1024*1024){
+	if(source.length>cp_maxsize*1024*1024){
 		alert('The image size is too large to load.');
 		return;
 	}
