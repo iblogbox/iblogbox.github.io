@@ -1140,13 +1140,13 @@ ZipArchiveReader.prototype.init = function() {
         j = e.byteLength - 4,
         k = new DataView(e.buffer, e.byteOffset, e.byteLength),
         l = this;
-    if (this.files = h, this.folders = i, this.localFileHeaders = f, this.centralDirHeaders = g, k.getUint32(0, !0) !== zip.LOCAL_FILE_SIGNATURE) throw new Error("zip.unpack: invalid zip file");
+    if (this.files = h, this.folders = i, this.localFileHeaders = f, this.centralDirHeaders = g, k.getUint32(0, !0) !== zip.LOCAL_FILE_SIGNATURE) _gerr("zip.unpack: invalid zip file"); //throw new Error("zip.unpack: invalid zip file");
     for (;;) {
         if (k.getUint32(j, !0) === zip.END_SIGNATURE) {
             b = l._getEndCentDirHeader(j);
             break
         }
-        if (j--, 0 === j) throw new Error("zip.unpack: invalid zip file")
+        if (j--, 0 === j) _gerr("zip.unpack: invalid zip file"); //throw new Error("zip.unpack: invalid zip file")
     }
     for (j = b.startpos, c = 0, d = b.direntry; d > c; ++c) a = l._getCentralDirHeader(j), g.push(a), j += a.allsize;
     for (c = 0; d > c; ++c) j = g[c].headerpos, a = l._getLocalFileHeader(j), a.crc32 = g[c].crc32, a.compsize = g[c].compsize, a.uncompsize = g[c].uncompsize, f.push(a);
