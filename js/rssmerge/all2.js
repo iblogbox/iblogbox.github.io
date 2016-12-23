@@ -533,10 +533,9 @@ function proc_set_clock(isfirst){
 }
 
 function init_language(){
-	var g_lang=window.navigator.language;
-	if (!g_lang) g_lang=window.navigator.userLanguage;
-	if (!g_lang) g_lang="en";	
-
+	/*var lang=window.navigator.language;
+	if (!lang) lang=window.navigator.userLanguage;
+	if (!lang) lang="en";	*/
 	var a=_getid("clock_language");
 	if(a){
 		a.value="lang_"+g_lang;
