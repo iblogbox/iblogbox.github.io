@@ -720,7 +720,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 			if(entry.link){
 				if(!audiourl && /(\.mp3)($|\?)/i.test(entry.link)) audiourl=entry.link;
 				if(!videourl && /(\.mp4|\.m4v)($|\?)/i.test(entry.link)) videourl=entry.link;			
-				if(/^http(s)?:\/\/www.youtube.com\/watch\?v=/i.test(entry.link)) ytcode=getparam(entry.link,"v");
+				if(/^http(s)?:\/\/((www.)?youtube.com\/watch\?v=|youtu.be\/)/i.test(entry.link)) ytcode=getparam(entry.link,"v");
 			}			
 			/*if(!ytcode && entry.content){
 				var match=entry.content.match(/src=(\'|\")http:\/\/img.youtube.com\/vi\/(.*?)\/0.jpg(\'|\")/i);
