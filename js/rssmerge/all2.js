@@ -1,3 +1,56 @@
+function getWindowWidth(){
+    var windowWidth = 0;
+    if (typeof(window.innerWidth) == 'number'){
+        windowWidth = window.innerWidth;
+    }else{
+        var ieStrict = document.documentElement.clientWidth;
+        var ieQuirks = document.body.clientWidth; 
+        windowWidth = (ieStrict > 0) ? ieStrict : ieQuirks;
+    }
+	if(!windowWidth) windowWidth=0;
+    return windowWidth;
+}
+function getWindowHeight(){
+    var windowHeight = 0;
+    if (typeof(window.innerHeight) == 'number'){
+        windowHeight = window.innerHeight;
+    }else{
+        var ieStrict = document.documentElement.clientHeight; 
+        var ieQuirks = document.body.clientHeight;
+        windowHeight = (ieStrict > 0) ? ieStrict : ieQuirks;
+    }
+	if(!windowHeight) windowHeight=0;
+    return windowHeight;
+}
+
+function getScrollLeft(){
+    var scrollLeft;
+	if(document.body && document.body.scrollLeft){
+		scrollLeft = document.body.scrollLeft;
+	}else if(document.documentElement && document.documentElement.scrollLeft){
+		scrollLeft = document.documentElement.scrollLeft;
+	}
+	if(!scrollLeft) scrollLeft=0;
+    return scrollLeft;
+}
+
+function getScrollTop(){
+    var scrollTop;
+	if(document.body && document.body.scrollTop){
+		scrollTop = document.body.scrollTop;
+	}else if(document.documentElement && document.documentElement.scrollTop){
+		scrollTop = document.documentElement.scrollTop;
+	}
+	if(!scrollTop) scrollTop=0;
+    return scrollTop;
+} 
+function proc_show2(name){
+	var a=_getid(name);
+	if(!a)return;
+	if(a.style.display=='') a.style.display='none';
+	else a.style.display='';
+}
+
 function setCookie(name, value, expires) { 
   if (!expires) expires=1000*60*60*24*365*5;
   path="/";
@@ -69,53 +122,6 @@ function cutstringmiddle(s,len,left,right){
 
 var messagetimer=null;
 function show_message(s,x,y,padding,timeout){
-function getWindowWidth(){
-    var windowWidth = 0;
-    if (typeof(window.innerWidth) == 'number'){
-        windowWidth = window.innerWidth;
-    }else{
-        var ieStrict = document.documentElement.clientWidth;
-        var ieQuirks = document.body.clientWidth; 
-        windowWidth = (ieStrict > 0) ? ieStrict : ieQuirks;
-    }
-	if(!windowWidth) windowWidth=0;
-    return windowWidth;
-}
-function getWindowHeight(){
-    var windowHeight = 0;
-    if (typeof(window.innerHeight) == 'number'){
-        windowHeight = window.innerHeight;
-    }else{
-        var ieStrict = document.documentElement.clientHeight; 
-        var ieQuirks = document.body.clientHeight;
-        windowHeight = (ieStrict > 0) ? ieStrict : ieQuirks;
-    }
-	if(!windowHeight) windowHeight=0;
-    return windowHeight;
-}
-
-function getScrollLeft(){
-    var scrollLeft;
-	if(document.body && document.body.scrollLeft){
-		scrollLeft = document.body.scrollLeft;
-	}else if(document.documentElement && document.documentElement.scrollLeft){
-		scrollLeft = document.documentElement.scrollLeft;
-	}
-	if(!scrollLeft) scrollLeft=0;
-    return scrollLeft;
-}
-
-function getScrollTop(){
-    var scrollTop;
-	if(document.body && document.body.scrollTop){
-		scrollTop = document.body.scrollTop;
-	}else if(document.documentElement && document.documentElement.scrollTop){
-		scrollTop = document.documentElement.scrollTop;
-	}
-	if(!scrollTop) scrollTop=0;
-    return scrollTop;
-} 
-
 	if (!x) x=10;
 	if (!y) y=10;
 	if (!padding) padding=5;
@@ -635,6 +641,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 			sn=sn.replace(/&lt;!--(.*)--&gt;/g,"");			
 			
 			geopoint="";
+			//entry.xmlNode=$.parseXML('<rss><lat>55</lat><long>55</long></rss>');
 			if(entry.xmlNode){
 				function findcontent(name){
 					var s1;
@@ -662,11 +669,11 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 						if(s1 && entry.link!=s1 && isurl_links(s1)) entry.link=s1;
 					}
 				}
-				/*var latnode = entry.xmlNode.getElementsByTagName("lat");
+				var latnode = entry.xmlNode.getElementsByTagName("lat");
 				var longnode = entry.xmlNode.getElementsByTagName("long");
-				if(latnode && latnode[0] && latnode[0].textContent && longnode && longnode[0] && longnode[0].textContent){
-					geopoint=latnode[0].textContent+" "+longnode[0].textContent;					
-				}*/
+				if(latnode && latnode[0] && (latnode[0].textContent || latnode[0].text) && longnode && longnode[0] && (longnode[0].textContent || longnode[0].text)){
+					geopoint=(latnode[0].textContent || latnode[0].text)+" "+(longnode[0].textContent || longnode[0].text);
+				}
 			}
 
 			imgurl="";audiourl="";videourl="";imgs="";
