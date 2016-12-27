@@ -718,7 +718,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 					var a=entry.xmlNode.getElementsByTagName("thumbnail");
 					if(a && a[0]){
 						imgurl=a[0].getAttribute("url");
-						if(imgurl) imgs=imgurl;
+						//if(imgurl) imgs=imgurl;
 						if(imgurl && a[0].getAttribute("length")>1000000) imgurl=g_default_img;
 					}						
 				}				
