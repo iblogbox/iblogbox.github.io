@@ -725,7 +725,8 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 			}			
 			if(isblockimg(imgurl)) imgurl="";
 			if(!imgurl && entry.content){
-				var match=entry.content.match(/<img (.*?)src=('|")(.*?)('|")/i);
+				var match=entry.content.match(/<img (.*?)src=('|")((.*?)(.jpg|.jpeg))('|")/i);
+				if(!match) match=entry.content.match(/<img (.*?)src=('|")(.*?)('|")/i);
 				if(match && match.length>3) imgurl=match[3];
 			}
 			if(!imgurl || isblockimg(imgurl)){				
