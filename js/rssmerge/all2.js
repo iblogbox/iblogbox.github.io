@@ -725,9 +725,22 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 			}			
 			if(isblockimg(imgurl)) imgurl="";
 			if(!imgurl && entry.content){
-				var match=entry.content.match(/<img (.*?)src=('|")((.*?)(.jpg|.jpeg))('|")/i);
+				var imre=/<img (.*?)src=(\'|\")(.*?)(\'|\")/g;
+				var k=0;
+				while(m=imre.exec(entry.content)){
+					k++;if(!m || k>=30)break;
+					if(m[3]){
+						if(!imgurl) imgurl=m[3];
+						if(/(\.jpg|\.jpeg)($|\?)/i.test(m[3])){
+							imgurl=m[3];
+							break;
+						}						
+					}
+				}
+				if(imgurl && /(<|>)/i.test(imgurl)) imgurl='';
+				/*var match=entry.content.match(/<img (.*?)src=('|")((.*?)(.jpg|.jpeg))('|")/i);
 				if(!match) match=entry.content.match(/<img (.*?)src=('|")(.*?)('|")/i);
-				if(match && match.length>3) imgurl=match[3];
+				if(match && match.length>3) imgurl=match[3];*/
 			}
 			if(!imgurl || isblockimg(imgurl)){				
 				imgurl=g_default_img;
