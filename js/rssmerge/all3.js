@@ -726,9 +726,9 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 			if(isblockimg(imgurl)) imgurl="";
 			if(!imgurl && entry.content){
 				var imre=/<img (.*?)src=(\'|\")(.*?)(\'|\")/g;
-				var k=0;
+				var kc=0;
 				while(m=imre.exec(entry.content)){
-					k++;if(!m || k>=30)break;
+					kc++;if(!m || kc>=30)break;
 					if(m[3]){
 						if(!imgurl) imgurl=m[3];
 						if(/(\.jpg|\.jpeg)($|\?)/i.test(m[3])){
