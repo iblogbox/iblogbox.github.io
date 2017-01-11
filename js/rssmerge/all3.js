@@ -851,7 +851,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 				_complete();
 			}
 		});
-		return;
+		return "rssurl";
 	}
 	
 	_getfeed({
