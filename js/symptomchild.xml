@@ -29,7 +29,7 @@ category2="lifestyle">
 <script>google.load("jquery","1.3.2");</script>
 <style>
 /*<Require feature="com.google.gadgets.analytics"/>*/
-#symptom1 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom1 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom1 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom1 p { margin: 6px 10px 15px 10px; }
 #symptom1 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -39,7 +39,7 @@ category2="lifestyle">
 #symptom1 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom1 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom1 .refine ul p { margin: 3px 0 0 0; }
-#symptom2 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom2 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom2 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom2 p { margin: 6px 10px 15px 10px; }
 #symptom2 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -49,7 +49,7 @@ category2="lifestyle">
 #symptom2 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom2 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom2 .refine ul p { margin: 3px 0 0 0; }
-#symptom3 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom3 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom3 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom3 p { margin: 6px 10px 15px 10px; }
 #symptom3 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -59,7 +59,7 @@ category2="lifestyle">
 #symptom3 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom3 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom3 .refine ul p { margin: 3px 0 0 0; }
-#symptom4 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom4 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom4 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom4 p { margin: 6px 10px 15px 10px; }
 #symptom4 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -69,7 +69,7 @@ category2="lifestyle">
 #symptom4 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom4 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom4 .refine ul p { margin: 3px 0 0 0; }
-#symptom5 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom5 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom5 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom5 p { margin: 6px 10px 15px 10px; }
 #symptom5 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -79,7 +79,7 @@ category2="lifestyle">
 #symptom5 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom5 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom5 .refine ul p { margin: 3px 0 0 0; }
-#symptom6 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom6 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom6 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom6 p { margin: 6px 10px 15px 10px; }
 #symptom6 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -89,7 +89,7 @@ category2="lifestyle">
 #symptom6 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom6 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom6 .refine ul p { margin: 3px 0 0 0; }
-#symptom7 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom7 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom7 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom7 p { margin: 6px 10px 15px 10px; }
 #symptom7 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -99,7 +99,7 @@ category2="lifestyle">
 #symptom7 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom7 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom7 .refine ul p { margin: 3px 0 0 0; }
-#symptom8 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom8 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom8 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom8 p { margin: 6px 10px 15px 10px; }
 #symptom8 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -109,7 +109,7 @@ category2="lifestyle">
 #symptom8 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom8 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom8 .refine ul p { margin: 3px 0 0 0; }
-#symptom9 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom9 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom9 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom9 p { margin: 6px 10px 15px 10px; }
 #symptom9 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -119,7 +119,7 @@ category2="lifestyle">
 #symptom9 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom9 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom9 .refine ul p { margin: 3px 0 0 0; }
-#symptom10 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom10 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom10 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom10 p { margin: 6px 10px 15px 10px; }
 #symptom10 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -129,7 +129,7 @@ category2="lifestyle">
 #symptom10 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom10 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom10 .refine ul p { margin: 3px 0 0 0; }
-#symptom11 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom11 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom11 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom11 p { margin: 6px 10px 15px 10px; }
 #symptom11 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -139,7 +139,7 @@ category2="lifestyle">
 #symptom11 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom11 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom11 .refine ul p { margin: 3px 0 0 0; }
-#symptom12 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom12 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom12 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom12 p { margin: 6px 10px 15px 10px; }
 #symptom12 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -149,7 +149,7 @@ category2="lifestyle">
 #symptom12 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom12 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom12 .refine ul p { margin: 3px 0 0 0; }
-#symptom13 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom13 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom13 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom13 p { margin: 6px 10px 15px 10px; }
 #symptom13 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -159,7 +159,7 @@ category2="lifestyle">
 #symptom13 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom13 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom13 .refine ul p { margin: 3px 0 0 0; }
-#symptom14 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom14 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom14 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom14 p { margin: 6px 10px 15px 10px; }
 #symptom14 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -169,7 +169,7 @@ category2="lifestyle">
 #symptom14 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom14 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom14 .refine ul p { margin: 3px 0 0 0; }
-#symptom15 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom15 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom15 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom15 p { margin: 6px 10px 15px 10px; }
 #symptom15 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -179,7 +179,7 @@ category2="lifestyle">
 #symptom15 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom15 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom15 .refine ul p { margin: 3px 0 0 0; }
-#symptom16 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom16 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom16 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom16 p { margin: 6px 10px 15px 10px; }
 #symptom16 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -189,7 +189,7 @@ category2="lifestyle">
 #symptom16 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom16 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom16 .refine ul p { margin: 3px 0 0 0; }
-#symptom17 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom17 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom17 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom17 p { margin: 6px 10px 15px 10px; }
 #symptom17 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -199,7 +199,7 @@ category2="lifestyle">
 #symptom17 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom17 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom17 .refine ul p { margin: 3px 0 0 0; }
-#symptom18 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom18 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom18 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom18 p { margin: 6px 10px 15px 10px; }
 #symptom18 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -209,7 +209,7 @@ category2="lifestyle">
 #symptom18 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom18 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom18 .refine ul p { margin: 3px 0 0 0; }
-#symptom19 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom19 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom19 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom19 p { margin: 6px 10px 15px 10px; }
 #symptom19 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -219,7 +219,7 @@ category2="lifestyle">
 #symptom19 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom19 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom19 .refine ul p { margin: 3px 0 0 0; }
-#symptom20 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom20 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom20 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom20 p { margin: 6px 10px 15px 10px; }
 #symptom20 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -229,7 +229,7 @@ category2="lifestyle">
 #symptom20 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom20 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom20 .refine ul p { margin: 3px 0 0 0; }
-#symptom21 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom21 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom21 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom21 p { margin: 6px 10px 15px 10px; }
 #symptom21 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -239,7 +239,7 @@ category2="lifestyle">
 #symptom21 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom21 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom21 .refine ul p { margin: 3px 0 0 0; }
-#symptom22 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom22 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom22 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom22 p { margin: 6px 10px 15px 10px; }
 #symptom22 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -249,7 +249,7 @@ category2="lifestyle">
 #symptom22 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom22 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom22 .refine ul p { margin: 3px 0 0 0; }
-#symptom23 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom23 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom23 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom23 p { margin: 6px 10px 15px 10px; }
 #symptom23 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -259,7 +259,7 @@ category2="lifestyle">
 #symptom23 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom23 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom23 .refine ul p { margin: 3px 0 0 0; }
-#symptom24 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom24 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom24 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom24 p { margin: 6px 10px 15px 10px; }
 #symptom24 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -269,7 +269,7 @@ category2="lifestyle">
 #symptom24 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom24 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom24 .refine ul p { margin: 3px 0 0 0; }
-#symptom25 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom25 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom25 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom25 p { margin: 6px 10px 15px 10px; }
 #symptom25 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -279,7 +279,7 @@ category2="lifestyle">
 #symptom25 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom25 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom25 .refine ul p { margin: 3px 0 0 0; }
-#symptom26 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom26 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom26 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom26 p { margin: 6px 10px 15px 10px; }
 #symptom26 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -289,7 +289,7 @@ category2="lifestyle">
 #symptom26 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom26 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom26 .refine ul p { margin: 3px 0 0 0; }
-#symptom27 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom27 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom27 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom27 p { margin: 6px 10px 15px 10px; }
 #symptom27 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -299,7 +299,7 @@ category2="lifestyle">
 #symptom27 .refine ul li { clear: both; overflow: hidden; line-height: 120%; margin: 0 0 4px 0; list-style: none; padding: 0; }
 #symptom27 .refine ul input { float: left; margin: 0 4px 0 0; }
 #symptom27 .refine ul p { margin: 3px 0 0 0; }
-#symptom28 { background: url(http://www.mayoclinic.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
+#symptom28 { background: url(http://www.google.com/img/bg_c_full_top.gif) no-repeat left 12px; overflow: hidden; float: left; font-size: 13px; }
 #symptom28 h2 { font: 24px Georgia; padding: 0 2px 0 2px; background: #ffffff; display: inline; margin: 0 8px 0 8px; }
 #symptom28 p { margin: 6px 10px 15px 10px; }
 #symptom28 .refine { background: #fbfbfb; padding: 2px 8px 2px 8px; margin: 0 8px 12px 8px; clear: both; overflow: hidden; }
@@ -505,7 +505,15 @@ width: 300px;
 float: bottom;
 width: 300px;
 }
-
+*{
+	font-size:14px;
+	font-family: Arial, Helvetica, sans-serif; /*Trebuchet MS, Tahoma, Verdana*/
+}
+A:link    {color:#0000cc;text-decoration:none;}
+A:visited {color:#0000cc;text-decoration:none;}
+A:active  {color:#0000cc;text-decoration:underline;}
+A:hover  {color:#0000cc;text-decoration:underline;}
+#close{cursor:pointer;}
 </style>
 
 <iframe
@@ -2427,7 +2435,7 @@ name="frame">
 
 <table>
 <tr>
-<td><img src="https://iblogbox.github.io/js/img/etc/prev_arrow.gif" onclick="adjust();"></a></td>
+<td><img src="https://iblogbox.github.io/js/img/etc/prev_arrow.gif" onclick="adjust();" style="cursor:pointer"></a></td>
 <td><div id="category"></div></td>
 </tr>
 </table>
@@ -2446,6 +2454,7 @@ name="frame">
 <div id="box" style="font-size: 11">
 <DIV id="disclaimer" style="font-size: 11"><a href="" onclick="return false;">*Disclaimer</a></div>
 <DIV id="note" style="display: none;font-size: 11;">Child Symptoms checker is for informational purposes only and should not be considered medical advice, diagnosis or treatment recommendations.</div>
+<br>
 </div>
 
 
@@ -2466,9 +2475,11 @@ name="frame1">
 
 
 
-
 <script>
 gadgets.window.adjustHeight();
+if(document.referrer && document.referrer.indexOf("symptomchecker.booogle.net")<0 && document.referrer.indexOf("symptomchecker.flowsoft7.com")<0){
+	location.href="about:blank";
+}
 </script>
 ]]>
 </Content>
