@@ -40,10 +40,12 @@ function _getid(id){
 }
 
 function trim(str) {
+	if (!str || !str.replace) str='';
   	return str.replace(/^\s*|\s*$/g,"");
 }
 
 function html_entity_encode(str){
+	if (!str || !str.replace) str='';
   str = str.replace(/&/gi, "&amp;");
   str = str.replace(/>/gi, "&gt;");
   str = str.replace(/</gi, "&lt;");
@@ -59,6 +61,7 @@ function shortstring(s,len){
 }
 
 function cutstringmiddle(s,len,left,right){
+	if (!s) s='';
 	if (s.length <= len) return s;			
 	var s1,s2;	
 	s1=s.substr(0,left);
