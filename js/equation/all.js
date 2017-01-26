@@ -60,6 +60,7 @@ function _getinnertext(f){
 }
 
 function html_entity_encode(str){
+	if (!str || !str.replace) str='';
   str = str.replace(/&/gi, "&amp;");
   str = str.replace(/>/gi, "&gt;");
   str = str.replace(/</gi, "&lt;");
