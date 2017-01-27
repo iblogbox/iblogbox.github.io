@@ -276,6 +276,7 @@ function addspace(s){
 	return s.join("");
 }
 function html_entity_decode(str){
+	if (!str || !str.replace) str='';
   str = str.replace(/&gt;/gi, ">");
   str = str.replace(/&lt;/gi, "<");
   str = str.replace(/&quot;/gi, "\"");
@@ -725,6 +726,15 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 						if(imgurl && a[0].getAttribute("length")>1000000) imgurl=g_default_img;
 					}						
 				}				
+				var a=entry.xmlNode.getElementsByTagName("mediastream");
+				if(!a || !a[0]) a=entry.xmlNode.getElementsByTagName("nprml:mediastream");
+				if(a && a[0]){
+					s2=a[0].textContent || a[0].text;
+					if(s2){
+						s2=s2.split("/mp3:");
+						if(s2[1]) audiourl="http://public.npr.org/"+s2[1];
+					}	
+				}
 			}			
 			if(isblockimg(imgurl)) imgurl="";
 			if(!imgurl && entry.content){
