@@ -714,10 +714,10 @@ var Webcam = {
 		}
 		
 		// make sure we have flash
-		if (!this.detectFlash()) {
+		/*if (!this.detectFlash()) {
 			this.dispatch('error', "Adobe Flash Player not found.  Please install from get.adobe.com/flashplayer and try again.");
 			return '<font style="color:red;font-size:15px">ERROR: No Adobe Flash Player detected.</font>'; //Webcam.js relies on Flash for browsers that do not support getUserMedia (like yours).
-		}
+		}*/
 		
 		// set default swfURL if not explicitly set
 		if (!this.swfURL) {
