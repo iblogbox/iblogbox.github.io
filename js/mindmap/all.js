@@ -8920,6 +8920,13 @@ mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePick
 * 
 * @constructor
 */
+var gsaveblob; var gsavedfn={};
+var issafari=false;
+var ua = navigator.userAgent.toLowerCase(); 
+if (ua.indexOf('safari') != -1 && ua.indexOf('chrome') <0){ 
+	issafari=true;
+}
+
 mindmaps.SaveDocumentView = function() {
   var self = this;
 
@@ -8957,7 +8964,47 @@ mindmaps.SaveDocumentView = function() {
       }
     });
 
-  var $hddSaveButton = $("#button-save-hdd").button().downloadify({
+	var $hddSaveButton = $("#button-save-hdd2").button().click(function(){
+		var title=self.fileNameRequested() || 'No_Title.mindmap';
+		var str=self.fileContentsRequested() || '';
+
+		window.URL=window.URL || window.webkitURL;
+
+		var blobLink=document.getElementById('btn_save2_link');
+		if(!navigator.msSaveBlob) blobLink.href='javascript:void(0);';
+
+		var filename=title;
+		var filename2=title;
+		if(gsavedfn[filename2]) filename=gsavedfn[filename2];		
+		filename=prompt("Enter a filename to be saved.",filename);	
+		if(!filename)return;
+		gsavedfn[filename2]=filename;
+
+		if(str.indexOf("\r\n")<0){
+			str=str.replace(/(\n)/g, "\r\n");
+		}
+		var blob = new Blob([str], {encoding:"UTF-8",type:"text/plain;charset=UTF-8"});
+		if(navigator.msSaveBlob){
+			navigator.msSaveBlob(blob, filename);
+		}else{
+			if(!window.URL){
+				alert("This browser does not support.");
+				return;
+			}
+			blobLink.download = filename;
+			if(gsaveblob) window.URL.revokeObjectURL(gsaveblob);
+			gsaveblob=window.URL.createObjectURL(blob);
+			if(issafari){
+				window.open(gsaveblob);
+			}else{
+				blobLink.target='_blank';
+				blobLink.href=gsaveblob;
+			}
+		}
+
+	});
+
+  /*var $hddSaveButton = $("#button-save-hdd").button().downloadify({
     filename : function() {
       if (self.fileNameRequested) {
         return self.fileNameRequested();
@@ -8981,7 +9028,7 @@ mindmaps.SaveDocumentView = function() {
     width : 65,
     height : 29,
     append : true
-  });
+  });*/
 
   this.setAutoSaveCheckboxState = function(checked) {
     $autoSaveCheckbox.prop("checked", checked);
@@ -9011,11 +9058,11 @@ function check_flash(){
 		if(a && a['application/x-shockwave-flash'] != undefined && a['application/x-shockwave-flash'].enabledPlugin)okflash=true;
 	}
 }
-	check_flash();
+/*	check_flash();
 	if(!okflash){
 		var a=document.getElementById('button-save-hdd');
 		if(a) a.innerHTML='Adobe Flash Player is required. Check the flash player is installed.';
-	}
+	}*/
 };
 
 /**
