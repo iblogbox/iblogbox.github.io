@@ -839,13 +839,15 @@ dwv.App = function()
 			if(window.g_load_before())return;
 		}
         // clear variables
-        this.reset();
+        //this.reset();
+		var self=this;
         // create IO
 		g_arr_filesize=filesize;
 		if(g_arr_load_start) g_arr_load_start();		
 
         var urlIO = new dwv.io.Url();
         urlIO.onload = function (data) {
+			self.reset(); //edit
 			//console.log(data);
 			if(g_arr_load_end) g_arr_load_end();
 
