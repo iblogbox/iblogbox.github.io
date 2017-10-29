@@ -605,7 +605,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 		if(jobobj) jobobj.source=source;
 		else g_jobs[jobname].source=source;
 
-		var sn,imgurl,audiourl,videourl,geopoint,s1,imgs,duration;
+		var sn,imgurl,audiourl,videourl,geopoint,s1,s2,imgs,duration;
 
 		function checkmedia(type,url,onlyimg){
 			if(!url) return;
@@ -762,7 +762,9 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 			if(entry.link){
 				if(!audiourl && /(\.mp3|\.m4a)($|\?)/i.test(entry.link)) audiourl=entry.link;
 				if(!videourl && /(\.mp4|\.m4v)($|\?)/i.test(entry.link)) videourl=entry.link;			
-				if(/^http(s)?:\/\/((www.)?youtube.com\/watch\?v=|youtu.be\/)/i.test(entry.link)) ytcode=getparam(entry.link,"v");
+				s2=ytre2.exec(entry.link);
+				if(s2 && s2[6]) ytcode=s2[6];
+				//if(/^http(s)?:\/\/((www.)?youtube.com\/watch\?v=|youtu.be\/)/i.test(entry.link)) ytcode=getparam(entry.link,"v");
 			}			
 			/*if(!ytcode && entry.content){
 				var match=entry.content.match(/src=(\'|\")http:\/\/img.youtube.com\/vi\/(.*?)\/0.jpg(\'|\")/i);
