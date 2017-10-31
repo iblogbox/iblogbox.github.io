@@ -1324,7 +1324,7 @@ canvas {
   /*border: 9px solid transparent;*/
   border: 3px solid transparent; /*edit*/
   background-clip: content-box;
-  border-image: url(images/shadow.png) 9 9 repeat;
+  border-image: url(images/shadow.png) 6 6 repeat; /*edit*/
   background-color: white;
 }
 
