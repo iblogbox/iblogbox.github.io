@@ -37,6 +37,7 @@ var Webcam = {
 	init: function() {
 		// initialize, check for getUserMedia support
 		var self = this;
+		if(!window.Promise) this.params.force_flash=true;
 		
 		// Setup getUserMedia, with polyfill for older browsers
 		// Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
@@ -67,6 +68,8 @@ var Webcam = {
 	},
 	
 	attach: function(elem) {
+		if(!window.Promise) this.params.force_flash=true;
+
 		// create webcam preview and attach to DOM element
 		// pass in actual DOM reference, ID, or CSS selector
 		if (typeof(elem) == 'string') {
