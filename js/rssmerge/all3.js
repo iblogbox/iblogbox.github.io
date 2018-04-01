@@ -1,3 +1,18 @@
+function getValue(s,s_find,s_end){
+  s_find=s_find.toLowerCase();
+  s_end=s_end.toLowerCase();
+  
+  ss=s.toLowerCase();    
+  p1=ss.indexOf(s_find);
+  if (p1<0) return;
+  s1=s.substr(p1+s_find.length,s.length);
+  
+  ss=s1.toLowerCase();
+  p1=ss.indexOf(s_end);
+  if (p1<0) return;
+  s1=s1.substr(0,p1);
+  return s1;
+}
 function getWindowWidth(){
     var windowWidth = 0;
     if (typeof(window.innerWidth) == 'number'){
@@ -849,6 +864,9 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 	}else if(_gplus({'url':surl,'checkid':true})){
 		_gplus(opt);
 		return;
+	}else if(window._youtube && _youtube({'url':surl,'checkid':true})){
+		_youtube(opt);
+		return;
 	}else if(cdata && cdata.query && surl.toLowerCase().indexOf("{userquery}")>=0){
 		surl=surl.replace(/{userquery}/gi,encodeURIComponent(cdata.query));
 		//if(surl.indexOf("?")<0) surl+="?";//surl+="&t="+getuniq();
@@ -868,7 +886,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 		});
 		return "rssurl";
 	}
-	
+
 	_getfeed({
 		url:surl, max:maxnum, 
 		check:function(){
