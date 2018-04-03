@@ -329,8 +329,8 @@
                                     type: 'checkbox',
                                     id: 'AutoComplete',
                                     //label: lang.autoCompleteToggle,
-									label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tags Autocomplete, Ctrl+Q: CodeFolding On/Off)',
-                                    title: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tags Autocomplete, Ctrl+Q: CodeFolding On/Off)',
+									label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off)',
+                                    title: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off)',
                                     onChange: function () {
                                         window["codemirror_" + editor.id].setOption("autoCloseTags", this.getValue());
                                     }
@@ -849,7 +849,7 @@
                     if (config.showAutoCompleteButton) {
                         editor.ui.addButton('AutoComplete', {
                             //label: lang.autoCompleteToggle,
-							label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tags Autocomplete, Ctrl+Q: CodeFolding On/Off)',
+							label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off)',
                             command: 'autoCompleteToggle',
                             toolbar: 'mode,80'
                         });
