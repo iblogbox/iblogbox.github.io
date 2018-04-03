@@ -87,8 +87,8 @@
                             showCursorWhenSelecting: true,
                             styleActiveLine: config.styleActiveLine,
                             viewportMargin: Infinity,
-                            //extraKeys: {"Ctrl-Space": "autocomplete"},
                             extraKeys: {
+								"Ctrl-Space": "autocomplete",
                                 "Ctrl-Q": function (codeMirror_Editor) {
                                     if (config.enableCodeFolding) {
                                         window["foldFunc_" + editor.id](codeMirror_Editor, codeMirror_Editor.getCursor().line);
@@ -190,6 +190,7 @@
 
                             if (!IsStyleSheetAlreadyLoaded(rootPath + 'css/codemirror.min.css')) {
                                 CKEDITOR.document.appendStyleSheet(rootPath + 'css/codemirror.min.css');
+								CKEDITOR.document.appendStyleSheet(rootPath + 'js/show-hint.css');
                             }
 
                             if (config.theme.length && config.theme != 'default' && !IsStyleSheetAlreadyLoaded(rootPath + 'theme/' + config.theme + '.css')) {
@@ -327,8 +328,9 @@
                                 }, {
                                     type: 'checkbox',
                                     id: 'AutoComplete',
-                                    label: lang.autoCompleteToggle,
-                                    title: lang.autoCompleteToggle,
+                                    //label: lang.autoCompleteToggle,
+									label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tags Autocomplete, Ctrl+Q: CodeFolding On/Off)',
+                                    title: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tags Autocomplete, Ctrl+Q: CodeFolding On/Off)',
                                     onChange: function () {
                                         window["codemirror_" + editor.id].setOption("autoCloseTags", this.getValue());
                                     }
@@ -525,6 +527,7 @@
             editor.addMode('source', function (callback) {
                 if (!IsStyleSheetAlreadyLoaded(rootPath + 'css/codemirror.min.css')) {
                     CKEDITOR.document.appendStyleSheet(rootPath + 'css/codemirror.min.css');
+					CKEDITOR.document.appendStyleSheet(rootPath + 'js/show-hint.css');
                 }
 
                 if (config.theme.length && config.theme != 'default' && !IsStyleSheetAlreadyLoaded(rootPath + 'theme/' + config.theme + '.css')) {
@@ -605,6 +608,10 @@
                 if (config.enableSearchTools) {
                     scriptFiles.push(rootPath + 'js/codemirror.addons.search.min.js');
                 }
+				//edit
+				scriptFiles.push(rootPath + 'js/show-hint.js');
+				scriptFiles.push(rootPath + 'js/html-hint.js');
+				scriptFiles.push(rootPath + 'js/xml-hint.js');
                 return scriptFiles;
             }
 
@@ -642,10 +649,9 @@
                 var sourceAreaElement = window["editable_" + editor.id],
                     holderElement = sourceAreaElement.getParent();
 
-                /*CodeMirror.commands.autocomplete = function(cm) {
+                CodeMirror.commands.autocomplete = function(cm) {
                     CodeMirror.showHint(cm, CodeMirror.htmlHint);
-                };*/
-
+                };
                 // Enable Code Folding (Requires 'lineNumbers' to be set to 'true')
                 if (config.lineNumbers && config.enableCodeFolding) {
                     window["foldFunc_" + editor.id] = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder);
@@ -687,6 +693,7 @@
                 }
 
                 var extraKeys = {
+					"Ctrl-Space": "autocomplete",
                     "Ctrl-Q": function(codeMirror_Editor) {
                         if (config.enableCodeFolding) {
                             window["foldFunc_" + editor.id](codeMirror_Editor, codeMirror_Editor.getCursor().line);
@@ -714,7 +721,6 @@
                     showTrailingSpace: config.showTrailingSpace,
                     showCursorWhenSelecting: true,
                     styleActiveLine: config.styleActiveLine,
-                    //extraKeys: {"Ctrl-Space": "autocomplete"},
                     extraKeys: extraKeys,
                     foldGutter: true,
                     gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
@@ -842,7 +848,8 @@
                     }
                     if (config.showAutoCompleteButton) {
                         editor.ui.addButton('AutoComplete', {
-                            label: lang.autoCompleteToggle,
+                            //label: lang.autoCompleteToggle,
+							label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tags Autocomplete, Ctrl+Q: CodeFolding On/Off)',
                             command: 'autoCompleteToggle',
                             toolbar: 'mode,80'
                         });
