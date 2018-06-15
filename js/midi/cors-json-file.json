@@ -1,0 +1,8 @@
+[
+    {
+      "origin": ["http://midiplayer.ehubsoft.net"],
+      "responseHeader": ["Content-Type"],
+      "method": ["GET", "HEAD", "DELETE", "OPTIONS"],
+      "maxAgeSeconds": 3600
+    }
+]
