@@ -1140,13 +1140,13 @@ ZipArchiveReader.prototype.init = function() {
         j = e.byteLength - 4,
         k = new DataView(e.buffer, e.byteOffset, e.byteLength),
         l = this;
-    if (this.files = h, this.folders = i, this.localFileHeaders = f, this.centralDirHeaders = g, k.getUint32(0, !0) !== zip.LOCAL_FILE_SIGNATURE) _gerr("zip.unpack: invalid zip file"); //throw new Error("zip.unpack: invalid zip file");
+    if (this.files = h, this.folders = i, this.localFileHeaders = f, this.centralDirHeaders = g, k.getUint32(0, !0) !== zip.LOCAL_FILE_SIGNATURE) throw new Error("zip.unpack: invalid zip file");
     for (;;) {
         if (k.getUint32(j, !0) === zip.END_SIGNATURE) {
             b = l._getEndCentDirHeader(j);
             break
         }
-        if (j--, 0 === j) _gerr("zip.unpack: invalid zip file"); //throw new Error("zip.unpack: invalid zip file")
+        if (j--, 0 === j) throw new Error("zip.unpack: invalid zip file")
     }
     for (j = b.startpos, c = 0, d = b.direntry; d > c; ++c) a = l._getCentralDirHeader(j), g.push(a), j += a.allsize;
     for (c = 0; d > c; ++c) j = g[c].headerpos, a = l._getLocalFileHeader(j), a.crc32 = g[c].crc32, a.compsize = g[c].compsize, a.uncompsize = g[c].uncompsize, f.push(a);
@@ -1180,6 +1180,7 @@ ZipArchiveReader.prototype.init = function() {
     return c.signature = b.getUint32(0, !0), c.madever = b.getUint16(4, !0), c.needver = b.getUint16(6, !0), c.option = b.getUint16(8, !0), c.comptype = b.getUint16(10, !0), c.filetime = b.getUint16(12, !0), c.filedate = b.getUint16(14, !0), c.crc32 = b.getUint32(16, !0), c.compsize = b.getUint32(20, !0), c.uncompsize = b.getUint32(24, !0), c.fnamelen = b.getUint16(28, !0), c.extralen = b.getUint16(30, !0), c.commentlen = b.getUint16(32, !0), c.disknum = b.getUint16(34, !0), c.inattr = b.getUint16(36, !0), c.outattr = b.getUint32(38, !0), c.headerpos = b.getUint32(42, !0), c.allsize = 46 + c.fnamelen + c.extralen + c.commentlen, c
 }, ZipArchiveReader.prototype._getEndCentDirHeader = function(a) {
     var b = new DataView(this.buffer, a);
+	//console.log(b)
     return {
         signature: b.getUint32(0, !0),
         disknum: b.getUint16(4, !0),
@@ -1281,9 +1282,11 @@ return this.files = f, this.folders = g, this.localFileHeaders = e, this.central
         })
     }).then(function(d) {
         return a(d, c.size).then(function(a) {
-            return b = ZipArchiveReader.prototype._getEndCentDirHeader.call({
-                buffer: a
-            }, 0), d
+			try{
+				return b = ZipArchiveReader.prototype._getEndCentDirHeader.call({ buffer: a }, 0), d;
+			}catch(err){
+				_gerr(err+''); //edit
+			}
         })
     }).then(function(c) {
         return a(b.startpos, c).then(function(a) {
