@@ -91,7 +91,7 @@ var reportOpenError = function(code){
 			throw "Entered password is invalid. This code is returned only for archives in RAR 5.0 format"
 			break
 		case ERAR_BAD_ARCHIVE:
-			throw "Bad archive"
+			throw "Bad archive or Invalid rar file"
 			break
 		default:
 			throw "Unknown open error code"
