@@ -785,7 +785,7 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 				var match=entry.content.match(/src=(\'|\")http:\/\/img.youtube.com\/vi\/(.*?)\/0.jpg(\'|\")/i);
 				if(match && match.length>2) ytcode=match[2];
 			}*/
-			if(ytcode) entry.content='<iframe width="640" height="360" src="//www.youtube.com/embed/'+ytcode+'" frameborder="0" allowfullscreen></iframe><p></p>'+entry.content;
+			if(ytcode) entry.content='<iframe width="640" height="360" src="https://www.youtube.com/embed/'+ytcode+'" frameborder="0" allowfullscreen></iframe><p></p>'+entry.content;
 			if(imgs && entry.content.indexOf(imgs)<0) entry.content='<div style="width:'+(g_rsswidth-10)+'px"><img src="'+imgs+'"></div>'+entry.content;
 			duration='';
 			if((audiourl || videourl) && entry.xmlNode){
