@@ -212,13 +212,20 @@ CoolClock.prototype = {
 	},
 
 	dateTimeFormat: function(time) {
+function fillnumber(s){
+	s=String(s);
+	if ( s.length==1 ) { 
+		return '0'+s;  
+	}
+	return s;
+}	
 		var str = "";
 		str += time.getYear() + (time.getYear() > 1900 ? 0 : 1900) + "-";
-		str += time.getMonth() + 1 + "-";
-		str += time.getDate() + "<br/> ";
-		str += time.getHours() + ":";
-		str += time.getMinutes() + ":";
-		str += time.getSeconds();
+		str += fillnumber(time.getMonth() + 1) + "-";
+		str += fillnumber(time.getDate()) + "<br/> ";
+		str += fillnumber(time.getHours()) + ":";
+		str += fillnumber(time.getMinutes()) + ":";
+		str += fillnumber(time.getSeconds());
 		return str;
 	},
 
