@@ -515,7 +515,7 @@ var g_mediasupport=null;
 function proc_testmedia(){
 	if(g_mediasupport==null){
 		var a= document.createElement("audio");
-		a=!!(a && a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, '') && a.canPlayType('audio/mp4;').replace(/no/, ''));
+		a=!!(a && a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
 		var b= document.createElement("video");		
 		b=!!(b && b.canPlayType && b.canPlayType('video/mp4;').replace(/no/, ''));		
 		g_mediasupport={audio: a, video: b, audio2: a};
