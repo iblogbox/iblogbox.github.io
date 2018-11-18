@@ -396,7 +396,7 @@ var Pano = Pano || {};
 		});
 		this.canvas.addEventListener(is_firefox ? 'DOMMouseScroll' : 'mousewheel', function(evt) {
 			if (self.is_loaded && !self.is_navigating) {
-				var newFov = self.cam_fov - (is_firefox ? -40*evt.detail : evt.wheelDelta) / 60;
+				var newFov = self.cam_fov - (is_firefox ? -40*evt.detail : evt.wheelDelta) / 40; //edit 60
 				newFov = clamp(newFov, 30, 90);
 				var deltaFov = newFov - self.cam_fov;
 				if (Math.abs(deltaFov) > 0) {
@@ -461,7 +461,7 @@ var Pano = Pano || {};
 		var inertial_zoom = function() {
 			if (self.inert_fov_step != 0) {
 				self.cam_fov += self.inert_fov_step;
-				self.inert_fov_step *= 0.7;
+				self.inert_fov_step *= 0.7; //edit 0.7
 				self.inert_fov_step = clamp(self.cam_fov + self.inert_fov_step, 30, 90) - self.cam_fov;
 				if (Math.abs(self.inert_fov_step) < 0.1)
 					self.inert_fov_step = 0;
