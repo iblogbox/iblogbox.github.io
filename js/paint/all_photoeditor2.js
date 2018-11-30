@@ -266,7 +266,6 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 }
 
 /**
- * 이미지 객체를 담고 있는 배열
  * @class
  * @name PhotoEditor.
  * @namespace
@@ -326,7 +325,6 @@ PhotoEditor.File.prototype = {
 
 
 /**
- * 캔버스
  * @class
  * @name PhotoEditor.
  * @namespace
@@ -408,7 +406,6 @@ PhotoEditor.Canvas.prototype = {
 };
 
 /**
- *
  * @class
  * @name PhotoEditor.
  * @namespace
@@ -649,7 +646,6 @@ function handleFileSelect(files){
         this._Crop.stopCrop(event);
     },
     /**
-     * 썸네일 클릭시 호출되는 이벤트
      * @param event
      * @private
      */
@@ -666,7 +662,6 @@ function handleFileSelect(files){
         selectBox.prop("selected","selected");
     },
     /**
-     * 효과탭의 필터 미리 보기 클릭시 호출되는 이벤트
      * @param filterName
      * @private
      */
@@ -674,7 +669,6 @@ function handleFileSelect(files){
         this._putFilterImage(filterName);
     },
     /**
-     * 해당 필터를 편집하고 있는 캔버스에 적용 시킨다
      * @param filter
      * @private
      */
@@ -687,7 +681,6 @@ function handleFileSelect(files){
         context.putImageData(filteredImageData, 0, 0);
         this._saveCanvasImage();
     },
-    /** 가로 크기 변경 */
     _onChangeResizeSel: function () {
 		var parseHeight, parseWidth;
         var CanvasImage = this._CanvasImage;
@@ -749,7 +742,6 @@ function handleFileSelect(files){
      * image download
      * @private
      */
-
     _onClickSave : function(gdrive,preview){
 		var blobLink=_getid('btn_save2_link');
 		blobLink.href='javascript:void(0);';
@@ -850,7 +842,6 @@ function handleFileSelect(files){
         //}
     },
     /**
-     * 썸네일 클릭시 캔버스 이미지 객체를 만든다
      * @param thumbnail
      */
     createCanvasImageBy: function (thumbnail,origin) {
@@ -865,7 +856,6 @@ function handleFileSelect(files){
 		if(!origin) proc_setimg(thumbnail[0].fileIdx);
     },
     /**
-     * 캔버스의 이미지가 로드됐을때 호출된다
      * @private
      */
     _loadImage: function () {
@@ -896,19 +886,17 @@ function handleFileSelect(files){
         this._saveCanvasImage();
     },
     /**
-     * 현재 캔버스의 이미지를 저장한다
      * @param {number} changeWidth
      * @param {number} changeHeight
      */
     _saveCanvasImage: function () {
-        var imageData = this._Canvas.getCanvas().toDataURL();
+		var imageData = this._Canvas.getCanvas().toDataURL('image/jpeg');
 		if(this._CanvasImage){
 	        this._CanvasImage.setCallback(null);
 		    this._CanvasImage.setImageSrc(imageData);
 		}
     },
     /**
-     * 현재 캔버스에 넓이와 높이를 적용시킨다
      * @param {number} changeWidth
      * @param {number} changeHeight
      * @private
@@ -927,7 +915,6 @@ function handleFileSelect(files){
 };
 
 /**
- * 좌우, 상하 반전
  * @names nts.PhotoEditor
  * @namespace
  * @author heyonmi.kim@nts.com
@@ -942,7 +929,7 @@ PhotoEditor.Edit.Flip = function(Canvas, Image, direction){
         var context = canvas.getContext();
         var photoWidth = Image.getWidth(),
             photoHeight = Image.getHeight();
-        //이전의 상태값을 저장
+
         canvas.save();
         if(direction === "Verticalty"){
             context.translate(photoWidth, 0);
@@ -957,7 +944,6 @@ PhotoEditor.Edit.Flip = function(Canvas, Image, direction){
 }
 
 /**
- * 이미지 시계방향,반시계방향 회전
  * @names nts.PhotoEditor
  * @namespace
  * @author heyonmi.kim@nts.com
@@ -994,7 +980,6 @@ PhotoEditor.Edit.Rotate = function(Canvas, Image, degrees){
 };
 
 /**
- * 크롭 이벤트
  * @names nts.PhotoEditor
  * @namespace
  * @author heyonmi.kim@nts.com
@@ -1112,7 +1097,6 @@ PhotoEditor.Edit.Crop.prototype = {
 };
 
 /**
- * 썸네일 관련 이벤트 모음
  * @class
  * @name PhotoEditor.
  * @namespace
@@ -1262,7 +1246,6 @@ PhotoEditor.Thumbnail.prototype = {
 };
 
 /**
- * 이미지 객체
  * @class
  * @name PhotoEditor.
  * @namespace
@@ -1331,7 +1314,6 @@ PhotoEditor.Image.prototype = {
 };
 
 /**
- * 사진 효과에 적용하는 필터 모음
  * @names nts.PhotoEditor
  * @namespace
  * @author heyonmi.kim@nts.com
@@ -1512,7 +1494,6 @@ PhotoEditor.Filters = {
 };
 
 /**
- * 효과 탭의 필터 적용 화면 미리보기
  * @names nts.PhotoEditor
  * @namespace
  * @author heyonmi.kim@nts.com
