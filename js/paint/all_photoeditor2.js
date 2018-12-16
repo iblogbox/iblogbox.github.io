@@ -895,7 +895,7 @@ function handleFileSelect(files){
 			filetype=this._CanvasImage.filetype;
 		}
 		var mt='image/jpeg';
-		if(filetype=='png' || filetype=='gif') mt='image/png';
+		if(filetype=='png' || filetype=='gif' || filetype=='svg' || filetype=='ico') mt='image/png';
 
 		var imageData = this._Canvas.getCanvas().toDataURL(mt);
 		if(this._CanvasImage){
@@ -1278,6 +1278,7 @@ PhotoEditor.Image.prototype = {
 		//data:image/gif;base64,
 		var s1=this._image.src.substr(0, this._image.src.indexOf(",")+1);
 		if(s1.length<400){
+			//console.log(s1);
 			s1=s1.toLowerCase();
 			if(s1.indexOf("/jpg")>=0 || s1.indexOf("/jpeg")>=0){
 				this.filetype='jpg';
@@ -1285,6 +1286,10 @@ PhotoEditor.Image.prototype = {
 				this.filetype='png';
 			}else if(s1.indexOf("/gif")>=0){
 				this.filetype='gif';
+			}else if(s1.indexOf("svg")>=0){
+				this.filetype='svg';
+			}else if(s1.indexOf("ico")>=0){
+				this.filetype='ico';
 			}
 		}
 
