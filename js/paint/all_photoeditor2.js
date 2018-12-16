@@ -890,7 +890,14 @@ function handleFileSelect(files){
      * @param {number} changeHeight
      */
     _saveCanvasImage: function () {
-		var imageData = this._Canvas.getCanvas().toDataURL('image/jpeg');
+		var filetype='';
+		if(this._CanvasImage){
+			filetype=this._CanvasImage.filetype;
+		}
+		var mt='image/jpeg';
+		if(filetype=='png' || filetype=='gif') mt='image/png';
+
+		var imageData = this._Canvas.getCanvas().toDataURL(mt);
 		if(this._CanvasImage){
 	        this._CanvasImage.setCallback(null);
 		    this._CanvasImage.setImageSrc(imageData);
@@ -1265,7 +1272,22 @@ PhotoEditor.Image.prototype = {
         this._callback = this.callback;
         this._image = new Image();
         this._attachEvent();
-        this._image.src = this.fileSrc;
+        this._image.src = this.fileSrc || "";
+
+		this.filetype='';
+		//data:image/gif;base64,
+		var s1=this._image.src.substr(0, this._image.src.indexOf(",")+1);
+		if(s1.length<400){
+			s1=s1.toLowerCase();
+			if(s1.indexOf("/jpg")>=0 || s1.indexOf("/jpeg")>=0){
+				this.filetype='jpg';
+			}else if(s1.indexOf("/png")>=0){
+				this.filetype='png';
+			}else if(s1.indexOf("/gif")>=0){
+				this.filetype='gif';
+			}
+		}
+
 		this._image.name=this.fileName || '';
 		this._image.fileSize=this.fileSize;		
 		var s=this._image.name;
