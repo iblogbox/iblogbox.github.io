@@ -867,6 +867,9 @@ function proc_feed(surl,uniqid,jobname,cdata,jobobj,callback,retry){
 	}else if(window._youtube && _youtube({'url':surl,'checkid':true})){
 		_youtube(opt);
 		return;
+	}else if(window._reddit && _reddit({'url':surl,'checkid':true})){
+		_reddit(opt);
+		return;
 	}else if(cdata && cdata.query && surl.toLowerCase().indexOf("{userquery}")>=0){
 		surl=surl.replace(/{userquery}/gi,encodeURIComponent(cdata.query));
 		//if(surl.indexOf("?")<0) surl+="?";//surl+="&t="+getuniq();
