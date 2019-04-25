@@ -1322,9 +1322,9 @@ return this._readFileAs("ArrayBuffer", a)
 }, ZipArchiveReaderBlob.prototype.readFileAsBlob = function(a, b) {
 b = b || mimetypes.guess(a);
 var c = this._getFileInfo(a),
-    d = this.blob.slice(c.offset, c.offset + c.length, {
-        type: b
-    });
+    //d = this.blob.slice(c.offset, c.offset + c.length, { type: b});
+	d = this.blob.slice(c.offset, c.offset + c.length, b); //edit
+
 return c.isCompressed ? utils.readFileAsArrayBuffer(d).then(function(a) {
     return new Blob([algorithms.inflate(new Uint8Array(a))], {
         type: b
