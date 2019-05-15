@@ -429,15 +429,16 @@ PhotoEditor.Canvas.Controller.prototype = {
 		this._dragdrop();
     },
 _dragdrop: function(){
-		var self=this;
-function handleFileSelect(files){
-	if(!window.FileReader || !window.XMLHttpRequest){
-		alert("This browser does not support.");
-		return;
+	var self=this;
+	function handleFileSelect(files){
+		if(!window.FileReader || !window.XMLHttpRequest){
+			alert("This browser does not support.");
+			return;
+		}
+		if(!files || files.length==0) return;
+		self._Thumbnail.createImage(files);
 	}
-	if(!files || files.length==0) return;
-	self._Thumbnail.createImage(files);
-}
+
 	var holder = document;
 	holder.ondragover = function (e) { 
 		try{var ua=navigator.userAgent;
@@ -1163,10 +1164,30 @@ PhotoEditor.Thumbnail.prototype = {
 				go(idx);
 				return;
 			}
-			reader.idx=idx;
-			reader.name=file.name;
-			reader.size=file.size;
-            reader.readAsDataURL(file); //edit
+			function _read(){
+				reader.idx=idx;
+				reader.name=file.name;
+				reader.size=file.size;
+			    reader.readAsDataURL(file); //edit
+			}
+			if(window.proc_orientation){
+				proc_orientation(file, function(orientation,imgdata){
+					if(imgdata){
+						var progressEvent={'target':{}};
+						progressEvent.target.size=file.size;
+						progressEvent.target.name=file.name;
+						progressEvent.target.result=imgdata;
+						self._onloadImage(progressEvent);
+						self._onloadendImage();
+						idx++;
+						go(idx);
+					}else{
+						_read();
+					}
+				});
+			}else{
+				_read();
+			}
 		}
 		go(0);
     },
@@ -1692,8 +1713,6 @@ function getOffset(b,e) {
         top: c
     }
 }
-
-
 
 // WebcamJS v1.0.6
 // Webcam library for capturing JPEG/PNG images in JavaScript
