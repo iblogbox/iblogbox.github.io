@@ -2,7 +2,15 @@
  * jsziptools.js 2.4.1 - MIT License. https://github.com/ukyo/jsziptools/blob/master/LICENSE
  * ES6-Promises - MIT License. https://github.com/jakearchibald/es6-promise/blob/master/LICENSE
  */
+function _gerrinf(s){
+	if(window._gerr){
+		_gerr(s);
+	}else{
+		console.log(s);
+	}
+}
 var maxunzipcount=500;
+
 ;(function(){(function() {
 var define, requireModule, require, requirejs;
 
@@ -892,7 +900,7 @@ function Jc(a){function b(){Za||(Za=j,Ta(M));Ta(Va);p.calledRun=j;p._main&&Ic&&p
 1);va||b()},1)):b())}}p.run=p.ne=Jc;function Kc(a){va=j;v=Fc;Ta(Wa);e(new Ec(a))}p.exit=p.Yd=Kc;function B(a){a&&(p.print(a),p.ea(a));va=j;e("abort() at "+Ma())}p.abort=p.abort=B;if(p.preInit)for("function"==typeof p.preInit&&(p.preInit=[p.preInit]);0<p.preInit.length;)p.preInit.pop()();var Ic=j;p.noInitialRun&&(Ic=l);Jc();
 var $={G:function(){return $.createNode(k,"/",16895,0)},k:{A:function(a,b){b.mode!==h&&(a.mode=b.mode);b.timestamp!==h&&(a.timestamp=b.timestamp);if(b.size!==h){var c=a.o,c=c.length>b.size?c.subarray(0,b.size):$.Ab(c,b.size);a.o=c;a.size=b.size}},aa:T.k.aa,R:function(a,b,c,d){return $.createNode(a,b,c,d)}},g:{D:function(a,b,c,d,f){a=a.e.o;d=Math.min(a.length-f,d);if(8<d&&a.subarray)b.set(a.subarray(f,f+d),c);else for(var g=0;g<d;g++)b[c+g]=a[f+g];return d},write:function(a,b,c,d){a=new Uint8Array(b.buffer,
 c,d);$.Ob||(a=new Uint8Array(a));$.ib(a);return d}},createNode:function(a,b,c,d){c=rb(a,b,c,d);c.k=$.k;c.g=$.g;c.o=[];c.timestamp=Date.now();a&&(a.o[b]=c);return c},Sa:function(a,b,c,d,f){a=$b(a,b,d,f);a.o=c;a.k=$.k;a.g=$.g;return a},Ab:function(a,b){if(a.length>=b)return a;for(var c=a.length;c<b;)c*=2;c=new Uint8Array(c);c.set(a);return c},ib:k};Lb($,"/");function Lc(a){e(Error("zlib-asm: "+a))}
-function Mc(a){switch(a){case -2:Lc("invalid compression level");case -3:_gerr("invalid or incomplete deflate data");case -4:Lc("out of memory");case -6:Lc("zlib version mismatch")}}function Nc(a,b,c){try{var d=W("/input").e;Db(d)}catch(f){}try{var g=W("/output").e;Db(g)}catch(i){}$.Sa("/","input",a,j,j);$.Sa("/","output",new Uint8Array(0),j,j);$.ib=b;$.Ob=c}var Oc=6,Pc=32768,Qc=this;
+function Mc(a){switch(a){case -2:Lc("invalid compression level");case -3:_gerrinf("invalid or incomplete deflate data");case -4:Lc("out of memory");case -6:Lc("zlib version mismatch")}}function Nc(a,b,c){try{var d=W("/input").e;Db(d)}catch(f){}try{var g=W("/output").e;Db(g)}catch(i){}$.Sa("/","input",a,j,j);$.Sa("/","output",new Uint8Array(0),j,j);$.ib=b;$.Ob=c}var Oc=6,Pc=32768,Qc=this;
 function Rc(a){var b=a.map(function(a){return a.length}).reduce(function(a,b){return a+b}),c=new Uint8Array(b),d=0;a.forEach(function(a){c.set(a,d);d+=a.length});return c}function Sc(a,b,c,d){var f=[],g=f.push.bind(f);Nc(b,g,l);a=Cc(c||Oc,a,d||Pc);Mc(a);return Rc(f)}function Tc(a,b,c){var d=[],f=d.push.bind(d);Nc(b,f,l);a=Dc(a,c||Pc);Mc(a);return Rc(d)}Qc.deflate=Sc.bind(k,1);Qc.rawDeflate=Sc.bind(k,-1);Qc.inflate=Tc.bind(k,1);Qc.rawInflate=Tc.bind(k,-1);var Uc=Qc.stream={};
 function Vc(a,b){var c;c=b.level;var d=b.chunkSize;Nc(b.input,b.streamFn,b.shareMemory);c=Cc(c||Oc,a,d||Pc);Mc(c)}function Wc(a,b){var c;c=b.chunkSize;Nc(b.input,b.streamFn,b.shareMemory);c=Dc(a,c||Pc);Mc(c)}Uc.deflate=Vc.bind(k,1);Uc.rawDeflate=Vc.bind(k,-1);Uc.inflate=Wc.bind(k,1);Uc.rawInflate=Wc.bind(k,-1);"undefined"!==typeof define&&define.amd?define("zlib",function(){return Qc}):s&&(module.exports=Qc);
 
@@ -1140,7 +1148,10 @@ ZipArchiveReader.prototype.init = function() {
         j = e.byteLength - 4,
         k = new DataView(e.buffer, e.byteOffset, e.byteLength),
         l = this;
-    if (this.files = h, this.folders = i, this.localFileHeaders = f, this.centralDirHeaders = g, k.getUint32(0, !0) !== zip.LOCAL_FILE_SIGNATURE) throw new Error("zip.unpack: invalid zip file");
+    if (this.files = h, this.folders = i, this.localFileHeaders = f, this.centralDirHeaders = g, k.getUint32(0, !0) !== zip.LOCAL_FILE_SIGNATURE){
+		_gerrinf('zip.unpack: invalid zip file'); 
+		throw new Error("zip.unpack: invalid zip file");
+	}
     for (;;) {
         if (k.getUint32(j, !0) === zip.END_SIGNATURE) {
             b = l._getEndCentDirHeader(j);
@@ -1268,7 +1279,7 @@ return this.files = f, this.folders = g, this.localFileHeaders = e, this.central
     function() {
         return a(0, 4).then(function(a) {
             if (new DataView(a).getUint32(0, !0) === zip.LOCAL_FILE_SIGNATURE) return Math.max(0, c.size - 32768);
-			_gerr('zip.unpack: invalid zip file.');
+			_gerrinf('zip.unpack: invalid zip file.');
             //throw new Error("zip.unpack: invalid zip file.")
         })
     }().then(function h(b) {
@@ -1277,7 +1288,7 @@ return this.files = f, this.folders = g, this.localFileHeaders = e, this.central
             for (c = a.byteLength - 4; c--;)
                 if (d.getUint32(c, !0) === zip.END_SIGNATURE) return b + c;
             if (b) return h(Math.max(b - 32768 + 3, 0));
-			_gerr('zip.unpack: invalid zip file.');
+			_gerrinf('zip.unpack: invalid zip file.');
             //throw new Error("zip.unpack: invalid zip file.")
         })
     }).then(function(d) {
@@ -1285,7 +1296,7 @@ return this.files = f, this.folders = g, this.localFileHeaders = e, this.central
 			try{
 				return b = ZipArchiveReader.prototype._getEndCentDirHeader.call({ buffer: a }, 0), d;
 			}catch(err){
-				_gerr(err+''); //edit
+				_gerrinf(err+''); //edit
 			}
         })
     }).then(function(c) {
