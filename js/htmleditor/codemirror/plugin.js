@@ -36,6 +36,7 @@
                     showTrailingSpace: true,
                     showUncommentButton: true,
                     styleActiveLine: true,
+					dragDrop: true,					
                     theme: 'default',
                     useBeautify: false
                 };
@@ -86,7 +87,8 @@
                             showTrailingSpace: config.showTrailingSpace,
                             showCursorWhenSelecting: true,
                             styleActiveLine: config.styleActiveLine,
-                            viewportMargin: Infinity,
+							dragDrop: config.dragDrop,
+                            viewportMargin: Infinity,							
                             extraKeys: {
 								"Ctrl-Space": "autocomplete",
                                 "Ctrl-Q": function (codeMirror_Editor) {
@@ -721,6 +723,7 @@
                     showTrailingSpace: config.showTrailingSpace,
                     showCursorWhenSelecting: true,
                     styleActiveLine: config.styleActiveLine,
+					dragDrop: config.dragDrop,
                     extraKeys: extraKeys,
                     foldGutter: true,
                     gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
