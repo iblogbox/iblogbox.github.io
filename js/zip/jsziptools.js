@@ -987,7 +987,9 @@ var mimetypes = function() {
             }) : c[a] = b
         },
         guess: function(a) {
-            return c[a.split(".").pop()] || "aplication/octet-stream"
+			var x=a.split(".").pop() || ''; //edit
+			if(!c[x]) x=x.toLowerCase();
+            return c[x] || "aplication/octet-stream";
         }
     }
 }();
