@@ -180,7 +180,7 @@ SocialCalc.Constants = {
 
    //*** SocialCalc.TableEditor
 
-   defaultImagePrefix: "images/sc-", // URL prefix for images (e.g., "/images/sc")
+   defaultImagePrefix: "http://iblogbox.github.io/js/spreadsheet/images/sc-", // URL prefix for images (e.g., "/images/sc")
    defaultTableEditorIDPrefix: "te_", // if present, many TableEditor elements are assigned IDs with this prefix
    defaultPageUpDnAmount: 15, // number of rows to move cursor on PgUp/PgDn keys (numeric)
 
@@ -18644,7 +18644,7 @@ SocialCalc.Formula.TestCriteria = function(value, type, criteria) {
    // Other values used by the Popup system
    //
 
-   SocialCalc.Popup.imagePrefix = "images/sc-"; // image prefix
+   SocialCalc.Popup.imagePrefix = "http://iblogbox.github.io/js/spreadsheet/images/sc-"; // image prefix
 
    // Override this for localization
 
