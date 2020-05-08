@@ -447,11 +447,19 @@ var readRARContent = function(data, password, callbackFn) {
     var currFileBuffer
     var currFileBufferEnd
     var currFileFlags
+	var total=0
 
     while(res === ERAR_SUCCESS){
         currFileName = header.get_FileNameW();//getFileName()
         console.log('filename: ', currFileName);
         currFileSize = header.get_UnpSize()
+		total=total+(currFileSize || 0)
+		if(total>600*1024*1024){
+			res=ERAR_END_ARCHIVE
+			postMessage({'ts':'error', 'data': 'File size to be extracted is too large. Uncompression aborted.'})
+			break
+		}
+
         currFileBuffer = new ArrayBuffer(currFileSize)
         currFileBufferEnd = 0
 
