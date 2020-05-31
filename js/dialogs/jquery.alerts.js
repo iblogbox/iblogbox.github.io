@@ -41,7 +41,7 @@
 			$.alerts._overlay('show');
 		
 			$("BODY").append(
-			  '<div id="popup_container">' +
+			  '<div id="popup_container" style="font-size:13px">' +
 			    '<h1 id="popup_title"></h1>' +
 			    '<div id="popup_content">' +
 			      '<div id="popup_message"></div>' +
