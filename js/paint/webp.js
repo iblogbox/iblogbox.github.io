@@ -1452,7 +1452,7 @@ function integrateWasmJS() {
   var method = 'native-wasm';
 
   var wasmTextFile = 'webp.wast';
-  var wasmBinaryFile = 'webp.wasm';
+  var wasmBinaryFile = 'https://iblogbox.github.io/js/paint/webp.wasm';//webp.wasm
   var asmjsCodeFile = 'webp.temp.asm.js';
 
   if (!isDataURI(wasmTextFile)) {
