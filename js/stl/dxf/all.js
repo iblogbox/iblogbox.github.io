@@ -1146,8 +1146,8 @@ function Viewer(data, parent, width, height, font) {
         var points = entity.controlPoints.map(function(vec) {
             return new three__WEBPACK_IMPORTED_MODULE_0__["Vector2"](vec.x, vec.y);
         });
-
         var interpolatedPoints = [];
+		var curve; //edit
         if (entity.degreeOfSplineCurve === 2 || entity.degreeOfSplineCurve === 3) {
             for(var i = 0; i + 2 < points.length; i = i + 2) {
 				try{
