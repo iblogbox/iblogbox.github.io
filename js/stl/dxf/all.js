@@ -1372,7 +1372,11 @@ function Viewer(data, parent, width, height, font) {
             
         if(color == null || color === 0xffffff) {
             color = 0x000000;
-        }
+        //}else if(color === 0xFFFF7F || color === 0xFFFF00){ //edit						
+		}else if(color>=0xFFFF00 && color<=0xFFFFFF){ //yellow
+			//console.log(color);
+			color=0x868A08;
+		}
         return color;
     }
 
