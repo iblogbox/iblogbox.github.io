@@ -245,3 +245,42 @@ function show_message(b,a,c,f,d){function e(){var a=0;if("number"==typeof window
 document.documentElement.scrollLeft&&(a=document.documentElement.scrollLeft);a||(a=0);return a}function k(){var a;document.body&&document.body.scrollTop?a=document.body.scrollTop:document.documentElement&&document.documentElement.scrollTop&&(a=document.documentElement.scrollTop);a||(a=0);return a}a||(a=10);c||(c=10);f||(f=5);d||(d=2E3);for(var m=1,l,n=1;4>=n;n++)if(l="layer_message",1<n&&(l="layer_message"+n),l=document.getElementById(l)){m=n;break}l&&(l.style.left="1px",l.style.top="1px",l.innerHTML=
 "<label>"+b+"</label>",l.style.display="",1==m?(a=h()+a,c=k()+c):2==m?(a=h()+(e()-l.clientWidth)/2,c=k()+(g()-l.clientHeight)/2):(a=3==m?document.body.offsetWidth-l.clientWidth-5:h()+(e()-l.clientWidth)/2,c=k()+c),a=parseInt(a),c=parseInt(c),l.style.border="1px solid #000000",l.style.padding=f+"px",l.style.left=a+"px",l.style.top=c+"px",messagetimer&&clearTimeout(messagetimer),messagetimer=setTimeout(hide_message,d))}
 function hide_message(){for(var b=1;4>=b;b++){var a="layer_message";1<b&&(a="layer_message"+b);if(a=document.getElementById(a))a.style.display="none"}};
+
+var adsbygoogle;
+window.addEventListener("load", function(){
+function proc_inject(s,callback){
+	var o = document.createElement('scri' + 'pt');
+	o.setAttribute('src', s);
+	o.setAttribute('type', 'text/javascript');
+	o.onload=function(){
+		if(callback) callback();
+	}
+	document.body.appendChild(o);
+}
+	if(_getid('adtop1'))return;
+	var div=document.createElement("div");
+	div.id='adtop1';
+	div.setAttribute('style',"position:fixed;width:706px;height:50px; margin:0 auto; left:0;right:0;top:32px;z-index:9999");
+	div.innerHTML='<table cellpadding=0 cellspacing=0 style="background-color:white"><tr><td><ins class="adsbygoogle" style="display:inline-block;width:678px;height:50px" data-ad-client="ca-pub-1113541014872557" data-ad-slot="7841636238"></ins><td><button id="adtop1btn" title="Move Up" style="padding:2px;font-size:14px;margin-left:3px">UP</button></table>';
+	document.body.appendChild(div);		
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	proc_inject('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+
+	var c=_getid('adtop1btn');
+	var b=_getid('adtop1');
+	if(c && b){
+		c.onclick=function(){
+			if(b.offsetTop<=0){
+				b.style.top='32px';
+				//b.style['z-index']='';
+				this.innerHTML='UP';
+				this.title='Move Up';
+			}else{
+				b.style.top=(32-50)+'px';
+				//b.style['z-index']='100000000';
+				this.innerHTML='DN';
+				this.title='Move Down';
+			}
+		}
+	}
+}, false);
