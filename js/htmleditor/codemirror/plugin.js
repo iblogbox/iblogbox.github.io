@@ -95,7 +95,11 @@
                                     if (config.enableCodeFolding) {
                                         window["foldFunc_" + editor.id](codeMirror_Editor, codeMirror_Editor.getCursor().line);
                                     }
-                                }
+                                },
+								"Ctrl-L": function(codeMirror_Editor) {
+									config.lineWrapping=!config.lineWrapping;
+									codeMirror_Editor.setOption("lineWrapping", config.lineWrapping);
+								}
                             },
                             foldGutter: true,
                             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
@@ -331,8 +335,8 @@
                                     type: 'checkbox',
                                     id: 'AutoComplete',
                                     //label: lang.autoCompleteToggle,
-									label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off)',
-                                    title: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off)',
+									label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off, Ctrl+L: LineWrapping On/Off)',
+                                    title: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off, Ctrl+L: LineWrapping On/Off)',
                                     onChange: function () {
                                         window["codemirror_" + editor.id].setOption("autoCloseTags", this.getValue());
                                     }
@@ -700,6 +704,10 @@
                         if (config.enableCodeFolding) {
                             window["foldFunc_" + editor.id](codeMirror_Editor, codeMirror_Editor.getCursor().line);
                         }
+                    },
+                    "Ctrl-L": function(codeMirror_Editor) {
+						config.lineWrapping=!config.lineWrapping;
+						codeMirror_Editor.setOption("lineWrapping", config.lineWrapping);
                     }
                 };
 
@@ -713,7 +721,7 @@
                     workTime: 35,
                     readOnly: editor.readOnly,
                     lineNumbers: config.lineNumbers,
-                    lineWrapping: true,
+                    lineWrapping: config.lineWrapping,
                     autoCloseTags: config.autoCloseTags,
                     autoCloseBrackets: config.autoCloseBrackets,
                     highlightSelectionMatches: config.highlightMatches,
@@ -852,7 +860,7 @@
                     if (config.showAutoCompleteButton) {
                         editor.ui.addButton('AutoComplete', {
                             //label: lang.autoCompleteToggle,
-							label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off)',
+							label: 'Enable/Disable HTML Tag AutoClose (Ctrl+Space: HTML Tag Autocomplete, Ctrl+Q: CodeFolding On/Off, Ctrl+L: LineWrapping On/Off)',
                             command: 'autoCompleteToggle',
                             toolbar: 'mode,80'
                         });
