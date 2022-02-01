@@ -328,6 +328,33 @@ function fix_codemirror_domReady(callback) {
         });
     }
 }
+function fix_proc_updatecodemirror(){
+	var obj=_getid("runscript_fontsize");	
+	var fontSize=parseInt(obj.value);
+	if(!fontSize || isNaN(fontSize)) fontSize=10;
+	if(fontSize<=10) fontSize=fontSize+'pt';
+	else fontSize=(fontSize+3)+'px';
+	var obj=_getid("runscript_fontname");	
+	var fontname=obj.value;	
+	var el;
+	if(editor)el=editor.getWrapperElement();
+	if(el){
+		el.style.fontSize=fontSize;
+		el.style.fontFamily=fontname;
+		editor.refresh();
+	}else{
+		var tag=document.getElementsByTagName('DIV');
+		var s;
+		for (var i=0; i < tag.length; i++){
+			s=tag[i].className;
+			if(!s)continue;
+			if(s=='CodeMirror' || s.indexOf("CodeMirror ")>=0 || s.indexOf(" CodeMirror")>=0){
+				tag[i].style.fontSize=fontSize;
+				tag[i].style.fontFamily=fontname;
+			}
+		}	
+	}
+}
 fix_codemirror_domReady(function(){
 	var css = '.CodeMirror {line-height: normal !important;} ', head = document.head || document.getElementsByTagName('head')[0], style = document.createElement('style');
 	if(head){
@@ -335,5 +362,10 @@ fix_codemirror_domReady(function(){
 		style.type = 'text/css';
 		if (style.styleSheet) style.styleSheet.cssText = css;
 		else style.appendChild(document.createTextNode(css));
+	}
+	var s1=(window.proc_updatecodemirror+'');
+	if(window.proc_updatecodemirror && s1.indexOf('"pt"')>=0 && s1.indexOf('editor.refresh')>=0 && s1.indexOf('runscript_fontsize')>=0 && s1.indexOf('runscript_fontname')>=0 && _getid("runscript_fontsize") && _getid("runscript_fontname")){
+		proc_updatecodemirror=fix_proc_updatecodemirror;
+		proc_updatecodemirror();
 	}
 });
