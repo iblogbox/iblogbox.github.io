@@ -356,7 +356,10 @@ function fix_proc_updatecodemirror(){
 	}
 }
 fix_codemirror_domReady(function(){
-	var css='.CodeMirror{line-height:normal !important;}.CodeMirror-scroll{overflow-x:hidden !important;padding-bottom:13px !important;}', head = document.head || document.getElementsByTagName('head')[0], style = document.createElement('style');	
+	var css='.CodeMirror{line-height:normal !important;}';	
+	if(_getid('logger')) css+='.CodeMirror-scroll{overflow-x:hidden !important;padding-bottom:13px !important;margin-right:-15px !important;}';
+	else css+='.CodeMirror-scroll{overflow-x:hidden !important;padding-bottom:13px !important;}';
+	var head = document.head || document.getElementsByTagName('head')[0], style = document.createElement('style');	
 	if(head){
 		head.appendChild(style);
 		style.type = 'text/css';
