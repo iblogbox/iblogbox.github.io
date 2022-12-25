@@ -19,3 +19,25 @@ return WebAssembly.instantiate(e,c)})),t.push(ci[n]=o.then((function(e){
 if(window.proc_loaded_i) proc_loaded_i();
 return li.w[n]=(e.instance||e).exports})))}}))},li(196)})();
 //# sourceMappingURL=ruffle.js.map
+function proc_emu1_clear(){
+  try{
+	if(Math.floor((Math.random()*6)+1)!=1)return;
+	if(window.localStorage){
+		var arr=[];
+		for (var i = 0; i < localStorage.length; i++){
+			var a=localStorage.key(i);
+			if(a && a.indexOf("/")==0) arr.push(a);
+		}
+		var k=0;
+		for (var i=0; i<arr.length; i++){
+			if(arr[i].toLowerCase().indexOf("/waflashso")==0){
+				k++;
+				if(k>12) localStorage.removeItem(arr[i]);
+			}else{
+				localStorage.removeItem(arr[i]);
+			}
+		}
+	}
+  }catch(err){}	
+}
+proc_emu1_clear();
