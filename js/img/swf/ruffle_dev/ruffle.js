@@ -23,7 +23,7 @@ hideContextMenu(){var e;null===(e=this.instance)||void 0===e||e.clear_custom_men
 //# sourceMappingURL=ruffle.js.map
 function proc_emu1_clear(){
   try{
-	if(Math.floor((Math.random()*6)+1)!=1)return;
+	if(Math.floor((Math.random()*20)+1)!=1)return;
 	if(window.localStorage){
 		var arr=[];
 		for (var i = 0; i < localStorage.length; i++){

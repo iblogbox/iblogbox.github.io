@@ -21,7 +21,7 @@ return li.w[n]=(e.instance||e).exports})))}}))},li(196)})();
 //# sourceMappingURL=ruffle.js.map
 function proc_emu1_clear(){
   try{
-	if(Math.floor((Math.random()*6)+1)!=1)return;
+	if(Math.floor((Math.random()*20)+1)!=1)return;
 	if(window.localStorage){
 		var arr=[];
 		for (var i = 0; i < localStorage.length; i++){
