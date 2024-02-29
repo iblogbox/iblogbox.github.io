@@ -1121,10 +1121,10 @@ $.fn.editableTableWidget.defaultOptions = {
 	editor: $('<textarea readonly>')
 };
 
-window.addEventListener("load",function(){
+function proc_fix_renderQuery(){
 	if(!window.renderQuery)return;
 	var a=window.renderQuery+'';
-	if(!a || a.indexOf('tbody.append')<0 || a.indexOf('[ArrayBuffer]')<0)return;
+	if(!a || a.indexOf('data-toggle="tooltip"')<0 || a.indexOf('[ArrayBuffer]')<0)return;
 	window.renderQuery=function(query){
 		var dataBox = $("#data");
 		var thead = dataBox.find("thead").find("tr");
@@ -1190,4 +1190,6 @@ window.addEventListener("load",function(){
 			positionFooter();
 		}, 100);
 	}
-},false);
+}
+window.addEventListener("load",proc_fix_renderQuery,false);
+$(document).ready(proc_fix_renderQuery);
