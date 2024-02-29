@@ -1121,3 +1121,73 @@ $.fn.editableTableWidget.defaultOptions = {
 	editor: $('<textarea readonly>')
 };
 
+window.addEventListener("load",function(){
+	if(!window.renderQuery)return;
+	var a=window.renderQuery+'';
+	if(!a || a.indexOf('tbody.append')<0 || a.indexOf('[ArrayBuffer]')<0)return;
+	window.renderQuery=function(query){
+		var dataBox = $("#data");
+		var thead = dataBox.find("thead").find("tr");
+		var tbody = dataBox.find("tbody");
+
+		thead.empty();
+		tbody.empty();
+		errorBox.hide();
+		dataBox.show();
+
+		var columnTypes = [];
+		var sel;
+		var tableName = getTableNameFromQuery(query);
+		try {
+			if (tableName != null) {
+				columnTypes = getTableColumnTypes(tableName);
+			}
+			sel = db.prepare(query);
+		} catch (ex) {
+			showError(ex);
+			return;
+		}
+
+		var addedColums = false;
+		garraybuffers=[];	
+		var k1=0;
+		while (sel.step()) {
+			if (!addedColums) {
+				addedColums = true;
+				var columnNames = sel.getColumnNames();
+				for (var i = 0; i < columnNames.length; i++) {
+					var type = columnTypes[columnNames[i]];
+					thead.append('<th><span data-toggle="tooltip" data-placement="top" title="' + type + '">' + henc2(columnNames[i]) + "</span></th>");
+				}
+			}
+
+			var tr = $('<tr>');
+			var s = sel.get();
+			var s1;
+			//console.log(s);
+			for (var i = 0; i < s.length; i++) {
+				//console.log(s[i].byteLength);
+				if(s[i] && s[i].byteLength !== undefined){
+					garraybuffers.push(s[i]);
+					s1='[ArrayBuffer]&nbsp;&nbsp;<a href="#" onclick="proc_ab_save(this,'+(garraybuffers.length-1)+');return false">Save</a>';
+					tr.append('<td noeditor="1"><span title="Size: '+s[i].byteLength+'">' + s1 + '</span></td>');
+				}else{
+					s1=henc2(s[i]);
+					tr.append('<td><span title="' + s1 + '">' + s1 + '</span></td>');
+				}            
+			}
+			tbody.append(tr);
+			k1++;
+			if(k1>1000)break; //edit
+		}
+		sel.free();
+		refreshPagination(query, tableName);
+
+		$('[data-toggle="tooltip"]').tooltip({html: true});
+		dataBox.editableTableWidget2();
+
+		setTimeout(function () {
+			positionFooter();
+		}, 100);
+	}
+},false);
