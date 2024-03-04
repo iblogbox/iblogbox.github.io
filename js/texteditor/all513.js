@@ -371,4 +371,18 @@ fix_codemirror_domReady(function(){
 		proc_updatecodemirror=fix_proc_updatecodemirror;
 		proc_updatecodemirror();
 	}
+	function find_filecharset(name){
+		var c=_getid('filecharset1');
+		if(!c)return;
+		var a=c.getElementsByTagName('OPTION');
+		if(!a || a.length<=0)return;
+		for(var i = 0; i < a.length; i++){    			
+			if(/^(UTF\-16|UTF\-16BE|UTF\-16LE|UTF\-32|UTF\-32BE|UTF\-32LE)$/i.test(a[i].value) && a[i].parentNode && a[i].parentNode.removeChild){
+				a[i].parentNode.removeChild(a[i]);				
+			}
+		}
+	}
+	for(var i=1; i<=4; i++){    
+		find_filecharset('filecharset'+i);
+	}
 });
