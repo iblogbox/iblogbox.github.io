@@ -260,7 +260,7 @@ function proc_inject(s,callback){
 	if(_getid('adtop1'))return;
 	var div=document.createElement("div");
 	div.id='adtop1';
-	div.setAttribute('style',"position:fixed;width:706px;height:50px; margin:0 auto; left:0;right:0;top:32px;z-index:9999");
+	div.setAttribute('style',"position:fixed;width:706px;height:50px; margin:0 auto; left:0;right:0;top:32px;z-index:99999");
 	div.innerHTML='<table cellpadding=0 cellspacing=0 style="background-color:white"><tr><td><ins class="adsbygoogle" style="display:inline-block;width:678px;height:50px" data-ad-client="ca-pub-1113541014872557" data-ad-slot="7841636238"></ins><td><button id="adtop1btn" title="Move Up" style="padding:2px;font-size:14px;margin-left:3px">UP</button></table>';
 	document.body.appendChild(div);		
 	(adsbygoogle = window.adsbygoogle || []).push({});
