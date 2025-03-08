@@ -260,7 +260,7 @@ function proc_inject(s,callback){
 }
 	if(_getid('adtop1'))return;
 	if(document.domain=='officeviewer.herokuapp.com' && self===top){
-		top.location='../../';return;
+		return;
 	}
 	var div=document.createElement("div");
 	div.id='adtop1';
