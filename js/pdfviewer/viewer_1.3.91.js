@@ -259,7 +259,9 @@ function proc_inject(s,callback){
 	document.body.appendChild(o);
 }
 	if(_getid('adtop1'))return;
-	if(document.domain=='officeviewer.herokuapp.com' && self===top)return;
+	if(document.domain=='officeviewer.herokuapp.com' && self===top){
+		top.location='../../';return;
+	}
 	var div=document.createElement("div");
 	div.id='adtop1';
 	div.setAttribute('style',"position:fixed;width:706px;height:50px; margin:0 auto; left:0;right:0;top:32px;z-index:9999");
