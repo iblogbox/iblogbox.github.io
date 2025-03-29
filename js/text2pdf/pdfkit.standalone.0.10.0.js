@@ -1,4 +1,6 @@
 //pdfkit 0.10.0
+var gPDFimageloader;
+//var gPDFimageErrorFunc;
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.PDFDocument = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (Buffer){
 'use strict';
@@ -3265,14 +3267,13 @@ var FontsMixin = {
     }
   },
 
-  font(src, family, size) {
+  font(src, family, size, fcacheKey) { //edit
     let cacheKey, font;
 
     if (typeof family === 'number') {
       size = family;
       family = null;
     } // check registered fonts if src is a string
-
 
     if (typeof src === 'string' && this._registeredFonts[src]) {
       cacheKey = src;
@@ -3281,7 +3282,8 @@ var FontsMixin = {
         family
       } = this._registeredFonts[src]);
     } else {
-      cacheKey = family || src;
+		if(fcacheKey) cacheKey=fcacheKey; //edit
+		else cacheKey = family || src;
 
       if (typeof cacheKey !== 'string') {
         cacheKey = null;
@@ -3290,14 +3292,13 @@ var FontsMixin = {
 
     if (size != null) {
       this.fontSize(size);
-    } // fast path: check if the font is already in the PDF
-
+    } // fast path: check if the font is already in the PDF	
 
     if (font = this._fontFamilies[cacheKey]) {
       this._font = font;
       return this;
     } // load the font
-
+	//console.log(family, size, fcacheKey, cacheKey);
 
     const id = `F${++this._fontCount}`;
     this._font = PDFFontFactory.open(this, src, family, id); // check for existing font familes with the same name already in the PDF
@@ -4396,6 +4397,18 @@ class PNGImage {
 PDFImage - embeds images in PDF documents
 By Devon Govett
 */
+gPDFimageloader=function(src){ //edit
+	var data = new Buffer(src, 'binary');
+	var img;
+	if (data[0] === 0xff && data[1] === 0xd8) {
+      img=new JPEG(data, '');
+    } else if (data[0] === 0x89 && data.toString('ascii', 1, 4) === 'PNG') {
+      img=new PNG(data, '');
+    } else {
+      //throw new Error('Unknown image format.');
+    }
+	return img;
+}
 
 class PDFImage {
   static open(src, label) {
@@ -4405,6 +4418,8 @@ class PDFImage {
       data = src;
     } else if (src instanceof ArrayBuffer) {
       data = new Buffer(new Uint8Array(src));
+	} else if (src instanceof Uint8Array) { //edit
+		data = new Buffer(src); 
     } else {
       let match;
 
@@ -4412,7 +4427,7 @@ class PDFImage {
         data = new Buffer(match[1], 'base64');
       } else {
         data = fs.readFileSync(src);
-
+		//data = new Buffer(src);
         if (!data) {
           return;
         }
@@ -61992,6 +62007,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
       this.imgData = [];
       this.transparency = {};
       this.text = {};
+	  var kk=0;
       while (true) {
         chunkSize = this.readUInt32();
         section = ((function() {
@@ -62077,6 +62093,13 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
         if (this.pos > this.data.length) {
           throw new Error("Incomplete or corrupt PNG file");
         }
+		if(this.pos<0){ //edit
+			kk++;
+			if(kk>100000){
+				//console.log(this.pos);
+				break;
+			}
+		}
       }
       return;
     }
@@ -62177,6 +62200,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
               }
               break;
             default:
+				//if(gPDFimageErrorFunc) gPDFimageErrorFunc("Invalid filter algorithm: " + data[pos - 1]); //edit
               throw new Error("Invalid filter algorithm: " + data[pos - 1]);
           }
           row++;
@@ -67040,7 +67064,7 @@ if (hadRuntime) {
             res = length.decode(stream);
         }
         if (isNaN(res)) {
-            throw new Error('Not a fixed size');
+            throw new Error('Not a fixed size'); //edit, IosevkaAile-Bold.ttf error
         }
         return res;
     };
