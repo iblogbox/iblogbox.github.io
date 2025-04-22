@@ -1125,6 +1125,16 @@ function proc_fix_renderQuery(){
 	if(!window.renderQuery)return;
 	var a=window.renderQuery+'';
 	if(!a || a.indexOf('data-toggle="tooltip"')<0 || a.indexOf('[ArrayBuffer]')<0)return;
+	window.henc2=function(s,len,prefix){
+		if(s && (typeof s === 'string' || s instanceof String)){
+			if(len && s.length>len && s.substr){
+				s=s.substr(0,len)+(prefix || '...');
+			}
+			return henc(s);
+		}else{
+			return s;
+		}
+	}
 	window.renderQuery=function(query){
 		var dataBox = $("#data");
 		var thead = dataBox.find("thead").find("tr");
@@ -1157,7 +1167,7 @@ function proc_fix_renderQuery(){
 				var columnNames = sel.getColumnNames();
 				for (var i = 0; i < columnNames.length; i++) {
 					var type = columnTypes[columnNames[i]];
-					thead.append('<th><span data-toggle="tooltip" data-placement="top" title="' + type + '">' + henc2(columnNames[i]) + "</span></th>");
+					thead.append('<th><span data-toggle="tooltip" data-placement="top" title="' + type + '">' + henc2(columnNames[i],100) + "</span></th>");
 				}
 			}
 
@@ -1172,7 +1182,7 @@ function proc_fix_renderQuery(){
 					s1='[ArrayBuffer]&nbsp;&nbsp;<a href="#" onclick="proc_ab_save(this,'+(garraybuffers.length-1)+');return false">Save</a>';
 					tr.append('<td noeditor="1"><span title="Size: '+s[i].byteLength+'">' + s1 + '</span></td>');
 				}else{
-					s1=henc2(s[i]);
+					s1=henc2(s[i],256*1024,'...more');
 					tr.append('<td><span title="' + s1 + '">' + s1 + '</span></td>');
 				}            
 			}
