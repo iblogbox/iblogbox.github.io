@@ -385,4 +385,16 @@ fix_codemirror_domReady(function(){
 	for(var i=1; i<=4; i++){    
 		find_filecharset('filecharset'+i);
 	}
+	try{
+		if(window.getComputedStyle && document.body && _getid('tableedit')){
+			var x=window.getComputedStyle(document.body);
+			if(x.overflowY=='hidden' && x.margin=='0px'){
+				setInterval(function(){
+					if(document.body.scrollTop!=0){
+						document.body.scrollTop=0;				
+					}
+				},300);
+			}
+		}
+	}catch(err){}
 });
