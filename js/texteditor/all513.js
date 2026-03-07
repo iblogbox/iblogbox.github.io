@@ -409,6 +409,17 @@ fix_codemirror_domReady(function(){
 				}
 			});
 		}
+		var b=_getid("replace");
+		if(b && b.getAttribute && b.getAttribute('style')=='width: 7em'){
+			b.addEventListener('keydown', function(e){
+				if(!e)e=window.event; if(!e)return;
+				if(e.keyCode==13){
+					if(!b.value && localStorage["runscript_lastreplace"]){
+						localStorage["runscript_lastreplace"]='';
+					}
+				}
+			});
+		}
 	}
 	find_query();
 });
