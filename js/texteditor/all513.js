@@ -397,4 +397,18 @@ fix_codemirror_domReady(function(){
 			}
 		}
 	}catch(err){}
+	function find_query(){
+		var a=_getid("query");
+		if(a && a.getAttribute && a.getAttribute('style')=='width: 9em'){
+			a.addEventListener('keydown', function(e){
+				if(!e)e=window.event; if(!e)return;
+				if(e.keyCode==13){
+					if(!a.value && localStorage["runscript_lastquery"]){
+						localStorage["runscript_lastquery"]='';
+					}
+				}
+			});
+		}
+	}
+	find_query();
 });
