@@ -8856,7 +8856,10 @@ mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePick
 
     var files = e.target.files;
     var file = files[0];
-
+	if(file.size && file.size>gmaxsize*1024*1024){ //edit
+		alert('The file size is too large to edit. (around '+gmaxsize+' MB limit)');
+		return;
+	}
     var reader = new FileReader();
     reader.onload = function() {
       try {
@@ -9218,7 +9221,10 @@ mindmaps.CanvasContainer = function() {
 
       var files = e.originalEvent.dataTransfer.files;
       var file = files[0];
-
+      if(file.size && file.size>gmaxsize*1024*1024){ //edit
+          alert('The file size is too large to edit. (around '+gmaxsize+' MB limit)');
+          return;
+	  }
       var reader = new FileReader();
       reader.onload = function() {
         self.receivedFileDrop(reader.result);
@@ -9415,8 +9421,13 @@ mindmaps.LocalDocumentStorage = (function() {
      */
     saveDocument : function(doc) {
       try {
-        localStorage.setItem(prefix + doc.id, doc.serialize());
-        return true;
+		  var s=doc.serialize();
+		  if(s && s.length<gmaxstoragesize*1024){ //edit
+			localStorage.setItem(prefix + doc.id, s);
+			return true;
+		  }else{
+			  return false;
+		  }
       } catch (error) {
         // QUOTA_EXCEEDED
         console.error("Error while saving document to local storage",
