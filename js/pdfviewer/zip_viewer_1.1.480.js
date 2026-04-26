@@ -246,7 +246,7 @@ c)switch(b.keyCode){case 32:if(!d&&"page-fit"!==f.currentScaleValue)break;PDFVie
 window.addEventListener("afterprint",function(b){PDFViewerApplication.afterPrint()});(function(){PDFViewerApplication.animationStartedPromise=new Promise(function(b){window.requestAnimationFrame(b)})})();
 
 if(
-window.location && /^(https?:\/\/(127.0.0.1|texviewer.herokuapp.com|ehubsoft.herokuapp.com\/psviewer|latex.thetimetube.com|cloudapps.herokuapp.com\/htmtopdf|overbits.herokuapp.com\/rsteditor|txt2pdf.softgateon.net))/i.test(window.location.href || '')
+window.location && /^(https?:\/\/(texviewer.herokuapp.com|ehubsoft.herokuapp.com\/psviewer|latex.thetimetube.com|cloudapps.herokuapp.com\/htmtopdf|overbits.herokuapp.com\/rsteditor|txt2pdf.softgateon.net))/i.test(window.location.href || '')
 ){
 	function fix_pdfviewer_domReady(callback) {
 		if (document.addEventListener) {
