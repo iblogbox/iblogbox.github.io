@@ -2191,7 +2191,7 @@ function removeEventLayerXY() {
 */
 //edit
 function addUnloadHook(){
-  window.onbeforeunload = function (e) {
+	var unloadcbf=function(){
 	  if(window.proc_savelast) proc_savelast();
 /*    var msg = "Are you sure? Any unsaved progress will be lost."
     e = e || window.event;
@@ -2203,7 +2203,9 @@ function addUnloadHook(){
 
     // For Safari
     return msg;*/
-  };
+  };	
+	window.onbeforeunload=unloadcbf;
+	if('onpagehide' in window) window.onpagehide=unloadcbf;
 }
 
 
