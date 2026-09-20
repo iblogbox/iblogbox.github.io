@@ -2204,8 +2204,8 @@ function addUnloadHook(){
     // For Safari
     return msg;*/
   };	
-	window.onbeforeunload=unloadcbf;
 	if('onpagehide' in window) window.onpagehide=unloadcbf;
+	else window.onbeforeunload=unloadcbf;
 }
 
 
