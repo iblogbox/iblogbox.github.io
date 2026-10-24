@@ -1,4 +1,4 @@
-//pdfkit 0.10.0
+//pdfkit 0.10.0 (26/10/25)
 var gPDFimageloader;
 //var gPDFimageErrorFunc;
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.PDFDocument = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
@@ -62130,7 +62130,159 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
     };
 
     PNG.prototype.decodePixels = function(fn) {
-      var _this = this;
+		//edit, from v0.11.0
+		return zlib.inflate(this.imgData, (err, data) => {
+		  if (err) {
+			throw err;
+		  }
+
+		  const { width, height } = this;
+		  const pixelBytes = this.pixelBitlength / 8;
+
+		  const pixels = new Buffer(width * height * pixelBytes);
+		  const { length } = data;
+		  let pos = 0;
+
+		  function pass(x0, y0, dx, dy, singlePass = false) {
+			const w = Math.ceil((width - x0) / dx);
+			const h = Math.ceil((height - y0) / dy);
+			const scanlineLength = pixelBytes * w;
+			const buffer = singlePass ? pixels : new Buffer(scanlineLength * h);
+			let row = 0;
+			let c = 0;
+			while (row < h && pos < length) {
+			  var byte, col, i, left, upper;
+			  switch (data[pos++]) {
+				case 0: // None
+				  for (i = 0; i < scanlineLength; i++) {
+					buffer[c++] = data[pos++];
+				  }
+				  break;
+
+				case 1: // Sub
+				  for (i = 0; i < scanlineLength; i++) {
+					byte = data[pos++];
+					left = i < pixelBytes ? 0 : buffer[c - pixelBytes];
+					buffer[c++] = (byte + left) % 256;
+				  }
+				  break;
+
+				case 2: // Up
+				  for (i = 0; i < scanlineLength; i++) {
+					byte = data[pos++];
+					col = (i - (i % pixelBytes)) / pixelBytes;
+					upper =
+					  row &&
+					  buffer[
+						(row - 1) * scanlineLength +
+						  col * pixelBytes +
+						  (i % pixelBytes)
+					  ];
+					buffer[c++] = (upper + byte) % 256;
+				  }
+				  break;
+
+				case 3: // Average
+				  for (i = 0; i < scanlineLength; i++) {
+					byte = data[pos++];
+					col = (i - (i % pixelBytes)) / pixelBytes;
+					left = i < pixelBytes ? 0 : buffer[c - pixelBytes];
+					upper =
+					  row &&
+					  buffer[
+						(row - 1) * scanlineLength +
+						  col * pixelBytes +
+						  (i % pixelBytes)
+					  ];
+					buffer[c++] = (byte + Math.floor((left + upper) / 2)) % 256;
+				  }
+				  break;
+
+				case 4: // Paeth
+				  for (i = 0; i < scanlineLength; i++) {
+					var paeth, upperLeft;
+					byte = data[pos++];
+					col = (i - (i % pixelBytes)) / pixelBytes;
+					left = i < pixelBytes ? 0 : buffer[c - pixelBytes];
+
+					if (row === 0) {
+					  upper = upperLeft = 0;
+					} else {
+					  upper =
+						buffer[
+						  (row - 1) * scanlineLength +
+							col * pixelBytes +
+							(i % pixelBytes)
+						];
+					  upperLeft =
+						col &&
+						buffer[
+						  (row - 1) * scanlineLength +
+							(col - 1) * pixelBytes +
+							(i % pixelBytes)
+						];
+					}
+
+					const p = left + upper - upperLeft;
+					const pa = Math.abs(p - left);
+					const pb = Math.abs(p - upper);
+					const pc = Math.abs(p - upperLeft);
+
+					if (pa <= pb && pa <= pc) {
+					  paeth = left;
+					} else if (pb <= pc) {
+					  paeth = upper;
+					} else {
+					  paeth = upperLeft;
+					}
+
+					buffer[c++] = (byte + paeth) % 256;
+				  }
+				  break;
+
+				default:
+				  throw new Error(`Invalid filter algorithm: ${data[pos - 1]}`);
+			  }
+
+			  if (!singlePass) {
+				let pixelsPos = ((y0 + row * dy) * width + x0) * pixelBytes;
+				let bufferPos = row * scanlineLength;
+				for (i = 0; i < w; i++) {
+				  for (let j = 0; j < pixelBytes; j++)
+					pixels[pixelsPos++] = buffer[bufferPos++];
+				  pixelsPos += (dx - 1) * pixelBytes;
+				}
+			  }
+
+			  row++;
+			}
+		  }
+
+		  if (this.interlaceMethod === 1) {
+			/*
+			  1 6 4 6 2 6 4 6
+			  7 7 7 7 7 7 7 7
+			  5 6 5 6 5 6 5 6
+			  7 7 7 7 7 7 7 7
+			  3 6 4 6 3 6 4 6
+			  7 7 7 7 7 7 7 7
+			  5 6 5 6 5 6 5 6
+			  7 7 7 7 7 7 7 7
+			*/
+			pass(0, 0, 8, 8); // 1
+			pass(4, 0, 8, 8); // 2
+			pass(0, 4, 4, 8); // 3
+			pass(2, 0, 4, 4); // 4
+			pass(0, 2, 2, 4); // 5
+			pass(1, 0, 2, 2); // 6
+			pass(0, 1, 1, 2); // 7
+		  } else {
+			pass(0, 0, 1, 1, true);
+		  }
+
+		  return fn(pixels);
+		});
+      /*var _this = this;
       return zlib.inflate(this.imgData, function(err, data) {
         var byte, c, col, i, left, length, p, pa, paeth, pb, pc, pixelBytes, pixels, pos, row, scanlineLength, upper, upperLeft, _i, _j, _k, _l, _m;
         if (err) {
@@ -62206,7 +62358,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
           row++;
         }
         return fn(pixels);
-      });
+      });*/
     };
 
     PNG.prototype.decodePalette = function() {
