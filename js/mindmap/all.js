@@ -9001,12 +9001,12 @@ mindmaps.SaveDocumentView = function() {
 			blobLink.download = filename;
 			if(gsaveblob) window.URL.revokeObjectURL(gsaveblob);
 			gsaveblob=window.URL.createObjectURL(blob);
-			if(issafari){
+			/*if(issafari){
 				window.open(gsaveblob);
-			}else{
+			}else{*/
 				blobLink.target='_blank';
 				blobLink.href=gsaveblob;
-			}
+			//}
 		}
 
 	});
